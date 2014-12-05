@@ -103,6 +103,18 @@ I decided to collate everything into a class after the visit from Claude. Much b
 \label{fig:fit_spec}
 \end{figure}
 
+\subsection{4-12-14: Introduction to KMOS}
+Met with Michele and discussed an alternative recipe for computing the redshift from a template spectrum, by using a redshift grid and interpolation at each stage, instead of a single wavelength transformation to one grid. Will try this out. Also started discussing the main science aims of Michele's next observing run, the potential science goals of my PhD and the beginning stages of understanding the KMOS analysis pipeline. Given a list of manuals to download and read and also the link to the analysis pipeline so that I can begin installing the software and using test data to see if I can get this to work. \\
+KMOS produces 3D cubes, where two of the directions are the physical x and y information on the sky, and the third axis is the wavelength information after the light has been dispersed by the spectrograph. KMOS has 24 arms and so the first step is to choose the targets. Once these have been confirmed, the instrument slices the light from each of the arms into cubes of 14x14 pixels. These are fed into the disperses and for each of these individual pixels a spectrum is recorded. The instrument has 3 detectors, each of which picks up 8 objects and so the final fits file spat out by the telescope has 3 images, each of which contains 8 14x14 spectra. \\ 
+Michele's work at the moment is focussing in on redshift 3-5 galaxies, with known redshift values, which we want to study the spatial gradients of metallicity, SFR and velocity within. Knowing how these values shift radially within a galaxy gives access to information about how the products of star formation are distributed within a galaxy. A lot of information to digest at once, as Michele will be in Chile for the following but we discussed the major stages of every analysis pipeline; bad pixel and dark current subtraction, flatfielding, wavelength calibration, flux calibration; and also the KMOS specific stages, reconstruction of the 3D KMOS cube and then stacking of the observations which are taken in OSO-OSO.  \\
+Finally got the redshift template method working using the new approach suggested by Michele, the only problem is that it runs quite slowly compared to the other way. If there was a way to get the other method to work this would be much prefered, but the redshift output of the new method matches closely to the SDSS line redshift solutions. SDSS appear to have a redshift solution for each individual spectral line - could proably figure out how to do this if more time was spent. But now will focus on the KMOS analysis. 
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=0.8\textwidth]{Cross_corr.png}
+\caption{\footnotesize{\emph{Plot of one of the working CCF}}}
+\label{fig:cross_cor}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -154,6 +166,12 @@ For a conventional IMF, the peak contribution to the UV flux shortwards of the L
 \subsubsection{Emission Line Tracers}
 For a conventional IMF these lines trace stars with masses greater than 15 solar, with peak contribution from stars in the mass range 30-40 solar. As such, the lines provide a nearly instantaneous measure of the SFR, tracing stars with lifetimes of 3-10Myr. \\ 
 Why isn't Lyman-a used instead of H-a? The strength of the former is 8.7 times that of the latter in Case B recombination, making it an attractive tracer in pricinple, but in realistic ISM environments the line is subject to strong quenching from the combination of resonant trapping and the eventual absorption by dust, usually quantified in terms of a Lyman-a escape fraction. 
+\subsection{Infrared Emission: The impact of Spitzer and Herschel}
+Interstellar dust absorbs approximately half of the light in the universe and reradiates this in the IR, so measurements in the IR are essential for deriving a complete inventory of star formation. The Spitzer space telescope \citep{Gehrz_2007}, \citep{Werner_2004} and the Herschel space observatory \citep{Pilbratt_2010} have provided transformational results in the field. Three other important space missions are the AKARI mission \citep{Murakami_2007}, the Wide-Field Infrared Survey Explorer(WISE) \citep{Wright_2010} and Planck \citep{Planck_2011}. 
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
@@ -306,7 +324,18 @@ There is clearly a much weaker relationship between luminosity and metallicity t
 \subsection{The Origin of the mass metallicity relationship}
 A correlation between the gas phase metallicity and stellar mass can plausibly be explained by either the tendency for lower mass galaxies to have higher gas fractions \citep{McGaugh_1997}, \citep{Bell_2000} and thus be less enriched, or by the preferential loss of metals from galaxies with shallow potential wells by galactic-scale winds. With the relevant information on the star, gas and metal content of the galaxy, the two effects can be differentiated. \\ 
 \textbf{Simple closed box model of chemical evolution}
-STILL NEED TO CONTINUE READING FROM HERE ONWARDS. HARDER STUFF. Hello  
+The gas fraction is expressed as the ratio of the gas mass and the sum of the gas and stellar masses, the true yield y is the ratio of the mass of metals produced and ejected by star formation to the mass locked in long-lived stars and remnants. The true yield is a function of stellar nucleosynthesis and as in previous studies \citep{Tremonti_2004}, \citep{Garnett_2002} the authors assume that this is constant. The metallicity is then given by: 
+
+\begin{equation}
+	Z = yln\frac{1}{\mu}
+\end{equation}
+The equation can then be inverted to give the effective yield $y_{eff}$ from the observed metallicity and gas fraction. If the simple model applies, $y_{eff}$ will be constant for all masses and equal to the true yield y. The authors use a similar approach to Tremonti et al. \citep{Tremonti_2004}, using the H-alpha luminosity and the Schmidt relation to find the gas mass and then looking at $\mu$ within different mass bins. Strong trend for decreasing gas fraction with increasing mass and also for a decrease in the effective yield with increasing mass. \\ 
+Given the ubiquitous signatures of galactic scale outflows in the kinematics of $z \sim 2$ galaxies, we now consider the effects of such outflows on the metallicities of the galaxies. To address this question we modify the simple model to include gas outflow at rate $Myr^{-1}$, which is a fraction f of the star formation rate. It can then be shown that the metallicity is given by equation 4 of that paper. The best fitting model is found to have supersolar metallicity and a high outflow rate. 
+\subsubsection{Redshift evolution of the mass-metallicity relation}
+Direct comparisons are difficult due to the different calibration methods used to find the metallicity. However there are a sample of four galaxies for which all four emission lines used in the different calibrations are available and the $\frac{OIII}{H\beta}$ ratio measures metallicity roughly 0.17dex less than the $\frac{NII}{H\alpha} $ ratio. Combination of this effect and the locations of the SDSS fibers tracing only the innermost region of galaxies leading to uncertainties of roughly a factor of 2, this is the same magnitude as the offset itself. \\ 
+There are reasons to believe that there may be a real evolutionary offset in the mass-metallicity relation, and we proceed with the discussion under this assumption. The higher redshift sample have gas fractions more than twice as high as the local SDSS sample, placing them at an earlier stage of converting their gas to stars. Given this less evolved state, it is not surprising that they should have lower gas phase metallicites. Simple consequence of lower mass galaxies using their gas over a more protracted period, high mass galaxies likely to exhaust their gas on shorter timescales. \\ 
+It is also entirely possible that the local sample of T04 are not the evolutionary descendants of the $z \sim 2$ sample. Such a conclusion is drawn from evolving the clustering properties of the high redshift sample to the local universe - the weakly clustered late type galaxies studied by T04 do not match and it would be more relevant to compare the mass metallicity relation between local early-type galaxies. 
+ 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Tremonti: The origin of the mass-metallicity relation from 53,000 SDSS galaxies}\label{sec:tremonti_2004}
@@ -526,6 +555,11 @@ Based on the results of previous studies, a picture has emerged whereby more mas
 	\item Starburst99 the two empirical stellar libraries available in the code - one for the milky way and one for the MC. What does this mean? What is a stellar library?
 	\item Computing metallicity from the likelihood distribution - Bayesian approach. Specifically in the Tremonti et al. SDSS paper.
 
+\end{itemize}
+
+\subsection{Analysis Pipeline}\label{que:analysis_pipeline}
+\begin{itemize}
+	\item The manual which is 184 pages long - is this important for me to read at some stage?
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
