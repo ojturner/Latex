@@ -116,6 +116,90 @@ Finally got the redshift template method working using the new approach suggeste
 \label{fig:cross_cor}
 \end{figure}
 
+Received some test KMOS data from Michele and have installed the pipeline properly (hopefully) so will try running through the whole pipeline from the tutorial book. Need to use the easySPARK.sh files, with the sof extension at first to create the list of files and check that the correct list has been created. Need to have the same dark exposure time and exposure time on the source, so need to use the dark frames with the correct exposure time in the preparation files. Use dfits and fitsort first to search through the properties of the files to know which are the correct ones to use in the pipeline. Spits out files at different stages before eventually reconstructing the data cube. Needs to be 2D to do all of the standard data analysis stuff.
+
+
+
+
+\section{Journal}
+\subsection{8-12-14: Introduction to KMOS}
+Data reduction session with the KMOS data from Michele. I'll try to keep a note of progress here, the things I'm trying and that commands I'm using to do this and questions for Michele at the end of this. First is the correct use of the dfits command: \\
+
+dfits `filename.fits' `pipe' fitsort exptime \\ 
+
+For example would take the file and list the exposure time on the source. Useful when dealing with dark frames, as the dark frame exposure must be the same as the source exposure to be able to accurately subtract the dark current. Will give more examples in the literature book as I go along. \\ 
+The standard star spectral irradiance calibrations are derived from the NIR magnitudes of stars reported by Cohen \citep{Cohen_2003}. This is from the 2MASS survey \citep{Skrutskie_2006}. The Telluric spectrum is trickier, this was perhaps attempted automatically during the recipe. Otherwise there is an excellent option for producing Telluric spectra described by Vacca \citep{Vacca_2003}. \\ 
+\textbf{Science Reduction} \\ 
+Everything has been done as described apart from the illumination correction, which I couldn't get to work properly. The Telluric correction did work, it is these two files which are not manadatory for the science reduction stage. \\ 
+Went through all the stages and got some data cubes, but no idea how these should look. Not sure whether this is a problem with my qfitsview as the statistics for the cubes seem pretty solid. 
+
+
+\subsection{10-12-14: Continuing with KMOS reading}
+Managed to install Anaconda with python 2.7.8. Briefly was using python 3.4, which is the first ever backwards incompatible python release - it was total rubbish and none of my programs worked with it. Was easy to revert to the other version of python and got everything working again yesterday after a stressful period of mucking around. Now also have the qtconsole ipython viewer with inline matplotlib plotting, will be handy when trying to visualise a certain piece of work. Get syntax highlighting and can run scripts from within there. \\ 
+Reading the KMOS introduction slides - commentary on this primary in the Literature book. Not very useful, need to understand the instrument better first before attempting the reconstruction again. Main problem is qith qfits not working properly - I think that I have a reconstructed data cube but I'm not sure how to view this. The end results in the slide look really cool, want to be able to get to this stage, but requires a lot of customisation of the pipeline analysis. \\ 
+\textbf{VLT MANUAL} \\ 
+The key feature of KMOS is its ability to perform Integral Field Spectroscopy in the near-infrared bands for 24 targets simultaneously. The instrument design employs 24 configurable arms that position pickoff mirrors at user- specified locations in the Nasmyth focal plane. The sub-fields thus selected are then fed to 24 image slicer integral-field units (IFUs) that partition each sub-field into 14 identical slices, with 14 spatial pixels along each slice. EXPLANATION OF THIS SECTION. How does the image slicer work and how can I visualise the 14 spatial pixels along each of the 14 identical slices? Light from the IFUs is then dispersed by three cryogenic grating spectrometers which generate 14x14 spectra with $\sim$1000 Nyquist-sampled spectral resolution elements for each of the 24 independent sub-fields. The patrol field of the pickoffs is 7.2 arcmin in diameter, which is the diameter of the unvignetted field at the VLT Nasmyth focus, thus minimising the thermal background in the K- band. Each IFU has a square field of view of 2.8 x 2.8 arcsec; anamorphic magnification in the IFU foreoptics ensures uniform spatial sampling of 0.2 x 0.2 arcsec whilst maintaining Nyquist sampling (~2 pixel) of the spectral resolution element at the detector. Crucially the pickoff arms can patrol a very wide field of 7.6arcmin, and then the field of the IFU is square and 2.8x2.8 arcsec, giving each pixel a spatial sampling of 0.2 arcsec. Below is a visual example of integral field spectroscopy. Really good descriptions of each of the concepts in the VLT manual written by Michele. Should return here when trying to create the presentation and when writing any of this up. 
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=0.6\textwidth]{kmos_disperse.png}
+\caption{\footnotesize{\emph{Example of Integral Field Unit Spectroscopy. A 2-dimensional image will first be sliced, the slices then dispersed on a common slit and finally a 3D data cube is reconstructed from the obtained spectra. In KMOS the image is sliced in 14 elements instead of 6 as in this figure}}}
+\label{fig:kmos_disperse}
+\end{figure}
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=0.6\textwidth]{kmos_speectrographs.png}
+\caption{\footnotesize{\emph{Perspective view of the mounted KMOS spectrographs inside the cryostat}}}
+\label{fig:kmos_spectrographs}
+\end{figure}
+
+
+\textbf{Questions}
+\begin{itemize}
+\item Environment variables? Is it wise to start a seperate data reduction `session' with different folder names each time I'm working on this? 
+\item The different wavebands. What is contained in the fits files I'm looking at? Are these combined images from all the different NIR bands? 
+\item Why are the exposure times on the standard stars, the objects we are using to calibrate flux, so much less than on the target objects? Shouldn't something being used to calibrate flux be collecting photons over an equivalent base timescale? 
+\item Matching arcs and flatfields - getting the same rotation angles for these. Get the best results by using them in `sets' 
+\item The importance of the illumination correction when processing science data
+\item How to ensure the consistency of the flat and arc calibration products 
+\item How important is it to know what the recipes are doing?
+\item In step 4.3, the wavelength calibration using the arc frames, one of the end products is lcal.fits, which is a frame containing the wavelength values of every pixel on the detector. How does this work? Is the light in every pixel dispersed? No the target is selected by one of the IFUs, each of which has this 14x14 array of pixels and then this light is fed into the disperser... Does this individually disperse the light in each of the 196 pixels? 
+\item what am I looking at in det-img-wave.fits? 
+\item Due to the differential flexure of the instrument between the flatfield and the sky exposures. What is differential flexure? 
+\item How do we use the illumination correction frame after it has been created? 	
+\item Am I meant to be using the standard stars inside the Galaxy folder, or the standard stars which are in the calibration folder? These both seem similar. 
+\item What should I be seeing when I open the standard star cube in qfits? At the moment getting nothing both when trying to open this and when trying to open standard fits files (which aren't cubes)
+\item What is the importance of the Telluric spectrum? Is it created and then used immediately? Because there are no output files described in that section of the data reduction. No Telluric was produced.
+\item I'm missing something - the difference between integral field and multiple object spectroscopy. Is is that each IFU selects an extended target, the image is sliced, fed through the lenslet array and then dispersed and the multiple object part is that this is happening simultaneously for lots of different objects in the field of view? 
+\item A datacube has three axes - the x and y coordinates of the object on the sky and the wavelength axis. How then do we get the spectra, which is the distribution of energies in this space?? Usually when we see a spectrum is it just energy against wavelength, so how do the x and y axes fit into this? 
+\item Page 7 of the KMOS tutorial slides, the detector raw images. What am I actually looking at there? Can see the single spatial of wavelength dimensions, what is being dispersed? 
+\item Full example of what I'm looking at in one of the OBS.fits files
+\item qfits won't even open regular fits files let alone reconstructed data cubes
+\item Image slicer question in the above section
+\item What is a 14x14 spectrum? 
+\item Surely each of the 24 pickoff arms are focussing on seperate fields of view. How then can 8 of these be combined to give a single image on a detector? E.g. the continuous line across the detector image when iluminated with the Neon light 
+\end{itemize} 
+
+\textbf{Observing with KMOS} \\
+
+The figure below shows an image from KARMA, the observation preparation tool for KMOS. Special algorithms for maximising observation targets, given a particular field of view, which minimise the chance of arm collisions and confusion.
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=0.6\textwidth]{kmos_karma.png}
+\caption{\footnotesize{\emph{View of observation preparation using KARMA}}}
+\label{fig:kmos_karma}
+\end{figure} 
+
+
+
+\textbf{Questions}
+\begin{itemize}
+	\item KMOS observations are all coded using templates - what does this mean? Two or more templates make an observing sequence
+\end{itemize}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Kennicutt 98: Star Formation in Galaxies along the Hubble sequence}
@@ -248,9 +332,11 @@ Describing the details of how to express different calibration methods in the sa
 \subsection{The Mass Metallicity Relationship}
 As the stellar mass and metallicity respectively measure the amount of gas converted into stars and the amount of gas converted into metals, the evolutionary stage of a galaxy can be inferred from reliable knowledge of these two quantities. Therefore the M-Z relation provides a valuable tool for studying the chemical evolution of galaxies. However despite mounting observational evidence for the relation, many questions remain regarding the origin, scatter and possibility of environmental dependence. No strong environmental dependence of the M-Z relation reported throughout the paper.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-
+\section{Kewley 2008: Metallicity Calibrations and the mass-metallicity relation for star forming galaxies}\label{sec:K08}
+\subsection{Abstract and Introduction}
+Mainly that the choice of metallicity calibration has a large impact on the slope and shape on the mass-metallicity relation
 
 
 
@@ -401,11 +487,105 @@ A range of parameters is explored for the fitting the four data points with $\la
 \subsection{Dust Masses and Gas to Dust ratios}
 There are standard recipes for computing the dust masses, found in Hildebrand 1983 \citep{Hildebrand_1983} and Young 1989 \citep{Young_1989}.  
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Troncoso 2014: Metallicity evolution, metallicity gradients, and gas fractions}\label{sec:Tronc}
+\subsection{Abstract and Introduction}
+
+Using Amaze and LSD ESO data to constrain the metallicities of a sample of z $\sim 3.4$ galaxies, using strong emission line diagnostic techniques. Found that many of these galaxies differ significantly from the fundamental metallicty relation (FMR) observed in local galaxies, this being the tight correlation in the 3D surface defined by stellar mass, metallicity and SFR. At low stellar mass metallicity drops off sharply with increasing SFR. At high stellar mass the metallicity does not depend upon SFR. This deviation doesn't correlate with the dynamical properties of the galaxies or with the presence of interactions. Got information on the gas content of the galaxies in the usual way, which is to invert the Schmidt-Kennicutt relation, assuming that this doesn't evolve out to the redshifts of the galaxies involved in this analysis. Gas fraction remains fairly constant in galaxies between redshifts 2 and 3.4, in contrast to the sharply declining fractions between 0 and 2. To infer the low metallicity and gas content of these galaxies, both prominent outflows and massive pristine gas inflows are needed. For 10 of the sample of galaxies it is possible to spatially resolve the metallicity distribution - the results show that the metallicity distribution tends to anti-correlate with the distribution of star formation (found via the same means - measuring the strengths of emission lines at different spatial locations) and with the gas surface density. These findings are discussed in terms of pristine gas inflows towards the centre and massive gas outflows from the centre towards the outer regions. So really the whole point of these studies is to understand gas regulation within galaxies - how important are these galaxies for enriching the IGM. How much feedback is there, how important are inflows and outflows? One thing that seems very clear is that we certainly can't treat galaxies as closed boxes, and interaction with environment is crucial in shaping how these galaxies evolve throughout time. What is the impact of having a different metallicity distribution than expected? Looking for context with all these things. Discuss with Michele this presentation project.  \\ 
+The emerging scenario is that gas in the intergalactic medium quickly replenishes galaxies through smooth cold flows. Molecular hydrogen is then available to feed star formation and the evolution of the cosmic star formation rate is simply a consequence of the evolution of the molecular gas content in galaxies through the Schmidt-Kennicutt relation. The discovery of the relationship between stellar mass, metallicity and SFR was dubbed the FMR by \citep{Mannucci_2010}. In particular, one of the basic ideas behind the inverse correlation between SFR and metallicity is that it is primarily associated with in- flow of pristine gas: the accreted gas on the one hand dilutes the gas metallicity, on the other hand boosts star formation through the Schmidt-Kennicutt relation. Sanchez et al. \citep{Sanchez_2013} recently did not confirm the relationship between metallicity and SFR using spatially resolved spectroscopy - there is a big difference between this and using the total integrated light to infer metallicity. Indeed Bothwell et al. \citep{Bothwell_2013} have shown that the anticorrelation between metallicity and SFR is only observed if extracting both quantities from the same aperture. A key aspect of the FMR is that it appears to be constant out to redshift 2.5, and Mannucci et al. \citep{Mannucci_2010} found significant deviation from this at $z=3$. This suggests a constant galaxy formation mechanism between $z = 0$ and $z = 2.5$, and potentially a different dominant mode of galaxy formation beyond this. Possibly massive inflows of pristine gas at high redshift could be responsible for significantly lowering the metallicity of $z=3$ galaxies. Need a larger sample of spatially resolved galactic spectra to test this further. This paper deals with a more complete sample of $z = 3-4$ galaxies. \\ 
+\subsection{AMAZE Project: Sample and Data}
+Sample of 31 galaxies between redshifts 3 and 5.2 with Spitzer/IRAC photometry (3.6 − 8$\mu m$) required to derive reliable stellar masses. The main goal is the same as that of KMOS, which is to observe the strong oxygen, neon and hydrogen emission lines redshifted into the near infrared spectrum. 
+\subsection{Basic Observational Results}
+\subsubsection{Emission lines}
+The emission lines fluxes were obtained by fitting the emission lines with Gaussian functions by imposing the same FWHM for all the lines. This seems to be a common approach - assuming that the emission is coming from the same molecular clouds, would expect the same velocity distribution and so the same linewidth. The continuum, when detected (marginally), was sub- tracted with a simple linear slope, and the uncertainties in the subtraction were included in the final errors on the line fluxes. No stellar population synthesis for the emission lines? Simply subtracting a linear profile? Don't understand, they seem to have really nice high resolution spectra. 
+\subsubsection{Physical Properties}
+For each galaxy in our sample a multiwavelength broad-band spectral energy distribution (SED) was built with published or archival data and was fitted with a set of galaxy spectral templates to obtain the stellar mass, SFR, age, and dust reddening. Classic approach, need as much photometry as possible to get a good fit to the templates. Breaks the degeneracy between age and redshift. 
+
+\subsection{Metallicity Evolution}
+The metallicity for the sample of galaxies was found using the $R_{23}$ parameter, the main problem with which is the double-branch solution. Since the mass has already been determined via SED fitting, all that remains is to plot the two quantities against one another. Doing so shows that the mass metallicity relation is about 0.8 dex lower than for local galaxies. 
+
+\subsubsection{Evolution at $z∼3.4$ compared with the fundamental metallicity relation}
+Several explanations given for the deviation of the sample from the FMR.
+
+\subsection{Gas Content}
+Extremely useful to have informtion on the gas content of galaxies, as this allows us to distiguish between different models (e.g. closed box, inflows, outflows). But how do we find out about the gas content? Direct measurements are still incredibly challenging. Many authors invert the Schmidt-Kennicutt relationship, but this is indirect and subject to large uncertainties. \citep{Tacconi_2013} and others have measured the gas content in galaxies and found that the Schmidt-Kennicutt relation still holds out to redshift 2.7. The method used here to infer the gas content bypasses the issues with the SK method. The gas content is inferred in each pixel by locally applying the SK relation, and the total gass mass is found by summing the contributions from all of these pixels. The resulting gas mass can be combined with the baryonic mass to compute the total mass fraction. This gives an indication of the evolutionary stage of the galaxy. 
+
+\subsection{Comparison with Simple Models}
+Basically taking the closed box and adding in the inflow and outflow rates proposed by Erb \citep{Erb_2008}. Find that both massive inflows and outflows are needed, which are difficult to explain without invoking AGN activity. Mapping the gas metallicity in high-z galaxies is extremely challenging, because the surface brightness of the emission lines is low and the emission is often unresolved in seeing limited images. Cresci et al. \citep{Cresci_2010} wrote a nature paper describe the first metallicity maps of galaxies at $z > 3$ using galaxies from the AMAZE sample. In this paper maps are produced for 11 of the galaxies in the AMAZE sample - the clear indication is that the region of the galaxy with the lowest metallicity is spatially correlated with the peak of the continuum flux as traced by $H_{\beta}$. No significant dependence found of the metallicity gradients as a function of stellar mass SFR and sSFR. There is also no relationship between the morphological properties and the shape of the gradient. Radial gradients tend not to be radially symmetric. `Galactic fountains' a significant fraction of the metals ejected from the central winds falls bacj on the outer regions of the galaxy. 
+\subsection{Conclusions}
+Useful to pull everything together from this paper 
+
+\begin{itemize}
+	\item On average the galaxies in the sample are -0.43 dex than the fundamental metallicity relation between metallicity, stellar mass and SFR that charactirises local and lower-redshift galaxies. This is suggestive of a transition in the galactic evolutionary process at epochs of $z > 3$. 
+	\item There is no significant correlation between the dynamical state of these galaxies and deviations from the FMR.
+	\item Found that the deviations from the FMR correlate with the parameter $\mu_{32}$, which is the parameter giving the projection of the FMR that minimises the dispersion, and which is associated with the star formation efficiency as well as with the presence of outflows and inflows. 
+	\item Gas content does not follow the observed steep trend between $z=0 - 2$, and may even decrease between $z=2-3$. The results suggest that the evolution of the cosmic star formation rate is driven by an evolution of the gas content in galaxies, rather that an evolution of the efficiency of star formation. 
+	\item Anti-correlation between gas fraction and stellar mass may support the claim that downsizing is in place at $z=3$. However new observations are required to support this trend and validate that it is not a consequence of selection effects. 
+	\item Models with both high infalls and outflows are required to reproduce galaxy physical properties. These massive flows in the early universe are most likely responsible for the discrpancy between local and high redshift galaxies (FMR). 
+	\item Found a spatial anti-correlation between metallicity and the peak of the SFR. Furthermore found an anti-correlation between metallicity and gas surface density, supporting the model that smooth gas inflows feed galaxies at high redshift. In this scenario the inflow both feeds star formation and dilutes the metallicity. 
+\end{itemize}
+
+Healthy appendix in this paper with the diagnostic tools for metallicity measurement. 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Gas Accretion as the origin of chemical abundance measurements}\label{sec:Cresci_2010}
+Nature paper - first example of metallicity gradients in $z > 3$ galaxies. Crucially these inverse gradients are opposite to what we observe in the local universe. The cold gas inflow at high redshifts is essentially primordial, containing a very low fraction of elements heavier than helium. This epoch is particularly interesting as it precedes the peak of the star formation density in the universe. Cold gas accretion scenario \citep{Keres_2005}, in which low metallicity regions within galaxies are created by the local accretion of metal-poor gas in clumpy streams. This gas penetrates deep into the galaxy and maintains the high star formation rates observed in the pre-enriched disk. Rest of paper pretty basic, describes the metallicity gradients observed, these support the cold inflow model.  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Stellar Population Synthesis at the resolution of 2003}\label{sec:BC03}
+\subsection{Abstract and Introduction} 
+We present a new model for computing the spectral evolution of stellar populations at ages between 100,000 and 20 billion years, at a resolution of 3 angstroms across the whole wavelength range from 3200 to 9500 for a wide range of metallicities. Also compute the spectral evolution in the Near to far infrared at a lower resolution. The star formation history of galaxies is imprinted in their integrated light. The more recent models seeking to interpret this integrated galaxy light focus on evolutionary population synthesis, in which the main adjustable parameters are the IMF, the SFR and in some cases the rate of chemical enrichment. Assumptions concerning the time evolution of these parameters allows one to compute the age dependent distribution of stars on the HR diagram, from which the integrated spectral evolution of the population can be obtained. So the first is just the distribution of stars on the HR diagram - but you know how much light each of these stars is emitting, so convolving them with that gives you the total integrated light at any one time. Would expect the blue region of the spectrum to die out quickly because of the young stars, but if this is being replenished with star formation it may be that it does not. \\
+
+The main intrinsic uncertainty associated with these types of models is that there is a poor understanding of the latter stages of stellar evolution. This is further amplified by the fact that age, metallicity and dust all tend to affect spectra in similar ways. \\ 
+
+The model is available as a result of the recent collection of a stellar spectral library \citep{Borgne_2003}. The model relies on the isochrone synthesis technique for computing the spectral evolution of stellar populations \citep{Bruzual_1991}. 
+
+\subsection{The Model}
+\subsubsection{Stellar Evolution Prescription}
+In this section, we present the main two ingredients of our population synthesis model: the stellar evolution prescription and the stellar spectral library. We consider several alternatives for each of these. Three different stellar evolution prescriptions to account for uncertainties in stellar evolution theory. First exploring the library of stellar evolutionary tracks computed by Alongi et al. etc. covering a wide range of masses and metallicities. It is in this part that all of the equations of state, radiative transfer etc are applied to find the luminosity of different stars as a function of time. I.e. these libraries are for single stars of wide ranges of mass and metallicity, and places them onto the colour-magnitude diagram at a particular location. The three different libraries are described here, and supplemented with a new library for TP-AGB stars, which are one of the hardest evolutionary stages to model due to helium flashes and the changes in surface composition due to the `dredge up' of heavier elements AND mass loss due to strong stellar winds. It is necessary to have accurate models for these stars, as stochastically the presence of only a feew of them can have a strong impact on the integrated colours of a set of stars. \\ 
+Also a post-AGB stage for which a further library is used and since the models considered in this paper extend to 20Gyr it is necessary to include also white dwarf cooling models, as the post-AGB evolutionary stage generally does not extend this far. For the purpose of isochrone synthesis, all tracks must have equal physical significance \citep{Bruzual_1991}. 311 such phases are defined for low mass stars and 260 for high mass. \\
+
+\subsubsection{Stellar Spectral Library and spectral calibration}
+The second main ingredient of population synthesis models is the library of individual stellar spectra used to describe the properties of stars at any position in the HR diagram. So the first stage was to develop evolutionary tracks of stars from zero-age onto the main sequence and then post main sequence evolution. How long the stars will spend at each of these stages. Once convolved with the stellar spectral library we'll have the physical properties of these stars at any position. \\
+
+\textbf{Multimetallicity theoretical and semi-empirical libraries at low spectral resolution} \\ 
+Theoretical model atmospheres computed for wide ranges of stellar effective temperatures, surface gravities and metallicities allow one to describe the spectral energy distributions of any individual star in the HR diagram. These theoretical spectra have been computed \citep{Lejeune_1997}, \citep{Lejeune_1998}. Fuller description of these in the paper   \\ 
+
+\textbf{Multimetallicity observational libraries at higher spectral resolution} \\
+To build models with higher spectral resolution than the BaSeL models, we must rely on observations of nearby stars. Care must be taken to sample the HR diagram in a uniform way and Le Borgne \citep{Borgne_2003} optimised the sampling of the fundamental stellar parameters across the HR diagram for the purpose of population synthesis modelling. \\ 
+
+This whole section focussing on the collection of the highest resolution spectra possible, covering the largest wavelength range. Combining observation and modelling in order to do this. The result is a grid of spectra which can be assigned to any of the stars placed on the HR diagram by the stellar evolution prescription. 
+
+\subsubsection{Isochrone Synthesis}
+Isochrone synthesis technique to compute the spectral evolution of stellar populations \citep{Bruzual_1991}, \citep{Bruzual_1993}. The technique relies on the property that any stellar population with a star formation history can be expanded in series of instantaneous starbursts, conventionally named Simple Stellar populations (SSPs). The spectral energy distribution at time t of a stellar population characterised by star formation rate $\phi (t)$ and a metal enrichment law $\zeta (t) $can be written as e.g.
+
+\begin{equation}
+F_{\lambda} = \int ^{t} _{0} \phi(t - t^{\prime})S_{\lambda}[t^{\prime}, \zeta (t - t^{\prime})]dt^{\prime}
+\end{equation}
+
+where $S_{\lambda}[t^{\prime}, \zeta (t - t^{\prime})]$ is the power radiated per unit wavelength per unit inital mass by an SSP of age $t^{\prime}$ and metallicity $\zeta (t - t^{\prime})$ \citep{Tinsley_1980}. The above expression assumes that the initial mass function is independent of time. The S function is the sum of the spectra of stars defining the isochrone of an SSP of given metallicity at time $t^{\prime}$. THe Chabrier IMF is used and is an adjustable parameter of the model. 
 
 
+\subsection{Photometric Evolution}
+In this section, examining the predictions of the model for the photometric evolution of SSPs. Convincing us of how good the model is and how well it reproduces observed integrated colours and photometry of star clusters. 
 
+\subsection{Spectral Evolution}
+Photometric evolution was mainly colour vs. time. The plots in this section are the spectral distributions showing energy vs. wavelength. Sections begins with a description of the canonical spectral evolution of a simple stellar population. At $10^{6}$ years the spectrum is entirely dominated by short-lived, young massive stars with strong ultraviolet emission on the upper main sequence. At $10^{7}$ years the most massive stars leave the main sequence and become red supergiants, causing the ultraviolet light to decline and the NIR light to rise. From a few $10^{8}$ to over $10^{9}$ Gyr the AGB stars maintain a high level of NIR luminosity and the ultraviolet luminosity continues to trop as the  main sequence turn-off mass decreases. Above this age the accumulation of low mass post-AGB stars causes the UV light to rise until 13Gyr. The most remarkable feature of Figure \ref{fig:BC03_spectra} is the nearly unevolving shape of the optical through NIR spectrum at ages from 4 to 13 Gyr. The reason for this is that low mass stars evolve within a narrow temperature range from the main sequence all the way to the end of the AGB.  
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=0.6\textwidth]{bc03_spectra.png}
+\caption{\footnotesize{\emph{Spectral evolution of an SSP at solar metallicity}}}
+\label{fig:BC03_spectra}
+\end{figure} 
+
+
+\subsubsection{Interpretation of Galaxy Spectra}
+Using data from the EDR of SDDS, to interpret these spectra the authors use the MOPED data compression algorithm \citep{Heavens_2000}. Several advantages to using this approach described throughout the paper. The model can be used to reliably to measure the contamination of Balmer emission lines by underlying stellar absoprtion in galaxies. Can't really be bothered reading the rest of this paper, need to sort out the sky situation first.   
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -477,6 +657,15 @@ Based on the results of previous studies, a picture has emerged whereby more mas
 \item \underline{Nebular Line}: Emission between the first excited and ground states. The ratio of the auroral and nebular emission lines is extremely sensitive to electron temperature and is the preferred method of estimating metal abundances in HII regions. However the auroral line becomes very weak at metallicites above 0.5 solar, and so it difficult to measure in practice. As a result people resort to calibrated ratios of strong, forbidden emission lines.  
 \end{itemize}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{General Interest and Quotes}
+
+The cameras on Hubble and MER do not take color pictures, however. Color images from both spacecraft are assembled from separate black and white images taken through color filters. For one image, the spacecraft have to take three pictures, usually through a red, a green, and a blue filter and then each of those photos gets downlinked to Earth. They are then combined with software into a color image. This happens automatically inside off-the-shelf color cameras that we use here on Earth. But the MER Pancams have 8 different color filters while Hubble has almost 40, ranging from ultraviolet `bluer' than our eyes can see through the visible spectrum, to infrared `redder' than what is visible to humans. This gives the imaging teams infinitely more flexibility and sometimes, artistic license. Depending on which filters are used, the color can be closer or farther from `reality'. \\
+In the case of the Hubble, Levay explained, the images are further adjusted to boost contrast and tweak colors and brightness to emphasize certain features of the image or to make a more pleasing picture. \\ 
+Hubble can also produce color-calibrated images. Its `UniverseDial' would be standard stars and lamps within the cameras whose brightness and color are known very accurately. However, Hubble’s mission is not to produce images that faithfully reproduce colors. `For one thing that is somewhat meaningless in the case of most of the images,' said Levay, since we generally couldn’t see these objects anyway because they are so faint, and our eyes react differently to colors of very faint light. But the most important goal of Hubble is produce images that convey as much scientific information as possible.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -554,6 +743,10 @@ Based on the results of previous studies, a picture has emerged whereby more mas
 	\item How to use a weights vector when have error bars on both the x and y axes? 
 	\item Starburst99 the two empirical stellar libraries available in the code - one for the milky way and one for the MC. What does this mean? What is a stellar library?
 	\item Computing metallicity from the likelihood distribution - Bayesian approach. Specifically in the Tremonti et al. SDSS paper.
+	\item What do the colours mean in astronomical images? If recorded with a CCD, surely the voltage is just telling us about the liberated number of electrons, how then do we see all of these pretty colours in cameras and telescope images? Calibration. Each pixel has a wavelength associated with it, and so we know what colour is associated with that as well? Works in the optical, but when we're looking at IR pictures, why are they always represented by red? Surely we don't know what these would look like? 
+	\item What are the advantages of KMOS over SINFONI, also a VLT near IR spectrograph?
+	\item Construction of a composite spectrum - both wavelength binning and redshifting of the different constituent spectra necessary?
+	\item 
 
 \end{itemize}
 
