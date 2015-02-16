@@ -24,7 +24,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\section{Meetings with Michele}\label{meetings}
+\section{Journal and Meetings with Michele}\label{meetings}
 \subsection{21-10-14}\label{meeting_1}
 Mainly we discussed Stellar population synthesis models, going through the details of the grid of stellar evolutionary tracks. There are a series of steps: 
 \begin{itemize}
@@ -119,10 +119,6 @@ Finally got the redshift template method working using the new approach suggeste
 
 Received some test KMOS data from Michele and have installed the pipeline properly (hopefully) so will try running through the whole pipeline from the tutorial book. Need to use the easySPARK.sh files, with the sof extension at first to create the list of files and check that the correct list has been created. Need to have the same dark exposure time and exposure time on the source, so need to use the dark frames with the correct exposure time in the preparation files. Use dfits and fitsort first to search through the properties of the files to know which are the correct ones to use in the pipeline. Spits out files at different stages before eventually reconstructing the data cube. Needs to be 2D to do all of the standard data analysis stuff.
 
-
-
-
-\section{Journal}
 \subsection{8-12-14: Introduction to KMOS}
 Data reduction session with the KMOS data from Michele. I'll try to keep a note of progress here, the things I'm trying and that commands I'm using to do this and questions for Michele at the end of this. First is the correct use of the dfits command: \\
 
@@ -156,32 +152,7 @@ The key feature of KMOS is its ability to perform Integral Field Spectroscopy in
 \end{figure}
 
 
-\textbf{Questions}
-\begin{itemize}
-\item Environment variables? Is it wise to start a seperate data reduction `session' with different folder names each time I'm working on this? 
-\item The different wavebands. What is contained in the fits files I'm looking at? Are these combined images from all the different NIR bands? 
-\item Why are the exposure times on the standard stars, the objects we are using to calibrate flux, so much less than on the target objects? Shouldn't something being used to calibrate flux be collecting photons over an equivalent base timescale? 
-\item Matching arcs and flatfields - getting the same rotation angles for these. Get the best results by using them in `sets' 
-\item The importance of the illumination correction when processing science data
-\item How to ensure the consistency of the flat and arc calibration products 
-\item How important is it to know what the recipes are doing?
-\item In step 4.3, the wavelength calibration using the arc frames, one of the end products is lcal.fits, which is a frame containing the wavelength values of every pixel on the detector. How does this work? Is the light in every pixel dispersed? No the target is selected by one of the IFUs, each of which has this 14x14 array of pixels and then this light is fed into the disperser... Does this individually disperse the light in each of the 196 pixels? 
-\item what am I looking at in det-img-wave.fits? 
-\item Due to the differential flexure of the instrument between the flatfield and the sky exposures. What is differential flexure? 
-\item How do we use the illumination correction frame after it has been created? 	
-\item Am I meant to be using the standard stars inside the Galaxy folder, or the standard stars which are in the calibration folder? These both seem similar. 
-\item What should I be seeing when I open the standard star cube in qfits? At the moment getting nothing both when trying to open this and when trying to open standard fits files (which aren't cubes)
-\item What is the importance of the Telluric spectrum? Is it created and then used immediately? Because there are no output files described in that section of the data reduction. No Telluric was produced.
-\item I'm missing something - the difference between integral field and multiple object spectroscopy. Is is that each IFU selects an extended target, the image is sliced, fed through the lenslet array and then dispersed and the multiple object part is that this is happening simultaneously for lots of different objects in the field of view? 
-\item A datacube has three axes - the x and y coordinates of the object on the sky and the wavelength axis. How then do we get the spectra, which is the distribution of energies in this space?? Usually when we see a spectrum is it just energy against wavelength, so how do the x and y axes fit into this? 
-\item Page 7 of the KMOS tutorial slides, the detector raw images. What am I actually looking at there? Can see the single spatial of wavelength dimensions, what is being dispersed? 
-\item Full example of what I'm looking at in one of the OBS.fits files
-\item qfits won't even open regular fits files let alone reconstructed data cubes
-\item Image slicer question in the above section
-\item What is a 14x14 spectrum? 
-\item Surely each of the 24 pickoff arms are focussing on seperate fields of view. How then can 8 of these be combined to give a single image on a detector? E.g. the continuous line across the detector image when iluminated with the Neon light 
-\item How to extract a 1D spectrum from a 2D spectrum e.g. steidel
-\end{itemize} 
+
 
 \textbf{Observing with KMOS} \\
 
@@ -199,7 +170,198 @@ The figure below shows an image from KARMA, the observation preparation tool for
 \textbf{Questions}
 \begin{itemize}
 	\item KMOS observations are all coded using templates - what does this mean? Two or more templates make an observing sequence
+	\item Environment variables? Is it wise to start a seperate data reduction `session' with different folder names each time I'm working on this? 
+	\item The different wavebands. What is contained in the fits files I'm looking at? Are these combined images from all the different NIR bands? 
+	\item Why are the exposure times on the standard stars, the objects we are using to calibrate flux, so much less than on the target objects? Shouldn't something being used to calibrate flux be collecting photons over an equivalent base timescale? 
+	\item Matching arcs and flatfields - getting the same rotation angles for these. Get the best results by using them in `sets' 
+	\item The importance of the illumination correction when processing science data
+	\item How to ensure the consistency of the flat and arc calibration products 
+	\item How important is it to know what the recipes are doing?
+	\item In step 4.3, the wavelength calibration using the arc frames, one of the end products is lcal.fits, which is a frame containing the wavelength values of every pixel on the detector. How does this work? Is the light in every pixel dispersed? No the target is selected by one of the IFUs, each of which has this 14x14 array of pixels and then this light is fed into the disperser... Does this individually disperse the light in each of the 196 pixels? 
+	\item what am I looking at in det-img-wave.fits? 
+	\item Due to the differential flexure of the instrument between the flatfield and the sky exposures. What is differential flexure? 
+	\item How do we use the illumination correction frame after it has been created? 	
+	\item Am I meant to be using the standard stars inside the Galaxy folder, or the standard stars which are in the calibration folder? These both seem similar. 
+	\item What should I be seeing when I open the standard star cube in qfits? At the moment getting nothing both when trying to open this and when trying to open standard fits files (which aren't cubes)
+	\item What is the importance of the Telluric spectrum? Is it created and then used immediately? Because there are no output files described in that section of the data reduction. No Telluric was produced.
+	\item I'm missing something - the difference between integral field and multiple object spectroscopy. Is is that each IFU selects an extended target, the image is sliced, fed through the lenslet array and then dispersed and the multiple object part is that this is happening simultaneously for lots of different objects in the field of view? 
+	\item A datacube has three axes - the x and y coordinates of the object on the sky and the wavelength axis. How then do we get the spectra, which is the distribution of energies in this space?? Usually when we see a spectrum is it just energy against wavelength, so how do the x and y axes fit into this? 
+	\item Page 7 of the KMOS tutorial slides, the detector raw images. What am I actually looking at there? Can see the single spatial of wavelength dimensions, what is being dispersed? 
+	\item Full example of what I'm looking at in one of the OBS.fits files
+	\item qfits won't even open regular fits files let alone reconstructed data cubes
+	\item Image slicer question in the above section
+	\item What is a 14x14 spectrum? 
+	\item Surely each of the 24 pickoff arms are focussing on seperate fields of view. How then can 8 of these be combined to give a single image on a detector? E.g. the continuous line across the detector image when iluminated with the Neon light 
+	\item How to extract a 1D spectrum from a 2D spectrum e.g. steidel
 \end{itemize}
+
+\subsection{18-12-14: Qfitsview and understanding KMOS spectra}
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=0.6\textwidth]{test.png}
+\caption{\footnotesize{\emph{One of the KMOS detectors showing a raw galaxy image with qfitsview}}}
+\label{fig:raw_gal}
+\end{figure}
+
+Figure \ref{fig:raw_gal} shows one of the KMOS detectors with 4 of the IFUs illuminated by a target galaxy. Looking closely, each of the IFUs has 14 slitlets, which are separated by 4 pixels. Looking closer still each of the individual slitlets is divided into 14 pixels. It is these 14 pixels that represent the x-direction on the telescope image. The slitlets represent the y direction and the vertical axis of Figure \ref{fig:raw_gal} is wavelength. There are 2048 pixels in the vertical direction, each of which is assigned a wavelength value during the data analysis pipeline, by illuminating the detector with an image of a standard source, where the wavelength values are known. Each spatial pixel is dispersed, giving 196 spectra per IFU. The brightness of each pixel is the energy in that region of the electromagnetic spectrum. In this sense each raw image has 3-D information encoded on a 2D plane - the whole pipeline is concerned with reconstructing a 3D data cube from this. \\ 
+We discussed these images and what I'll be doing in the new year - which is really learning the data analysis pipeline to extract physical properties from these spectra. Velocity dispersions across the galaxy, metallicity gradients and flux gradients. Essentially the same as \citep{Troncoso_2014} but with a larger sample of galaxies. 
+
+\subsection{7-1-15: Infrared detector pixel problems}
+
+First meeting back after the new year and it's really time for some hands on work. Starting off by looking at the streaks on the object minus sky images which shouldn't be there, but are as a result of the poor quality of infrared detectors. 
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=0.6\textwidth]{lines.png}
+\caption{\footnotesize{\emph{The first detector image of object minus sky. Visible are the vertical streaks, each of which is 64 pixels wide, across the image which need to be homogenised.}}}
+\label{fig:obs-sky}
+\end{figure}
+
+
+The task is to use a combination of the object, sky, lcal and dark pixel frames in order to correct for each of these 64 pixel wide eroneous columns. Michele referred to the object image as being on the wrong `pedastal' and we're using the sky image to add a certain amount to all pixels within the column so that when the sky is subtracted from the object the net effect is a uniform image. The major problem is that the KMOS slitlets and these 64 pixel columns are not aligned, and so it is tricky to see exactly which pixels to use when taking the column medians. Michele has a solution to this problem already, but wants me to get to grips with manipulating fits files, working with images and thinking programatically to get round these types of problems. I've started off by looking at the data within one of the fits extensions and dividing this up into a one-dimensional array of two-dimensional arrays, each of which is 64 pixels long. In this way I can loop over the contents of the one-dimensional array and do the same manipulations to each. I'll probably need to partition the bad pixel image and the lcal image in the same way - have some questions for Michele about the lcal though. \\ 
+Had another brief meeting with Michele towards the end of the day to ask my question about lcal - which extension do I take?? He answered as if he was expecting me to come back and ask just this - there are 19 extensions, the fits header extension and 6 x 3 corresponding to six different rotator angles and the three different detectors. The reason for observing at different rotator angles is to account for instrumental flexure. The weight of the instrument causes it to sag as it rotates to track the sky, despite being built as solidly as possible. Taking lcal at lots of different rotation angles allows for calibration at the anlge closest to that at which the object image was taken. Need to examine the ocs.rot.naangle keyword in order to determine which one to pick out. Also it clicked that the sky image is an attempt to get rid of OUR atmosphere, the sky which we're looking through. Obviously this is complicated by rotation, turbulence and the constantly changing nature of the atmosphere itself. 
+
+\subsection{13-1-15: Writing the code for the pixel issues}
+The analysis pipeline seems to be pretty solid up until a certain point, i.e. it computes the calibrations well and uses all the static calibration files and bad pixel maps etc. After doing this we have a series of calibration frames as well as the observed galaxy images and the sky images which are then fed into the science reduction part of the pipeline. But there are manual corrections we can make to the galaxy images before we do this. Had a meeting with Michele to show the results of my code, which is working almost correctly, stored on github. Realised that I was accidentally using the spaces on the lcal frame which have a value, rather than those which are nan. Michele suggested a few things for how to proceed. First need to fix the code and make sure that the correction is being made properly using my approach. Next need to use the top 4 pixels which are not exposed to the object light, according to one of Michele's colleagues these are the best things to use for this particular correction. After both methods have been attempted, should create histograms of large pixel chunks which do not have open slitlet coverage. This should be done for the pre and post-correction object minus sky frame, with both the mean and median used in the analysis. The histogram should be gaussian shaped and I can fit gaussians to this and determine the standard deviation. What we should see is a significant narrowing of the gaussian after the column correction. \\ 
+From initial runs of the algorithm, here are a few sample images which I think demonstrate the improvement after the correction has been made. 
+
+
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=0.5\textwidth]{subtracted1.png}
+\includegraphics[width=0.5\textwidth]{columnCorrected1.png}
+\caption{\footnotesize{\emph{The top frame show an example of a raw object minus sky subtraction. Clearly visible are the darker and lighter columns, which are the 64 pixel wide readout stripes. The conditions in the detector change between these readouts, causing different pixel sensitivities. The bottom image shows an example of the object minus sky frame post column correction. Clearly the pixels are more homogeneous across the detector.}}}
+\label{fig:col-corrected}
+\end{figure}
+
+The next stage is to apply the code to different object and sky frames and then start on the gaussian pixel part. \\
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=0.5\textwidth]{pixelHistogram_9_m_8.png}
+\includegraphics[width=0.5\textwidth]{pixelHistogram_7_m_8.png}
+\includegraphics[width=0.5\textwidth]{pixelHistogram_6_m_5.png}
+\caption{\footnotesize{\emph{Demonstration of the improvements that the correction makes}}}
+\label{fig:pix_histo1}
+\end{figure}
+
+\subsection{16-1-15: Meeting with Michele}
+During this meeting I showed Michele the results of the code, and he seemed to think that it wasn't working as well as it should do, or as well as it could from his experience of his own implementation of this process. This column correction is something which is definitely better done before reconstruction into a data cube, as after this point the columns become skewed and it is much more difficult to tell which pixels to use in the correction. There are several things for me to do at this stage, especially since Michele is away next week: 
+
+\begin{itemize}
+	\item Debug code - make sure that everything is working properly and that the poor results we're seeing aren't just a result of gaia displaying things in a particular way. This is important as there is only a single zoom setting in gaia where the corrected image seems to display poor results. This involves also trying to use the lcal frame as a stack, instead of picking out a single frame. Have to make sure that I'm masking off the right parts of the image in the bad pixel and lcal maps, which I have verified now and I'm fairly certain that I am 
+	\item Once confident in the code and have chosen either to stack the images or now, use the top 4 pixel method as an alternative approach. As I've pointed out the pixel normalisation will definitely be wrong after the correction, but the correction may ensure that the image is flat. It may be flatter this way than using the first approach. Need to write the code, apply the correction to a bunch of files and then plot histograms displaying the result of the correction. 
+	\item re-compute the correction directly from the object minus sky frame to see if there is any difference at all. There may be some situation in which there is a difference, so should get some statistics for this as well.  
+	\item Once happy with the best method, write a new algorithm or update the existing one to split each frame into smaller vertical chunks. i.e. instead of 2048x64 should have 64,128,256x2048. Try all of these and see if there are enough pixels to compute a median and show Michele the results. 
+	\item Once happy with this part want to feed the corrected objects back through the pipeline to see if there are any improvements. 
+
+This is the same week as central weekend away and is my first week of tutorials so hopefully everything will go okay, may be slightly slower than usual. 
+\end{itemize}
+
+
+
+
+
+
+
+
+\subsection{20-1-15: Pixel Column Corrections}
+I'm working in the python$\_$code directory, in the instances folder and on the pipelineClass file. All of the code products are currently in the instances folder, including output from the naive computeOffset function and also the computeOffsetTwo function, which uses the stacked lcal maps from the stackLcal method. Moving on now to see if using the top four pixels of the raw subtracted image can be used to flatten the object images. The problem I have here is that the top four pixels method could either use the stacked lcal approach or use the original lcal. Actually no this isn't true, don't need the badpMap or the lcal frame as the top 4 pixels are excluded in both of these. Just need to read in the rawSubFrame, divide each of the columns up into 64 pixels and work out the average from this.  \\ 
+\subsection{21-1-15: computeOffsetSegments function} 
+Wrote a function which splits each of the 32 x 64 x 2048 into an additional chunks of 64 x 128 to compute the offset in smaller pixel sections. This uses the lcal and badp maps at the beginning, instead of trying to apply the masks to each of the individual sections, which is pointless. Results are good, producing better results that the original method. The task now is to write a script which will take an input file of sorted fits file names, some of which are object and some of which are sky and compute the correction for each of those sequentially, obviously only doing this once for each object and sky pair. This script is now written and stored in the pipelineClass as well. 
+
+\subsection{29-1-15: Checking the uniformity of different measurements}
+Had a meeting with Michele yesterday - fairly happy with results and acknowledges how much better the reconstructed data cubes look after only correcting for the readout column effect. I have to plot some graphs which will show which correction method produces the most uniform image, have done this using the functions plotMedian and rowMedian in the pipelineClass method. Some examples are shown in Figure \ref{fig:medians_plot}. The results suggest as expected that the computeSegments method is doing best. The next stage is to look at removing the horizontal lines and then shifting the frames to account for the sag of the instrument between the different rotation angles used when taking the sky and the detection. There is a sub-pixel misallignment between the object and sky images, resulting in dark/light lines in the sky absorption features, since we should be subtracting these but instead subtract more/less than we should be doing. Will discuss with Michele next time what the correct approach is for correcting this, but he mentioned before that it would be some kind of cross correlation function - similar to what I was doing when computing the redshift from spectral templates. There will be a process of shifting the object file by minute ammounts until the difference between the sky and object frames is minimised. Will need to think about how to spatially move the frames. Michele also mentioned that now at this stage, when changing the positioning of the object file you start to introduce more noise with each manipulation. After everything is working we'll need to devise a clever way to do everything at once. The readout column correction doesn't fall into this bracket, since all we are doing is offsetting every pixel in a certain segment by a constant amount.  
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=0.4\textwidth]{9_m_8medians1000.png}
+\includegraphics[width=0.4\textwidth]{9_m_8medians400.png}
+\includegraphics[width=0.4\textwidth]{1_m_2medians1900.png}
+\includegraphics[width=0.4\textwidth]{1_m_2medians400.png}
+\caption{\footnotesize{\emph{Median plots for the different methods and for different detector locations and different frames}}}
+\label{fig:medians_plot}
+\end{figure} 
+
+\subsection{Meeting with Michele 30-1-15: Subpixel image shifting}
+We first discussed the plots in Figure \ref{fig:medians_plot}, with Michele surprised at the varying noise level standing out at seemingly random parts throughout the image. This is not apparent when looking at the images within gaia and following the statistics with the tools in gaia - and is not expected. Also surprising is that the top four method, which does appear to do a good job normalising the image meaning that the top 4 pixels are sensitive to the image noise, does not produce a uniform offset from zero in each frame. The offset jumps around. The suggestion is to keep this method open; it may be superior to the segments method when looking at sections of the image in between an illuminated IFU. \\ 
+Happy with these we began to discuss the next task, which is to properly align the object and sky images. This is harder than the previous task, but not as difficult as the OH lines I am told. I have to find a way to compute and then apply a subpixel interpolation between adjacent pixels, both in the x and y directions, which minimises the difference between the object and sky images. The grid of 2048 by 2048 remains fixed, and the sky exposure counts as the reference image. I have to shift the object image values between pixels, sharing the flux over multiple pixels at once, so that the difference between the sky and object flux values is minimised. Is this the signature to look for though? Cross correlation, looking for the maximum values of the product after each shift. There is also a chi-squared method which Michele mentioned, something about defining a function which determines the shift and then looking for the point at which Chi-squared is minimised (i.e. the squared differences between the sky and the modelled object fluxes is a minimum). Apparently there are some IRAF tasks which can carry out this sub-pixel shift - do I need to apply these before computing the cross correlation function and deciding which shift value is best? Or is some other way of deciding what the correct amount to shift is before actually implementing the shift? Also Michele mentioned that the x-y shift is the easy version and I may need to think about applying a rotational shift. \\ 
+I'm a little stumped at the moment but Michele wanted me to think about this for some time, without revealing what the best approach is. 
+
+\subsection{Meeting with Michele: 5-2-15}
+First meeting after our initial sub-pixel shifting talk. I've been slightly preoccupied this week with preparation for the talk and also still being quite unwell. I've been able to find the IRAF task which performs this subpixel shift - stumbled upon it almost by accident, just by mucking around with pyraf and trying to use the task. Also discovered a cross correlation formula in a random paper and have been using that successfully to determine the correlation between certain patches of an image. Now need to use the `Brute Force' method to create a grid of shift values, pass these to the imshift task one by one, compute the cross-correlation coefficient each time and then select the coefficient which is closest to 1 (perfect correlation). After this all works, need to start thinking about applying different shifts to different areas of the detector. As Michele says, this is an inherrently random effect and in order to get the best results possible need to try translations and rotations to different parts of the image which may be shifting to different extents. After this need to think about speed and whether there is a cleverer way to do this than the brute force approach - is there any clever pattern that emerges that allows us to search less and less parameter space for the shift grid? We also discussed an image as essentially defining a surface function with the pixel values. It is this function which can be fit with any number of interpolation functions and that is exactly what imshift does. After doing this interpolation, it is easy to offset the function by a small amount in the x and y directions and infer the new pixel values at each part of the function. IRAF is a really powerful set of tools for image manipulations - perfect a lot of the time for what I plan on doing. 
+
+\subsection{Thoughts: 10-2-15}
+Did the above and wrote the function shiftImageSegments which divides up the image into lots of different areas - shifts each area using the pyraf imshift command, and then computes the correlation coefficient with the corresponding sky image pixel segment. However, none of the shifts seem to lead to an improvement in the correlation coefficient - this is curious as I've chosen a totally objective way of computing this. Therefore there must be some systematic effect which causes moving away from the origin to always decrease the correlation coefficient. I think that this systematic are the bad pixel values which are scattered across both the object and sky images. These will throw off not only the interpolation of the pixel surface but also the computation of the correlation coefficient - will receive a much stronger contribution to the overall coefficient from these bad pixels than from the good pixels. This is probably why the correlation coefficient is so high in the first place, and why moving away from the common origin of the sky and object files will always decrease this. \\ 
+I'm now in the middle of trying to change my scripts so that both the interpolation and the computation of the correlation coefficient after each shift take the bad pixel values into account. In particular - the cubic spline is badly affected by the bad pixels, since this fits a cubic polynomial between every single point, the surface is a closer representation to the pixel values than when using a different interpolant. After this, hopefully some shifts will improve the correlation and I can try a) a basic subtraction and b) a subtraction after combining the optimum shifts on each segment of the object image. More playing about required over the next few days. If this works, will need to go back through and look at which area it is best to compute the cross correlation coefficient over and whether using different extensions matters and whether using the already column corrected object file matters. I suspect all of these will have a much larger contribution than before.
+
+\subsection{More Thoughts: 11-2-15}
+So I decided to mask the bad pixels both before the computation of the correlation coefficient and before the interpolation and shift. This should give consistent results between the comparison of the correlation coefficient before and after the shift. Is this definitely the best way to do things? Should I be comparing the correlation coefficient before and after the shift as the decision maker for what the shift should be? \\ 
+These changes at least have started producing positive results from the shift - i.e. shifting the image makes an improvement to the correlation coefficient, as expected when the bad pixels have been masked out. The task now is to take a look at taking the best shift from the grid of shift values automatically, applying this shift to the object image, storing that data array, and then recombining all of those at the end. Combination of hstack and vstack. Also need to read in the shifted file each time, save that array to hstack array and to vstackArray.append(np.hstack(hstackArray)) after each time the horizontal part of the loop completes. 
+\subsubsection{Questions}
+\begin{itemize}
+	\item Ask about the combination of rotation and translation of the image 
+	\item does it add additional noise by shifting each part of the image seperately?
+	\item Is my approach correct? How can I cut out more parts of parameter space i.e. 
+		cycle through less grid points 
+	\item What to do when I know the shift coordinates? Should I be shifting the masked file or 
+	the unmasked file? 
+
+\end{itemize}
+
+\subsection{Meeting with Michele: 12-2-15}
+Discussed what is going wrong with the code to be giving such strange results with the cross-correlation coefficient. Michele suggested I make some contour plots of the shift values, with the Z-axis being the correlation coefficient at each evaluation. Initially these are coming out very strange, encountering peaks in the corners of the shift values are minima at the original shift location. Michele suggested several steps to try and debug what is going on: 
+
+\begin{itemize}
+ 	\item Increase the size of the bad pixels in the bad pixel map 
+ 	\item Different thresholds in the cross-correlation computation 
+ 	\item Different step sizes in the grid and wider ranges 
+ \end{itemize} 
+
+ But I think that these effects will be superficial compared with whatever is causing the CCC to behave so bizarrely. First step is trying to eliminate this problem and then looking at these issues afterwards to try and further improve the shift. 
+
+ \subsection{13-2-15: Debugging the code}
+Now need to try lots of different things to try and fix the issues with the code. I will first reproduce the contour plot for different images and different detectors to see if the cross-correlation coefficient graphs are consistent for these different things or only for detector three which has many more IFU's exposed. Getting some very interesting plots: 
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=0.5\textwidth]{Correlation_coefficient1.png}
+\includegraphics[width=0.5\textwidth]{Correlation_coefficient.png}
+\caption{\footnotesize{\emph{Strange Patterns on the correlation coefficient plot, Image 9}}}
+\label{fig:rho_plot}
+\end{figure} 
+
+Need to understand why these are producing an almost symmetrical pattern about an axis which looks like $\Delta y = 0$. i.e. it looks to me from these plots like shifting either up or down in the y direction has no impact and similarly either shifting left or right has no impact on the end result either. 
+
+\subsection{16-2-15: Meeting with Jim, Ross and Michele}
+Met with all three to discuss the aims and direction for the project, and talked about what I've been up to so far. 
+Three redshift ranges of interest. At redshift 3 are the really solid data, which will definitely lead to a paper at some point. The aim here is
+to map the dynamical structure of the gas using spatially resolved KMOS data, and use Fergus' work, which is basically validating a particular metallicity diagnostic, to use the OIII/H$\beta$ metallicity indicator to examine the metallicities of the $z=3$ galaxies. The point being that this is basically telling us what the galaxies are up to during the peak epoch of star formation - looking at the evolution of the mass-metallicity plane. Also KMOS pointings are in the GOOD-S field, which has HST photometry. We can use this as optical follow up to try and derive links between the morphology of the galaxies and the behaviour of the gas dynamics. \\ 
+Next is a slightly more tentative redshift range, $z~5-6$ where Michele has some data. Here we would be trying to look for the CIII emission line - will have to follow up with Michele about exactly what is going on here, but this would be a big deal apparently. Can draw conclusions about the UV spectral slope and the hit rate of CIII emitters.  \\ 
+Even more tentatively is the high redshift range $z~7-8$ to try and spectroscopically confirm the highest redshift Lyman-$\alpha$ galaxies. This is all tied into when re-ionisation happened and the fact that we should see many Lyman-$\alpha$ emitters but don't, therefore the universe must have been neutral and opaque to this emission above a certain redshift. Really interesting to try and draw some upper limits on the detections using KMOS data. Much of this emission of Lyman-$\alpha$ may be diffuse, because of the optical depth of the galaxies and the sheer difficulty of radiation escaping and reaching us. But some detection of Lyman-$\alpha$ would be significant and definitely worth a paper. For these higher redshift regions when you're relying on photo-z's for the data, it is very difficult to stack the detections because of the width of the redshift uncertainty. Ross suggested a novel way of doing this by constructing some P(z) and basically building up all possible stacks to form a data cube and then looking for the spectral lines. i.e. choose the stack from this monstrosity with the highest significance.  \\ 
+
+Underpinning all of this is the stuff I'm doing now with the pipeline. To even think about getting this work done we'll need a really solid data reduction pipeline that we are totally confident with. That means spending a lot of time now testing and getting that ready, and simulating data for the pipeline at a later date before I get the data to feed through it. This is referred to as `the workshop' and will eventually lead to good stuff later on. So I need to be totally diligent with this pipeline as it is going in the thesis. Need to be creative and try out all options. Suggested deadline for this is just before I head off to ISSOS. Need to try and reduce tutoring hours somehow. That is going to get pretty crazy towards the end of the semester.  \\ 
+
+All promising though - put in the hard work now and it will pay off later.  
+
+\subsection{16-2-15: Debugging code}
+Thinking about what could be wrong with the cross-correlation computation to be giving the results that we're seeing. Writing a function to grow the bad pixel mask, because several pixels that are surrounding the main guy are also rubbish. I doubt that this will account for the reflection about the y-axis, but it will probably make an improvement if my initial comment was that the contribution to the cross-correlation is dominated by these bad pixels. Also Ross acknowledges that this is a really tricky sky subtraction, and a show stopper for faint high redshift galaxies. The problem is that KMOS is mounted on the rotator, so between exposures there is a very slight rotation of the frame. This all needs to be corrected. But is it a translation a rotation or a combination of both? What will give the best results?  \\ 
+Seems to make a big difference using the grown mask - this was found out just by \textbf{LOOKING} at the object image. Clearly the points around the masked points were almost as bad. 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -219,6 +381,8 @@ The first precise diagnostic techniques for measuring the SFRs of galaxies came 
 
 \subsection{Diagnostic Methods}
 Since individual young stars are unresolved in all but the closest galaxies, even when using HST, most of the information surrounding the SFR comes from integrated light measurements in the UV and FIR and from nebular recombination lines. Synthesis modelling forms the basis of all the methods. 
+
+
 
 \subsubsection{Synthesis Modelling}
 Along the Hubble classification fork the spectra of galaxies change in several very noticeable ways. The blue continuum increases broadly, a gradual change in the composite stellar absorption spectrum from K-giant dominated to A star dominated and a drastic change in the strengths of nebular emission lines, particularly H$\alpha$. It is easy to show that the integrated light from stellar populations, although containing contributions from all stellar masses, is dominated from intermediate-mass main sequence stars. As a result the spectra and colors of galaxies fall on a relatively tight sequence, and the spectra of any particular object is dominated by the ratio of early to late-type stars. This makes it possible to use the observed colours to estimate the fraction of young stars and the mean star formation rate of recent times ($10^{8-9}$ years.) \\
@@ -377,6 +541,7 @@ The techniques listed here are all individually subject to either systematic or 
 
 
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -390,7 +555,7 @@ Any first year review report should start off with a discussion of the first mea
 \subsection{Mass and Metallicity Measurements}
 Mass was measured by fitting model spectral energy distributions to the multiwaveband photometry, using the procedure described in detail in Shapley \citep{Shapley_2005} and Erb \citep{Erb_2006a} which uses the BCO3 \citep{Bruzual2003} stellar population synthesis models and the Calzetti extinction law \citep{Calzetti2000}, with a variety of ages and extinctions to match the observed photometry. The best fit models yield the stellar mass and the SFR. The Stellar masses are computed using a Chabrier IMF \citep{Chabrier2003}, which results in masses and SFRs 1.8 times smaller than those computed using a Salpeter IMF. Also the Stellar mass is the integral of the SFR over all times, and so is the total mass of stars formed to that date, rather than the current mass in loving stars. For that choice of IMF the current living mass in stars is between 10-40$\%$
 lower, depending on the age of the galaxy in question. As discussed by Papovich et al. \citep{Papovich2001}, one downfall of this type of modelling, i.e. fitting the observed photometry with SPS models and dust extinction laws, is that older stellar populations may be masked by young starbursts, leading to underestimates of the total stellar mass. This is shown by the authors to not be the case statistically, although it can't be ruled out in all cases. \\ 
-The metalicities are measured by dividing the sample into six mass bins, with 14 or 15 galaxies in each of these. Now, the most direct way to determine the abundances of metals from the observed emission-line fluxes in HII regions is through the measurement of the electron temperature $T_{e}$. As the metallicity of the gas increases, the cooling through metal emission lines also increases, resulting in a decrease in $T_{e}$. The ratio of the auroral (transition between the second lowest excited state to the first lowest) and nebular (transition between the first excited and ground state) emission lines of the same ion is extremely sensitive to electron temperature and so measuring these lines has been the preferred method for estimating the abundance of metals in HII regions. However the auroral lines, particularly the widely used OII4363 line, become extremely weak at metallicities above 0.5 solar, and undetectable at all in the low S/N spectra of distant galaxies. As a result, people resort to empirical `strong line' methods, which are based on the ratios of collisionally excited forbidden lines to hydrogen recombination lines. \\ 
+The metalicities are measured by dividing the sample into six mass bins, with 14 or 15 galaxies in each of these. Now, the most direct way to determine the abundances of metals from the observed emission-line fluxes in HII regions is through the measurement of the electron temperature $T_{e}$. As the metallicity of the gas increases, the cooling through metal emission lines also increases, resulting in a decrease in $T_{e}$. The ratio of the auroral (transition between the second lowest excited state to the first lowest) and nebular (transition between the first excited and ground state) emission lines of the same ion is extremely sensitive to electron temperature and so measuring these lines has been the preferred method for estimating the abundance of metals in HII regions. However the auroral lines, particularly the widely used OII4363 line, become extremely weak at metallicities above 0.5 solar, and undetectable at all in the low S/N spectra of distant galaxies. As a result, people resort to empirical `strong line' methods, which are based on the ratios of collisionally excited forbidden lines to hydrogen recombination lines. 
 As usual, the calibrations are subject to significant biases and base calibration discrepancies - so absolute values of metal abundances are still quite uncertain. However, fortunately for this paper relative abundances of similar objects determined using the same method are more reliable. \\ 
 The available data at these redshifts limits the options for abundance determination. Have to think about how much observing time would be required to collect the data required for certain ratios. As a result the NII/H-alpha ratio was used for the majority of galaxies in this sample. This ratio was first suggested by Storchi-Bergmann in 1994 \citep{Storchi-Bergmann1995} and was furthered refined by Pagel and Pettini in 2004 \citep{Pettini_2004}. Using the method described in P04: 
 
@@ -471,7 +636,6 @@ Aperture effects again playing a big role potentially, due to the gradients of p
 Another source of error is from the gas mass derived from the H$\alpha$ measurement, although there is impressive correlation in the Schmidt law over several orders of magnitude there is a lot of scatter in the range of measurements relevant to this paper, and Wong and Blitz \citep{Wong2002} showed that you get a steeper law should you apply a radially dependent attenuation correction to the H$\alpha$ luminosity. A more fundamental question as well is how the products of star formation are distributed throughout the galaxy; in other words, how well mixed is the ISM. The mere existence of radial metallicity gradients suggests that the mixing timescales are generally long. The general result coming from this paper surrounding the origin of the mass metallicity relation arising from the preferential loss of material from galaxies with lower potential wells appears to be very robust. 
 \subsection{Summary and discussion}
 The most simple and observationally supported conclusion is that galactic scale winds preferentially expel metals from galaxies with shallower potential wells. Whole host of papers given in this section to back up these conclusions. However comparatively little is known about the eventual fate of this material; does it escape the galaxy completely or does it cool and then rain back down onto the galactic disk. The authors also rule out the inflow of pristine gas as being responsible for the low yields observed, as they do not have a significant impact on the yield of galaxies. It seems likely that the blowout events are associated with starburst activity, and this in turn would suggest that the star formation history of most galaxies is bursty rather than continuous. Galactic winds are ubiquitous and extremely effective at removing metals from galaxies. The results imply that metallicity is not a simple model of galaxy evolution, because metals can escape galactic potential wells. 
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -604,11 +768,62 @@ Large differences in the calibrations of oxygen abundance indicators mainly from
 \subsection{Observations and Data}
 Real time observations, mask re-assignment based on a set of priority flags. Sounds like really cool stuff, all trying to maximise the scientific return from the telescope. 
 
+\subsubsection{Stellar Masses and star formation rates}
+Stellar masses assigned to the KBSS-MOSFIRE galaxies using population synthesis SED fits based on photometry in the optical, near-IR and spitzer/IRAC bands. Prior to performing the fits the near-IR photometry was corrected for the contribution of $H\alpha$ and OIII emission lines to the broadband fluxes using the spectroscopically measured values. Interesting - does this have to be done every time? Haven't seen other papers measure this yet. Used the \citep{Bruzual2003} models and the dust law from \citep{Calzetti2000}. Throughout the paper a Chabrier \citep{Chabrier2003} IMF was assumed for ease of comparison to other studies and the SFRs were measured using the observed $H\alpha$ fluxes after correcting for slit losses and nebular extinction. \textbf{Slit Losses} At the redshift range of the paper, $z \sim 2.3$ a typical galaxy in the sample has an intrinsic half-light radius of $r_{e} = 1.6kpc$ or $\sim 0.2''$. The MOSFIRE entrance slits are $0.7''$ and so the light losses are modulated primarily by the seeing disc during an observation which are typically between $0.35-0.7''$. For gaussian seeing and for an object centred in the slit, light losses are $\sim 20\%$. In practice $z\sim 2.3$ galaxies are only marginally resolved in $\sim 0.6''$ seeing, with spatial profiles that may be both non-gaussian and asymmetric, so that slit losses for galaxies are expected to be larger than those for true point sources. Wherever possible two estimates of the slit loss corrections were made, the first the `2D-profile method', uses a gaussian fit to the observed spatial profile of $H\alpha$ emission. Second method comparing to external photometry, both of which have advantages and disadvantages described in the paper. Clearly slit loss corrections remain a significant source of uncertainty when measuring SFR, probably at the $\pm 25 \%$ level for individual galaxies. However these are still expected to be small compared with the extinction uncertainties. The authors use an SMC-like extinction curve for galaxies with continuum reddening equal to or below the median value, and galactic diffuse ISM extinction curve for those above. (Equations on page. 9)
 
+\subsubsection{Current Sample Statistics}
+So the first chunk of the paper deals with the collection of the spectra and the extraction of physical properties from these spectra using line ratios, stellar population synthesis SED fitting and $H\alpha$ line fluxes. Discussing the inevitable incompleteness of the survey with respect to SFR.  
+
+\subsection{The BPT Diagram}
+Perhaps the most remarkable aspect of the local BPT diagram is the narrow locus along which most star forming galaxies are found, sometimes referred to as the HII abundance sequence \citep{Dopita2000}, because the left hand branch can be interpreted as a sequence in overall ionised gas-phase metallicity. 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Cullen: The mass metallicity star formation rate relation at z equal 2 with 3D HST}
+\subsection{Abstract and Introduction}
+Presenting new accurate measurements of the mass, metallicity and SFR of a statistically significant sample of 93 galaxies at $z > 2$ using near infrared spectroscopy taken as part of the 3D HST survey. The mass metallicity relation is derived based on the use of oxygen and H$\beta $ nebular emission lines. Find the same general trend as in previous studies, with metallicity decreasing with stellar mass, but the relation is offset from those of previous studies using the NII to H$\alpha$ ratio. The results from the 3D HST data are also offset from the FMR, and the authors here argue that this is a result of the locally calibrated strong line metallicity indicators no longer applying at high redshift, since the physically conditions of star forming regions are evolving. This means that caution must be taken when trying to apply these calibrations at high redshift, and the reported evolution of the FMR between $z \sim 2-3$ may be an artefact of the differential evolution of metallicity indicators.  \\ 
+SDSS galaxies are found to sit on the FMR surface in the 3D mass, metallicity and SFR space with very low dispersion. This surface is found to be constant out to redshift 2.5, suggesting that the physical processes governing star forming galaxies have been consistent over the last 10Gyr. However significant evolution of the surface is observed above $z \sim 2.5$ suggesting some change in the physical processes at this epoch. Accurate studies of the MZR and FMR rely upon accurate metallicity measurements. At high redshift the only feasible way to measure metallicity is to use strong nebular emission lines, and these are not direct metallicity indicators and so require some kind of local calibration. However there is now evidence that the physical conditions in star forming regions are evolving with redshift, throwing these empirical calibrations off kilter \citep{Nakajima2013}. \\ 
+The evolution of the physical conditions in star-forming regions with redshift is inferred from studying the relationships between nebular emission lines. The BPT diagram is a common diagnostic plot, showing NII over $H\alpha$ vs. OIII over $H\beta$, upon which local star forming galaxies form a tight sequence. At high redshift there is a trend towards higher values of both ratios and also higher ionisation parameter values, measuring the excitation state of HII regions. 
+
+\subsection{The Data and Physical Properties}
+The spectroscopic data used in this paper are part of the 3D HST observations described in Brammer et al. \citep{Brammer2012}. 
+
+\subsubsection{Redshift Determination}
+Due to the low resolution of the grism spectra, care must be taken when deriving galaxy redshifts. In many cases, only one emission line is visible in the spectrum and so combining spectral redshift information with photometric redshift estimates is required. The EAZY code \citep{Brammer2008} is used to generate photometric redshift probability distributions for each galaxy, and these are combined with the spectroscopic redshift probability distributions derived from spectral fitting. 
+
+\subsubsection{Stellar masses and SFRs from SED fitting}
+Stellar masses and SFRs for individual galaxies are measured using the publicly available code LEPHARE \citep{Ilbert2006}, which is run using BC03 templates \citep{Bruzual2003} and a Calzetti attenuation law \citep{Calzetti2000}. In this way model spectra are created and fit to the data in order to determine the physical properties of the galaxies. 
+
+\subsubsection{Galaxy Metallicities and SFRs from Spectra}
+Spectral properties such as SFR and metallicity are measured for each individual galaxy, but due to low S/N for some of them, spectra are stacked in bins of stellar mass. The mass bins were chosen such that each bin contains a similar number of galaxies. To produce the stacks each individual spectrum was first shifted to the rest frame and de-reddened using the Calzetti attenuation law. \textbf{The continuum of each galaxy was then subtracted by interpolating the best-fitting BC03 model SED onto the same wavelength grid and normalising to the galaxy spectrum with the emission lines masked, in this way the continuum could be subtracted whilst accounting for the reddening in the emission lines assuming $E(B-V)_{stars} \sim E(B-V)_{gas}$}. This method is preferred to the simple fitting of a low order polynomial to the galaxy spectra as the SED model can better fit the 4000Angstrom break crossing the OII emission line and also accounts for the underlying $H\beta$ absorption in the stellar continuum. This procedure leaves six stacked spectra, from six bins of increasing stellar mass. 
+
+\subsubsection{Line Fluxes}
+Line fluxes are measured in the following way - for the OIII doublet and $H\beta$ lines a triple gaussian fit is used, allowing the height of each gaussian to vary. Since the OIII5007 line always has the best S/N, this is fit first and the centroid position, redshift and width are used to fix the centroid and widths of the OIII4958 and $H\beta$ lines. The OIII doublet lines are blended due to the low resolution of the grism spectra and the fluxes are extracted using two different methods. First two gaussians are fitted using the best parameters of each line directly from the fit. Second the two gaussians for the doublet are summed and the OIII5007 line is assumed to contribute $\frac{3}{4}$ of the total flux. 
+
+\subsubsection{SFR}
+Measured in the usual way using the Kennicutt relations and scaling down to a Chabrier IMF. 
+
+\subsubsection{Gas Phase Metallicity}
+Really good for a recap of how metallicity is measured and the challenges involved in using strong line ratios. The metallicities are determined by using all possible line ratios (4) and constructing a combined $\chi^{2}$ for these from the observed and calibration line ratios, taking the metallicity value which minimises this and the error to be where the change in $\chi^{2}$ is 1. 
+
+\subsection{The MZR and FMR}
+Fergus finds that his metallicity values are significantly lower than the Erb et al. sample, a possible explanation for this is explored in the FMR section. 
+
+\subsubsection{FMR}
+Use the original 2010 FMR described by Manucci \citep{Mannucci2010}, as the set used to derive that relation best matches the sample used in this study and the sample of Erb et al. \citep{Erb_2006}, this being the other sample for which the MZR is investigated for $z > 2$ galaxies. The conclusion is that the data in this paper are inconsistent with the FMR whereas the Erb et al. sample is consistent.
+
+\subsubsection{Photoionisation conditions, the BPT diagram}
+Traditionally this diagram is used to separate star forming galaxies from AGN, but in the last few years the BPT diagram is deployed to show that the ionisation conditions in $z > 1$ galaxies are different than in the local universe. 
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Low Masses and High Redshifts: The Evolution of the M-Z Relation}
+\subsection{Abstract and Introduction}
+This paper is discussing the first robust results of the high redshift mass-metallicity relation for low mass galaxies. The results show a declining MZ relation with declining mass, and the steep slope of the results are suggestive of feedback from energy-driven winds and a cosmological downsizing evolution where high mass galaxies reach the local MZ relation at earlier times. Also the data used match the extrapolated local SFR-M$\_{star}$ relation at this redshift. Finally the authors report no evolution of the mass-metallicity-SFR plane, the stack averaged measurements show excellent agreement with the local relation. \\
+The M-Z relation is sensitive to the processes which shape galaxy growth, i.e. gas outflows and accretion, enriched and primordial inflows and star formation efficiency. It is observed that higher redshift galaxies have lower metallicities, this makes sense; galaxies have had less time to process their gas into heavier elements and so are closer to the `primordial' state of the early universe. Why also is it observed that more massive galaxies have higher metallicities? These galaxies have processed a higher fraction of their gas content than low mass galaxies, this being the so-called `downsizing' picture and is also intuitive. 
 
 \section{Distance Measures in Cosmology}\label{sec:cosmology_distance}
 \subsection{Cosmographic Parameters}
@@ -638,12 +853,40 @@ The comoving volume $V_{C}$ is the volume measure in which number densities of n
 \subsection{Lookback time and age}\label{subs:lookback time}
 Hello
 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
 
 
 \section{Brinchmann Physical Properties}\label{sec:Brinchmann_properties}
 \subsection{Introduction}
 Based on the results of previous studies, a picture has emerged whereby more massive galaxies undergo a larger fraction of their star formation at early times than less massive ones. This has often been said to present a challenge to existing models of galaxy formation. Initial studies with relatively small galaxy samples, but with the advent of large fibre-fed surveys it is now possible to dramatically increase the size of the galaxy sample. This work is aimed at probing the SFH history of the universe as a whole, as there are wide discrepancies between the evolution of the SFR above $z = 3$. One of the key questions is what physical parameters drive the changes in the SFR in individual galaxies. It is therefore of crucial importance to investigate empirically what global quantities correlate strongly with star formation activity. Fitting all strong emission lines simultaneously. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Boquien: Measuring star formation with resolved observations: the test case of M33}
+Starts off with great quote about understanding the formation and evolution of galaxies being intimately linked to our understanding of star formation. `As we observe galaxies across the Universe, their evolution from highly disturbed proto-galaxies at high redshift to the highly organised systems common in the zoo of objects we see in the nearby universe is striking. One of the most important processes that drives this evolution is the transformation of the primordial gas reservoir into stars. which form heavy elements that are ejected into the intergalactic medium during intense episodes of feedback. In other words, if we want to understand galaxy formation and evolution across cosmic times, we need to understand the process of star formation in galaxies. To do so, it is paramount to be able to measure star formation as accurately as possible.' \\ 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Forster Schrieber: SINFONI Integral field spectroscopy of z2 Star forming galaxies}
+\subsection{Introduciton}
+Important section at the beginning of this paper describing the formation and build up of galaxy mass. The main point being made 
+is that the epochs when transitions in galaxy behaviour are happening are relatively clear, but it is poorly 
+understood exactly how those behavioural changes happened. In the concordance model of cosmology, large scale structure is assembled 
+via gravitational aggregation and collapse from the initial fluctuations in the mass density of the early universe. In this framework, galaxies form as baryonic gas cools at the centre of dark matter halos and subsequently grow through accretion and mergers, leading to the hierarchical build up of galaxy mass. Between redshifts 1 and 4 rapid evolution is observed, with a peak in the specific star formation rate density occuring between redshifts 2 and 3. By redshift 1 galaxies have already assembled more than half of their present stellar mass, with this fraction increasing for more massive galaxies. \\ 
+So the picture of what is happening in galaxies over the epochs is more or less understood, but we don't understand how those things are happening. i.e. what are the physical processes which are driving these changes. THE DETAILS OF HOW GALAXIES WERE ASSEMBLED AND EVOLVED REMAIN RELATIVELY UNCLEAR. Most of our current knowledge has been built up by relying heavily on galaxy-intergrated spectral energy distributions, colors and on global properties like mass, age, star formation rate, interstellar extinction and size. Integral field spectroscopy has been able to provide information on galaxy wide outflows, dynamical masses, gas mass fractions and nebular abundances. More detailed constraints are needed to understand the formation and evolution of galaxies - such as angular momentum exchange and loss, cooling, dissipation, dynamical processes and feedback from star formation and AGN. This is where KMOS comes in - providing observationally some constraints on these properties which are crucial for the theory and for simulations of galaxy formation and evolution. With spatially and spectrally resolved data, it is possible to map the kinematics, morphologies, star formation distribution, gas and stars positions and gas excitation state. However obtaining spatially/spectrally resolved data is notoriously challenging due to the faintness of high redshift galaxies, and also because many important spectral diagnostic features are redshifted out of the optical bands.  
+
+\subsection{SINS Sample Selection}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Book: Interpreting astronomical spectra}\label{Interpreting astronomical spectra}
 
 
 
@@ -768,13 +1011,17 @@ Hubble can also produce color-calibrated images. Its `UniverseDial' would be sta
 	\item What do the colours mean in astronomical images? If recorded with a CCD, surely the voltage is just telling us about the liberated number of electrons, how then do we see all of these pretty colours in cameras and telescope images? Calibration. Each pixel has a wavelength associated with it, and so we know what colour is associated with that as well? Works in the optical, but when we're looking at IR pictures, why are they always represented by red? Surely we don't know what these would look like? 
 	\item What are the advantages of KMOS over SINFONI, also a VLT near IR spectrograph?
 	\item Construction of a composite spectrum - both wavelength binning and redshifting of the different constituent spectra necessary?
-	\item 
+	\item `Prior to performing the fits the near-IR photometry was corrected for the contribution of $H\alpha$ and OIII emission lines to the broadband fluxes using the spectroscopically measured values.' Why do we have to do this? What do the population synthesis models actually measure? Is emission line flux included?? 
+
 
 \end{itemize}
 
 \subsection{Analysis Pipeline}\label{que:analysis_pipeline}
 \begin{itemize}
 	\item The manual which is 184 pages long - is this important for me to read at some stage?
+	\item With fits files that have lots of extensions how do you axis those individually from the command line? E.g. with the lcal frame how do you make sure that the rotation angle is closest to that of the object? 
+	\item Are we happy that the stages in the pipeline prior to the pixel correction are okay? i.e. the bad columns section is the first stage where we need intervention?
+	\item When I change the values to -10 and +10 on gaia what am I actually doing? 
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
