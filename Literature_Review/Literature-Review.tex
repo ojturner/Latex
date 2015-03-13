@@ -10,7 +10,7 @@
 \slugauthor{Owen J. Turner}
 \logo{/Users/owenturner/Documents/PhD/KMOS/Latex/Literature_Review/UoEcrest.pdf}
 \graphicspath{{Users/}{owenturner/}{Documents/}{PhD/}{KMOS/}{Latex/}{Literature_Review/}{Figures/}}
-\abstract{}
+\abstract{This is a first report detailing what I've been up to over my first 9 months as a PhD student and laying out the path that will be taken from here going forwards.}
 \setcounter{secnumdepth}{4}
 
 
@@ -52,6 +52,13 @@ Where $E(z) = \sqrt{\Omega _{m}(1 + z)^{3} + \Omega _{k}(1 + z)^{2} + \Omega _{\
 \centering
 \includegraphics[width=0.8\textwidth]{cosmo_dist.png}
 \caption{\footnotesize{\emph{Plot of the different cosmological distance measures against redshift}}}
+\label{fig:cosmo_dist}
+\end{figure}
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=0.8\textwidth]{filters.jpg}
+\caption{\footnotesize{\emph{Wavelength Coverage of near-IR filters}}}
 \label{fig:cosmo_dist}
 \end{figure}
 
@@ -318,6 +325,10 @@ Discussed what is going wrong with the code to be giving such strange results wi
  	\item Increase the size of the bad pixels in the bad pixel map 
  	\item Different thresholds in the cross-correlation computation 
  	\item Different step sizes in the grid and wider ranges 
+ 	\item What are BzK and BX/BM galaxies? 
+ 	\item Adding in rotation as well as just translation right now? Is it surprising that the improvement 
+ 	isn't so great when I'm not making any rotations? Should it be better than it is though? 
+ 	\item 
  \end{itemize} 
 
  But I think that these effects will be superficial compared with whatever is causing the CCC to behave so bizarrely. First step is trying to eliminate this problem and then looking at these issues afterwards to try and further improve the shift. 
@@ -350,9 +361,21 @@ All promising though - put in the hard work now and it will pay off later.
 Thinking about what could be wrong with the cross-correlation computation to be giving the results that we're seeing. Writing a function to grow the bad pixel mask, because several pixels that are surrounding the main guy are also rubbish. I doubt that this will account for the reflection about the y-axis, but it will probably make an improvement if my initial comment was that the contribution to the cross-correlation is dominated by these bad pixels. Also Ross acknowledges that this is a really tricky sky subtraction, and a show stopper for faint high redshift galaxies. The problem is that KMOS is mounted on the rotator, so between exposures there is a very slight rotation of the frame. This all needs to be corrected. But is it a translation a rotation or a combination of both? What will give the best results?  \\ 
 Seems to make a big difference using the grown mask - this was found out just by \textbf{LOOKING} at the object image. Clearly the points around the masked points were almost as bad. 
 
+\subsection{18-2-15: Debugging code}
+Now getting much better and more consistent results with the correlation coefficient graphs. This is probably a result of using a reduced range for computing the correlation coefficient and for using a grown dark pixel map. Many of the pixels which surround the original dark pixels are also bogus and will dominate the signal in the cross-correlation computation. But my also masking those off the results become much more reliable and there is a definite peak position in the cross-correlation signal as shown in Fig. \ref{fig:rho_plot_better}. Now need to think of a way to quantify the improvement in the sky subtraction from the original image. And to automate the process to work with all three extensions of any image. And to write a script which will automatically perform each step in the pipeline, and to keep reading papers surrounding these areas to get a better feel for exactly what is going on in this field.
 
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=0.5\textwidth]{KMOS_SPEC_OBS258_0009_Corrected110_temp_spline3_CorrelationGraph.png}
+\includegraphics[width=0.5\textwidth]{KMOS_SPEC_OBS258_0009_Corrected110_temp_linear_CorrelationGraph.png}
+\caption{\footnotesize{\emph{The expected pattern of contours for a spline3 interpolation (top image) and a bilinear interpolation (bottom image), Image 9}}}
+\label{fig:rho_plot_better}
+\end{figure} 
 
-
+\subsection{12-3-15: Meeting with Michele}
+First meeting in a while, discussed speeding the code up now that we're happy it is making an improvement to the sky subtraction process. Particularly Michele was keen to be sure that the procedure will work for random frames, instead of frames that I've been using the whole time. Trying to develop confidence that this procedure will work on any data frame. \\ 
+The task now is to speed up the process using a minimisation function (probably some kind of downhill simplex routine). Instead of exploring every possible point of a grid in parameter space which takes a very long time, want to only accept shifts which maximise the correlation coefficient. We can do this because we believe that the function which describes the correlation coefficient only has one global minimum instead of lots of local minima, i.e. we would expect that since we are shifting two identical images, there will be one point at which the agreement is best and other points away from this will not be so good.  \\ 
+Once the speed of the procedure has been increased, both in terms of x and y shifts of all segments of the image and rotation theta - want to do test runs of the whole pipeline with and without the sky tweak parameter on.   
 
 
 
@@ -763,7 +786,7 @@ Using data from the EDR of SDDS, to interpret these spectra the authors use the 
 \section{Steidel: Strong Nebular line ratios in the spectra of redshift 2-3 galaxies. KBSS MOSFIRE}
 \subsection{Abstract and Introduction}
 First results from a deep NIR spectroscopic survey covering the 15 fields of the Keck Baryonic Structure Survey using MOSFIRE on the Keck 1 telescope. The locus of $z\sim 2.3$ galaxies in the BPT diagnostic diagram exhibits a disjoint but similarly tight relationship between the ratios NII/Ha and OIII/Hb as compared to local galaxies. Using photoionisation models the author argues that the offset at this redshift with respect to locally is due to a harder ionising radiation field, higher ionisation parameter and higher N/O at a given O/H than applies to most local galaxies. Despite much effort \citep{Mannucci2010}, \citep{ForsterSchreiber2009}, \citep{Cullen2014}, \citep{Troncoso_2014}, \citep{Wuyts_2014}, \citep{Henry2013}, \citep{Maiolino2008} samples of high redshift galaxies for which a reasonably complete set of strong lines has been measured remain very small. The advent of NIR spectrographs on 8-10m telescopes has long promised to revolutionise nebular spectroscopy of high redshift galaxies, by vastly enlarging the sample sizes and making very deep spectroscopy observationally practical. Strong lines tell us about density, OII3727,3729 and SII 6718,6732,  temperature OIII4960,5008/OII4364, ionisation state OIII4969,5008/OII3727,3729 and metallicity (mainly $R_{23}$ and NII6585/Ha) by taking different combinations of their ratios. Additionally the BPT diagnostic is used to determine what the dominant ionisation mechanism within a galaxy is, providing a relatively clean way to distinguish between nebular emisison which has been ionised by AGN activity and by the UV radiation field. Paper seeking to discover whether since the BPT diagram is shifted, does that mean applying locally calibrated emission line ratios to the high-z universe may be more complicated than hoped? \\ 
-Large differences in the calibrations of oxygen abundance indicators mainly from whether they were calibrated theoretically or by using sensitive measurements of the electron temperature, the so called `direct $T_{e}$' method. The direct method tends to provide more accurate results, but it requires measurement of the weak emission lines which are unobservable at high metallicity and high redshift, where they are shifted into regions of the spectrum plagued by higher levels of terrestial background. It has been shown that it is possible to force the different strong line calibration techniques to agree within 0.03 dex in the local universe \citep{Kewley_2008}, however these give only relative abundances. Also the heart of this paper is answering whether this can be applied to the high-z universe, clearly very desirable, and to answer this we must know if the physics of high-z nebular regions are different to those at $z=0$. Why is NIR spectroscopy so hard? From the ground there are large gaps in the atmospheric transmission and beyond a few microns there is substantial background. How can you tell if the gas-phase metallicity is evolving of whether there has been a change on the dependence of measured line intensity and metallicity? \\ 
+Large differences in the calibrations of oxygen abundance indicators mainly from whether they were calibrated theoretically or by using sensitive measurements of the electron temperature, the so called `direct $T_{e}$' method. The direct method tends to provide more accurate results, but it requires measurement of the weak emission lines which are unobservable at high metallicity and high redshift, where they are shifted into regions of the spectrum plagued by higher levels of terrestial background. It has been shown that it is possible to force the different strong line calibration techniques to agree within 0.03 dex in the local universe \citep{Kewley_2008}, however these give only relative abundances. Also the heart of this paper is answering whether this can be applied to the high-z universe, clearly very desirable, and to answer this we must know if the physics of high-z nebular regions are different to those at $z=0$. Why is NIR spectroscopy so hard? From the ground there are large gaps in the atmospheric transmission and beyond a few microns there is substantial background. How can you tell if the gas-phase metallicity is evolving or whether there has been a change on the dependence of measured line intensity and metallicity? \\ 
 
 \subsection{Observations and Data}
 Real time observations, mask re-assignment based on a set of priority flags. Sounds like really cool stuff, all trying to maximise the scientific return from the telescope. 
@@ -882,8 +905,49 @@ via gravitational aggregation and collapse from the initial fluctuations in the 
 So the picture of what is happening in galaxies over the epochs is more or less understood, but we don't understand how those things are happening. i.e. what are the physical processes which are driving these changes. THE DETAILS OF HOW GALAXIES WERE ASSEMBLED AND EVOLVED REMAIN RELATIVELY UNCLEAR. Most of our current knowledge has been built up by relying heavily on galaxy-intergrated spectral energy distributions, colors and on global properties like mass, age, star formation rate, interstellar extinction and size. Integral field spectroscopy has been able to provide information on galaxy wide outflows, dynamical masses, gas mass fractions and nebular abundances. More detailed constraints are needed to understand the formation and evolution of galaxies - such as angular momentum exchange and loss, cooling, dissipation, dynamical processes and feedback from star formation and AGN. This is where KMOS comes in - providing observationally some constraints on these properties which are crucial for the theory and for simulations of galaxy formation and evolution. With spatially and spectrally resolved data, it is possible to map the kinematics, morphologies, star formation distribution, gas and stars positions and gas excitation state. However obtaining spatially/spectrally resolved data is notoriously challenging due to the faintness of high redshift galaxies, and also because many important spectral diagnostic features are redshifted out of the optical bands.  
 
 \subsection{SINS Sample Selection}
+\subsubsection{Optically Selected BX/BM Objects}
+The redshift desert of $z~1.5-2.4$ is harvested for these galaxies, using the BX/BM selection techniques, which rely on colour identification. 
+The properties of this sample are discussed in depth in a selection of papers, and the original techniques are discussed themselves at length in \citep{Adelberger2004} and \citep{Steidel2004}. MUST READ.
+
+\subsection{Data Reduction}
+A very useful section to consider when looking into fitting the emission line fluxes later on. Gives details for how this was done and how the noise and error analysis was carried out in the appendices. Increasing the signal to noise ratio by median-filtering the data cube along each of the three axes - i.e. using a 2 pixel wide bin for the flux values. This improves the signal to noise by a factor a of root2. \\ 
+The continuum component which is subtracted is given by a linear fit to adjacent regions of the spectrum not contaminated by emission lines or by night sky lines. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Davies: Removing OH lines from NIR spectra}
+\subsection{Introduction}
+What are OH lines and why do they need to be removed? These are reactions between the ozone and hydrogen high up in the atmosphere. Emission lines result from the subsequent radiative cascade, and removing these is a crucial part in the processing of NIR spectra. Although they are usually considered a nuisance in this regard, they can always prove useful in wavelength calibration \citep{Osterbrock1996}, \citep{Maihara1993}. Even at moderate spectral resolutions, the background on these OH lines can be three orders of magnitude higher than the background in between them. There are inevitably implications both for the statistical photon noise and also for systematic effects when attempting to remove the OH emission by subtracting a sky spectrum from an object spectrum. The first of these noise sources is unavoidable, and can only be improved by integrating longer. The latter is an issue because the OH line fluxes can vary significantly on timescales of only a few minutes and yet for a clean subtraction, the flux of the OH lines in the sky and object frames would have to differ by much less than 1 per cent. Sky and Object images often have to be taken in different patches of sky, due to the small field of view of IFUs and the extended emission from high redshift galaxies - i.e. one may expect a high redshift galaxy to be $~1$ arcsec across, but still observe extended emission from a region 2-3 arcsec across. \\ 
+Further compounding the issue is the demand to reach maximum signal to noise even between the OH lines, which means observing for 5-10 minutes on source to avoid being readout noise limited. Hence even if one takes frequent sky frames the OH lines are almost always imperfectly subtracted.  \\ 
+Also a big problem is that the spectral line profile may vary significantly across the field of view due to image distortions, off-axis aberrations and manufacturing variations between elements. Thus one cannot simply take a sky spectrum from one spatial pixel and subtract it from another. This is also the reason why attempts to generate model OH spectra that can be subtracted from the data inevitably fail. To make matters worse, at moderate resolution the strength of the OH lines means that even small amounts of spectral flexure in an instrument (corresponding to only a few per cent of a resolution element) can leave a significant `P-Cygni’ shape residual when a sky frame is subtracted. This is exactly the problem I'm working on right now. Interesting paper - will be a good one to return to. Again they are dealing with most of the problems after cube reconstruction and I suppose we're trying to find out how much we can do before the reconstruction stages of the pipeline. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{E.Daddi: Multiwavelength Study of Massive Galaxies at z2}
+\subsection{Introduction}
+Understanding the buildup of galaxies at high redshift requires precise measurements of two fundamental quantities; the stellar mass
+and star formation rates of galaxies. The integrated SFR history of a galaxy provides a lower limit to the stellar mass growth, and any stellar mass growth measured in excess of this is to be ascribed to galaxy mergers. Most of the rise in the space density of massive galaxies happens in the redshift interval $z \sim 3 - z\sim 1$, which is the most active period of star formation throughout the history of our universe. \\
+The aim of the paper is to verify to what extent this agreement among the different star formation rate tracers persists individually for distant massive galaxies and hence to what extent SFRs can be measured unambiguously at high redshift. 
+\subsection{Multiwavelength Data Sets, their interpretation and known limitations}
+A major focus of this paper is the comparison between luminosities at various wavelengths, each of which is known to correlate with the SFR in galaxies. In order to put emission at different wavelengths on a common footing, we adopt nominal conversions between these observed luminosities and fiducial quantities such as the total infrared luminosity $L_{IR}$ integrated from 8 to 1000$\mu m$. The use of $L_{IR}$ as a SFR indicator assumes that all of the energy emitted by star forming regions is absorbed by dust particles and re-radiated in the infrared, and that there are no other significant sources of dust heating. Neither assumption is universally correct as not all of the UV photons emitted by young stars may be absorbed by dust, and sources such as AGN can boost the energy in parts of the spectrum, including the infrared luminosity. Values for $L_{IR}$ can vary substantially depending on the different indicators used to evaluate them - this is the topic of the present section, to discuss the different recipes for computing $L_{IR}$ from different indicators, and how these observations are then used to diagnose the SFR of that galaxy. \\ 
+The Kennicutt conversion is used to go between infrared luminosity and SFR
 
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{E.Daddi: BzK technique}
+\subsection{Introduction}
+This is a simple two-color selection based on the B-,z- and K-band photometry, proposed for culling galaxies at $1.4< z <2.5$ in K-selected samples and classifying them as star forming galaxies or passive systems. The method is calibrated on the highly complete spectroscopic redshift database of the K20 survey, verified with simulations and tested on other datasets. It is a time consuming process to construct large samples of spectroscopically confirmed high-z objects, so it is necessary to have a way to pre-select interesting objects before taking up spectrograph time. An alternative obviously is to rely on photometric redshifts, but these may be subject to biases that are difficult to quantify and their accuracy depends critically on the quality of the photometry and the colors and redshifts of the objects. Another technique is for the selection of LBG - where bluewards of the Lyman break essentially all light is absorbed by clouds of neutral hydrogen, the UV colours reveal this feature. However for this method to work the galaxies must be UV bright initially, and not be heavily reddened by dust. The best alternatives for selecting dust-enshrouded high redshift, star forming galaxies prior to this paper include detecting far-IR and submillimetre emission from cold dust, by observing X-ray or radio emission that are not extincted by dust and selecting very red objects in near-infrared samples that are less affected by dust extinction. \\ 
+The BzK technique allows us to reach completeness down to a given SFR limit almost independently of dust reddening. Therefore, the technique offers a tool to explore with the minimum possible biases the histories of cosmic star formation and the cosmic buildup of mass at $z\sim 2$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Stark: Keck Spectroscopy of redshift 3-7 LBG's}
+\subsection{Introduction}
+What are they trying to do? Trying to reconcile observations of the sSFR with theoretical models - it would appear from observations that the sSFR is evolving less rapidly than expected. But the observations underpinning this conclusion remain very uncertain, with the contribution to the stellar continuum from broadband rest-frame optical emission lines being poorly understood. To quantify this contribution the authors look at the SEDs of 92 spectroscopically confirmed galaxies in the redshift range $3.8 < z < 5.0$, chosen because the H$\alpha$ line lies within the spitzer/IRAC 3.6$\mu m$ filter. These SEDs are compared with pop synthesis models, showing an excess from the continuum emission expected from stellar atmospheres alone. Frpm the distribution of this excess, the authors derive a distribution of $H\alpha$ equivalent widths, which are used to consider the implications for both the derived stellar masses and the sSFR evolution. Using this empirical distribution, the authors correct for the stellar masses within the galaxies, and find a more rapid sSFR evolution above $z \sim 4$, which is in better agreement with observations. \\ 
+Observations find a roughly constant sSFR between $z \sim 2 - 7$, but semi-analytic models suggest that the sSFR should evolve in line with the inflow rate of baryonic material, which increases with redshift. These models would suggest an evolution of the sSFR by a factor of roughly 10.  
+Contamination of broadband fluxes by nebular emission lines would significantly affect the inferred amplitude of a balmer break, leading to an overestimate of the stellar mass and thereby an underestimate of the sSFR. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Book: Interpreting astronomical spectra}\label{Interpreting astronomical spectra}
@@ -1029,6 +1093,6 @@ Hubble can also produce color-calibrated images. Its `UniverseDial' would be sta
 \clearpage 
 \bibliographystyle{apj.bst}
 %\bibliography{/usr/local/texlive/texmf-local/bibtex/bib/ojt.bib}
-\bibliography{/Users/owenturner/Documents/PhD/KMOS/Latex/Literature_Review/Bibtex/library.bib}
+\bibliography{/Users/owenturner/Documents/PhD/KMOS/Latex/Bibtex/library.bib}
 
 \end{document}
