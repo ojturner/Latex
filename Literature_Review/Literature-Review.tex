@@ -378,7 +378,11 @@ The task now is to speed up the process using a minimisation function (probably 
 Once the speed of the procedure has been increased, both in terms of x and y shifts of all segments of the image and rotation theta - want to do test runs of the whole pipeline with and without the sky tweak parameter on.   
 
 
+\subsection{19-3-15: Meeting with Michele}
+Showed him the results of the algorithm being increased in speed. Need to muck around more with how adding a precision parameter would change this. Also now need to get really familiar with the pipeline. Playing around with the parameters during the science reconstruction. Understood as well for the first time a bit more about how the reconstruction process works - the files you supply in the .sof file are the individual objects which will be reconstructed into data cubes. The pipeline then takes all of those, stacks them together FOR EACH IFU and produces a combined_telluric file, which is the object on each IFU. Also output are the individual reconstructed object cubes for inspection. Michele gave two overarching goals for now: 1) Play around with these parameters for about a day and develop some experience with how the data is affected by changing these. 2) Read a data cube into python and learn how to reproduce the views in qfits view in a clever way. Think about cleverly locating the object and extracting 1D spectra from around the central locations of these objects, in for example a 2x2 pixel chunk. 
 
+\subsection{26-3-15: Meeting with Michele}
+Good explanation of the difference between Telluric and OH emission in the context of observing stars and observing galaxies. For us the telluric correction isn't so important, whereas for stars it makes a big difference having this in. Telluric features are atmospheric absorption effects, whereas OH lines are rotational transitions within the OH molecule. We're still concentrating on the sky subtraction, which is by far the most complicated thing to do well in near-IR spectroscopy. Looking into how effective the sky tweak option is by examining the IFU's one by one - seeing if there is any trend in how well the pipeline is performing with sky tweak specified. Once we are confident that the pipeline is working with both the telluric correction and the optimal sky subtraction we can start doing some actual science analysis of galaxy spectra. Michele showed me some of the maps he had created for a redshift 3.4 galaxy (which took 20 hours of observing time, MASSIVE) to prove that the science is there to be exploited, we just need to show that we can do this as well as possible.  
 
 
 
@@ -798,8 +802,24 @@ Stellar masses assigned to the KBSS-MOSFIRE galaxies using population synthesis 
 So the first chunk of the paper deals with the collection of the spectra and the extraction of physical properties from these spectra using line ratios, stellar population synthesis SED fitting and $H\alpha$ line fluxes. Discussing the inevitable incompleteness of the survey with respect to SFR.  
 
 \subsection{The BPT Diagram}
-Perhaps the most remarkable aspect of the local BPT diagram is the narrow locus along which most star forming galaxies are found, sometimes referred to as the HII abundance sequence \citep{Dopita2000}, because the left hand branch can be interpreted as a sequence in overall ionised gas-phase metallicity. 
+Perhaps the most remarkable aspect of the local BPT diagram is the narrow locus along which most star forming galaxies are found, sometimes referred to as the HII abundance sequence \citep{Dopita2000}, because the left hand branch can be interpreted as a sequence in overall ionised gas-phase metallicity.
+Long discussion of the BPT diagram follows. Trying to reproduce the positions of both the high redshift galaxies and the low redshift galaxies in the BPT plane. The authors are investigating the dependence of position in the plane on the gas phase metallicity of the galaxy. The position in the plane is determined by the strength of the emission lines, as the axes are ratios of Oxygen to Hydrogen and Nitrogen to Hydrogen. The question is, to what extent does N/O correlate with O/H. The BPT diagram appears to be primarily a sequence in the ionisation parameter, $\Lambda = \frac{n_{\gamma}}{n_{e}}$, which is the ratio of the number density of ionising photons and the number density of electrons in the HII region. At higher redshift there is a higher ionisation parameter, which corresponds to a vertical shift in the BPT diagram (i.e. O/H is increasing relative to N/H). Tied up in this is the question of whether it is suitable to apply locally calibrated strong line diagnostics to the high redshift universe - it would appear not since the dependencies of these ratios on metallicity change, and may not be there at all in the high redshift universe. The ratios of emission lines are not abundance measurements on their own right, it has been the work of authors over several decades to calibrate how the fluxes depend on metallicity using the direct $T_{e}$ method, and by calibrating using the photoionisation models.
+\subsubsection{N2 and O3N2 Calibrations Revisited}
+The N2 and O3N2 indices are mapped to oxygen abundances using the PP04 \citep{Pettini_2004} methods calibrated using the $T_{e}$ method. Both of these indices are sensitive, through the N2 index, to the behaviour of N/O as a function of O/H, so that differences in this behaviour between the local calibration set and the high-redshift galaxies could produce systematic differences in the inferred 12 + log(O/H).
+\subsubsection{Summary}
+Sections 4.1-4.5 in this paper attempt to highlight the caveats in interpreting the ratios of strong emissions lines produced in the HII regions of high redshift galaxies, in the context of what is known from much more extensively studied `local' star forming galaxies. The `offset' in the position of the locus of star forming galaxies in the high redshift sample compared with the BPT sequence of local star forming galaxies appears to have contributions, in rough order of importance from: 
 
+\begin{itemize}
+	\item harder stellar ionising radiation field, needed to explain the preponderance of large observed OIII/H $\beta$ in the high redshift sample. 
+	\item higher ionisation parameter than inferred for most low-redshift star forming galaxies. 
+	\item Shallower dependence of N/O on O/H than is typically inferred for low redshift galaxies 
+\end{itemize}
+
+ The implications of the BPT shift for measurements of the gas phase abundances from strong emission lines remain uncertain, but the generally higher level of excitation, and the less pronounced behaviour of N/O on O/H, have the combined effect of reducing the extent to which the strong line ratios are sensitive to gas-phase O/H. So the advice is to use strong line indicators at high redshifts with caution, until they have been calibrated using direct $T_{e}$ based measurements. 
+\subsection{AGN vs. Stellar ionisation}
+AGN tend to have much harder UV spectra, the effect of which is to boost the ratio OIII/H $\beta$ relative to NII/H $\alpha$. 
+\subsection{MZR}
+Using two different metallicity calibrations to construct the MZR - both the N2 and O3N2 indices and the PP04 calibrations. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
