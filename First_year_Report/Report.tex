@@ -1,0 +1,277 @@
+\documentclass{literature}
+
+\title{Exploring the physical properties of high redshift galaxies with KMOS}
+\subtitle{First year report}
+\author{Owen J. Turner}
+\authoremail{turner@roe.ac.uk}
+\supervisor{Dr. Michele Cirasuolo}
+\supervisoremail{ciras@roe.ac.uk}
+\slugheader{First year report}
+\slugauthor{Owen J. Turner}
+\logo{/Users/owenturner/Documents/PhD/KMOS/Latex/Literature_Review/UoEcrest.pdf}
+\graphicspath{{Users/}{owenturner/}{Documents/}{PhD/}{KMOS/}{Latex/}{Literature_Review/}{Figures/}}
+\abstract{This is a first year report detailing what I've been up to over my first 9 months as a PhD student and laying out the path that will be taken from here going forwards. }
+\setcounter{secnumdepth}{4}
+
+
+\begin{document}
+
+\coverpage
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Introduction}\label{sec:Intro}
+The physical processes which govern the formation and evolution of high redshift galaxies are representative of a time when the universe was most active. It is the gas within these galaxies which is the driving force behind galaxy evolution, and there are various tools provided by the latest generation of telescope which allow astronomers to explore the properties of this gas. \\ 
+
+
+
+Throughout this first year report, I will give a brief overview of how to go between telescope data and the physical properties of a galaxy, indicating the literature surrounding this in section \ref{sec:background}. Section \ref{subsec:current_int} gives an overview of the telescopes 
+routinely collecting the spectra of high redshift galaxies, highlighting the wavelength ranges in which their detectors operate and whether 
+they have the capacity for integral field spectroscopy. Section \ref{sec:KMOS} focusses specifically on the specifications of KMOS and the key science drivers motivating research with this instrument. 
+
+
+
+
+
+\section{Background}\label{sec:background}
+mini lit review introduction. Set the context 
+
+\citep{Troncoso_2014}, \citep{Maiolino2008}, \citep{Cullen2014}, \citep{Kewley2002}, \citep{Kennicutt_2012}, \citep{Tremonti2004} \citep{Brinchmann2004} \citep{Savaglio2005} \citep{Erb_2006} \citep{Kewley_2008} \citep{ForsterSchreiber2009} \citep{Steidel2014}
+Major themes are: 
+
+\begin{itemize}
+	\item The need for detailed measurements of high-z galaxies with integral field spectrometers 
+	\item a description of available IFS at different portions of the spectrum, kmos optimised for Halpha at z3
+	\item Measurement of abundance 
+	\item photoionization models and population synthesis
+	\item morphology 
+	\item gas dynamics, outflows and the connection between this and evolution 
+	\item flux data cubes 
+	\item the mass metallicity relation and the fmr 
+	\item use of abundance techniques described by cullen 
+\end{itemize}
+
+Plots will be: 
+
+\begin{itemize}
+	\item peak of SFRd curve 
+	\item m-z relation at different epochs 
+	\item Attempts to force the strong lines to be equal 
+	\item Gradients in physical properties from Troncoso
+	\item Some spectra -  
+	\item look at all the plots from your other document 
+\end{itemize}
+
+
+
+M-Z graphs at different redshifts and FMR graphs to illustrate the point. Wanting to confirm the shape of both at redshift 3, or actually looking at the M-Z relation at different points throughout the galaxy - i.e. does the centre of the galaxy follow a different M-Z relation to the outskirts of the galaxy. 
+
+\subsection{Flux measurement}
+Dust extinction, calzetti curves etc. 
+
+ 
+
+\subsubsection{Slit Losses}
+Corrections to H$\alpha$ lines fluxes due to slit losses. A particular redshift corresponds to an angular diameter distance, and the physical size of the galaxy subtends a particular angular size at this distance. The telescope being used has an entrance slit of a particular angular size. The point spread function of a galaxy is spread over a larger angular size by Gaussian seeing of a given FWHM which depends on the atmospheric conditions at the time of observation. It is possible that the resultant PSF has FWHM larger than the entrance slit, and so a certain fraction of the light emitted by the galaxy is falling outside of the slit.     
+
+
+\subsubsection{Extinction Corrections}
+section 2.3.2 of Steidel and Calzetti 2000
+
+
+\subsection{Stellar Masses}
+Stellar masses are routinely estimated using stellar population synthesis models, which construct the SEDs of populations of stars. The shape of these SEDs depend on the physical properties of the galaxy, i.e. age, metallicity, redshift and stellar mass. A grid of model SEDs is constructed by varying these physical properties in the population synthesis, and the values are constrained through comparison to an observed SED. The most widely used models are those of Bruzual and Charlot \citep{Bruzual2003} (BC03). \\      
+Typically, spectroscopic surveys will target well studied fields to make use of ancillary photometric data. These data preferably cover as wide a region of the spectrum as possible, to provide the information required to break degeneracies between physical properties, such as age and metallicity. As a concrete example, consider the procedure described in Steidel et al. (2014) \citep{Steidel2014}, where stellar masses are estimated for a sample of $z \sim 2$ galaxies. The galaxies have been observed in three optical filters (\textit{$U_{n}GR$}), the near-IR  $ J $ and $ K_{s}$ bands, the HST WFC3-IR F160W filter and the Spitzer/IRAC 3.6$\mu m$ and 4.5$\mu m$ beams. These data cover both the region of the spectrum where rest-frame starlight is emitted directly, and where starlight absorbed by dust is re-radiated. The BC03 models are used to fit the observed SED and stellar masses are inferred by assuming a Chabrier IMF \citep{Chabrier2003}, with estimated uncertainties in log($M_{*} /M_{\odot}$) of $\pm 0.1-0.2 $ dex.    
+
+
+\subsection{Star Formation Rates}
+
+Different SFR indicators - all of those described in Kennicutt, plus those that can be derived from SED fitting. Which are more reliable, which are more commonly used. It is common to construct comparisons between observationly derived SFRs and those recovered from SED fits (e.g. \citep{Steidel2014} Fig. 3.) \\
+\subsubsection{The UV continuum}
+
+
+\subsubsection{Infrared Emission}
+
+
+\subsubsection{Emission Line Tracers}
+
+\subsubsection{The Radio Continuum}
+
+
+\subsubection{X-Ray Emission}
+
+
+\subsubsection{Composite Multiwavelength Tracers}
+
+
+
+Gas flows both to and from the IGM in high redshift galaxies are crucial to allowing for, and limiting, the very high star formation rates and accompanying metal production during the peak epoch of galaxy formation. \\
+
+\subsection{Abundance measurement}
+Giant HII regions were the first indicators of the gas phase abundance of galaxies, and of abundance gradients across the face of these galaxies \citep{Searle1971}, \citep{Shields1974}. Many other abundance indicators have been used since then, including supernova remnants, stellar clusters and AGB stars. HII regions are relatively easy to observe, and the interpretation of their spectra is straightforward, and so these remain the favoured tool for abundance determination.  \\
+
+
+Description of the physical process which excites atoms and causes them to emit the `forbidden' lines - gas rarefied enough \\
+
+
+Chemical abundances derived in low metallicity regions are generally considered reliable, given that the spectroscopy is deep enough to allow for an accurate measurement of forbidden line ratios such as [OIII] $\lambda 4363/5007$, and hence the electron temperature $T_{e}$. DESCRIPTION OF THE DIRECT METHOD. This is the so-called `direct $T_{e}$' method, and requires high quality data which are sensitive to weak, fordibben transitions. The method becomes rapidly more challenging at higher redshifts, where the HII regions are fainter and the required forbidden lines are redshifted into regions of the spectrum plagued by much higher terrestial background. \\   
+
+
+
+
+
+
+At these redshifts, astronomers rely upon the suite of statistical strong-line methods to measure HII region abundances. \\
+
+Description of the main methods (Either from Hughes thesis or from Kewley and Ellison) \\ 
+
+However, the metallicities derived using separate strong line indicators are often not in agreement, with discrepancies of up to a factor of 3 for different strong-line indicators applied to the same set of data. This is mainly due to some of the techniques being calibrated using theoretical models and some empirically with observations of electron temperature sensitive emisison lines \citep{Stasinska2005}. There have been attempts to force the strong-line methods to yield the same metallicites when applied to large samples of high redshift galaxies, by converting measurements to the same metallicity `baseline' \citep{Kewley_2008}, \citep{Kewley2002}, \citep{Maiolino2008}
+
+`It is a separate issue as to whether the re-normalisation of strong-line techniques can (or should) be applied to samples of high redshift galaxies - clearly this is a desirable property but has not yet been clearly demonstrated. The root of the problem is that for this to be allowed, the physics of high redshift HII regions would have to resemble the physics of local star-forming galaxies. If there are any significant physical differences, blind application of local calibrations will introduce systematics in inferred metallicity'. Perhaps the most challenging situation is the comparison of metallicities derived with one set of strong-line indicators in a particular redshift range with those based on a different set of lines at a second redshift. 
+
+
+
+
+\subsection{Measuring gas kinematics}
+
+These are some of the 
+
+\subsection{BPT Diagram}
+The `Baldwin, Phillips, Terlevich' (BPT) diagram is a plane defined by the strong emission line ratios [OIII]/H $\beta$ and [NII] / $H\alpha$. Perhaps the most remarkable aspect of the BPT diagram is the tight locus along which most local star-forming galaxies are found, sometimes referred to as the `HII region abundance sequence'. Tremonti et al. constructed the BPT diagram for a sample of $> 50,000$ local SDSS star-forming galaxies, shown as the grey points in Figure \ref{fig:steidel_bpt}, revealing two branches, the first of which is the locus of star-forming galaxies and the second is the subset of galaxies with AGN activity. Galaxies hosting AGN have much harder UV spectra, the effect of which is to boost the ratio OIII/H $\beta$ relative to NII/H $\alpha$. The BPT diagram is therefore a useful diagnostic test for the presence of these galaxies, which are excluded from abundance analyses as their strong line ratios are unlikely to be related to stellar processes. \\ 
+
+
+A crucial goal of high redshift galaxy abudance measurement is to understand the physical origins of the difference in position between the $z \sim 0$ and $z > 1$ locus of star forming galaxies in the BPT diagram. Figure \ref{fig:steidel_bpt} shows the BPT diagram for a sample of local SDSS galaxies \citep{Tremonti2004} and for a sample of galaxies from KBSS-MOSFIRE with $z \sim 2.3$. Clearly there is a vertical offset between the two populations  
+relating to the appropriateness of using locally calibrated strong-line abundance diagnostics at high redshift. 
+
+Reasons for the difference (all from the steidel paper end of section 4)
+\begin{itemize}
+	\item Harder radiation field 
+	\item higher ionisation parameter 
+	\item weaker dependence of N/O on O/H
+\end{itemize}
+combine to give a weaker dependence of the observed strong lines on the abundance - i.e. tie in the BPT shifts to the abundance measurement consequences. 
+must also mention \citep{Kewley2013} once you've read.1/4
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=0.8\textwidth]{steidel_bpt.png}
+\caption{\footnotesize{\emph{The `BPT' diagram shows the position of star-forming galaxies in the [OIII]/H $\beta$ vs. [NII] / $H\alpha$ plane. This particular figure, taken from Steidel et al. 2014 \citep{Steidel2014}, shows the locus of $z \sim 2.3$ KBSS MOSFIRE star forming galaxies (green) relative to the SDSS $z \sim 0$ galaxies (grey) \citep{Tremonti2004}. The BPT diagram is also used as an AGN diagnostic, with galaxies hosting active AGN being identified as having unusually large [OIII]/H $\beta$ relative to [NII] / $H\alpha$.}}}
+\label{fig:steidel_bpt}
+\end{figure} 
+
+\subsection{Mass-Metallicity relationship and evolution}
+
+Main points are the flattening of the MZR above a characteristic $M_{*}$ in the low redshift universe, any functional fits to the data take this into account, analogous to the $L_{*}$ in a luminosity function. \\ 
+The drop in metallicity for a given stellar mass when moving to higher redshift and the physical explanation for this \\ 
+The difficulty and danger of comparing the MZR at different redshifts due to the points above about strong-line indicators perhaps not being sensitive to the actual oxygen abundance at high redshift. Evolution of the gas content within galaxies. 
+\citep{Savaglio2005}, \citep{Maiolino2008}, \citep{Erb_2006}, \citep{Tremonti2004}, \citep{Kewley2013}
+
+\begin{figure}[!htp]
+\centering
+\subfloat[]{\includegraphics[width=0.32\textwidth]{tremonti_mzr.png}}
+\subfloat[]{\includegraphics[width=0.32\textwidth]{steidel_mzr.png}}
+\subfloat[]{\includegraphics[width=0.32\textwidth]{Maiolino_mzr.png}}
+\caption{\footnotesize{\emph{}}}
+\label{fig:steidel_mzr}
+\end{figure}
+
+
+
+
+
+\subsection{Fundamental metallicity relationship and evolution}
+
+\subsection{Current multi-object and integral field spectrographs}\label{subsec:current_int}
+
+Emphasis is now being placed on the role Multi-Object Spectrographs (MOSs) play in revealing the properties of object populations. For years, single object spectrographs have revealed a huge amount about the properties of small numbers of these objects. However, detailed knowledge of the behaviours of object populations is difficult to grasp without the statistical power of larger collections of spectra, which sample different object environments and reveal a wider spread in galaxy physical properties. Particularly for ground based observations in parts of the spectrum strongly affected by atmospheric effects, some of the most exciting applications of spectroscopy involve very long integration times, even on 10m telescopes. By simultaneously collecting spectra for many objects, MOSs promise to collect much larger samples of spectra from which more robust conclusions can be drawn. \\
+
+Integral Field Spectrographs (IFSs), or spectrographs equipped with Integral Field Units (IFUs) combine the capacity for imaging and for spectroscopy. The result is resolved spectroscopy, in which a galaxy image is split into a grid, and each segment of the grid is dispersed using a grating to obtain a spectrum. This collection of spectra for a single galaxy image is called a datacube, which contains information about how the physical properties of the galaxy change across its radial extent. Studies involving resolved spectroscopy are crucial for understanding the gas, and by extension galaxy, evolution, through looking at abundance and SFR gradients and by directly examining the gas dynamics. The current observational benchmark is the combination of both integral field and multi-object spectroscopy with a single instrument, providing large samples of resolved spectra. This is the optimal research tool for developing an understanding of the physical processes driving galaxy formation and evolution. At increasingly high redshifts, the rest-frame optical emission lines used to measure abundance and trace gas velocity are shifted to longer wavelengths. As a result, to develop a coherent view of galaxy evolution throughout the cosmic epochs it is necessary to have instruments sensitive across the optical and near-IR regions of the spectrum.  \\ 
+
+Sections \ref{subsubsec:MUSE} - \ref{subsubsec:VIMOS} highlight spectrographs which are currently operational with either integral field or multi-object capabilities, indicating the passbands in which they are sensitive. In section \ref{sec:KMOS} focus turns to the K-band Multi-Object Spectrograph (KMOS), which is the instrument used throughout this work.     
+
+\subsubsection{MUSE}\label{subsubsec:MUSE}
+The Multi-Unit Spectroscopic Explorer (MUSE) \citep{Bacon2010} is an optical mutli-object integral field spectrograph operating at the Nasmyth focus of Unit Telescope 4 (UT4), part of ESO's Very Large Telescope (VLT) array in Chile. 	
+
+\subsubsection{MOSFIRE}\label{subsubsec:MOSFIRE}
+The Multi-Object Spectrometer For Infra-Red Exploration (MOSFIRE) \citep{McLean2012} is a multi-object spectrograph for the Keck observatory in Hawaii. KBSS-MOSFIRE is a deep near-IR survey covering 15 fields of the Keck Baryonic Structure Survey (KBSS), specifically targeting the redshift range $2.0 < z < 2.6$, a range in which a relatively complete set of the rest-optical nebular lines fall fortuitously within the near-IR atmospheric windows for ground based spectroscopy. As a result, this survey is optimised for collecting spectra for and examining the properties of star forming galaxies during the peak of the SFRd curve. On top of this, the MOSFIRE Deep Evolution field (MOSDEF) \citep{Kriek2014}  aims to collect $\sim 1500$ rest-frame optical spectra in three well studied Cosmic Assembly Near-Infrared Deep Extragalactic Legacy Survey (CANDELS) \citep{Grogin2011} fields.
+
+\subsubsection{SINFONI}\label{subsubsec:SINFONI}
+The Spectrograph for INtegral Field Observations in the Near Infrared (SINFONI) \citep{Eisenhauer2003} is an integral field spectrograph operating at the Cassegrain focus of UT4 at the VLT array. The spectroscopic imaging survey in the near-infrared with SINFONI (SINS) collected the largest sample of spatially resolved gas kinematics, morphologies and physical properties of star forming galaxies at $z \sim 1-3$ \citep{ForsterSchreiber2009}. 
+
+\subsubsection{VIMOS}\label{subsubsec:VIMOS}
+The Visible Multi-Object Spectrograph (VIMOS) \citep{LeFevre2003} is a wide field imager and multi-object spectrograph mounted on the Nasmyth focus of UT3 at the VLT array. The Vimos VLT Deep Survey (VVDS) collected thousands of spectra from the Chandra Deep Field South area, \citep{LeFvre2004}, \citep{LeFevre2005}, which are crucial in there own right, but also act as important calibration data for photometric redshift techniques \citep{Ilbert2006}.
+
+\subsubsection{OSIRIS}\label{subsubsec:OSIRIS}
+
+
+
+
+
+\subsubsection{MaNGA}\label{subsubsec:MaNGA}
+Mapping Nearby GAlaxies is a new survey at Apache Point Observatory as part of the Sloan Digital Sky Survey IV (SDSS-IV), with the aim of obtaining integral-field spectroscopy for an unprecendented sample of 10000 nearby galaxies. MaNGA's key goals are to understand the `life cycle' of present day galaxies from imprinted clues of their birth and assembly, through their ongoing growth via star formation and merging, to their death from quenching at late times. To achieve these goals, MaNGA will channel the impressive capabilities of the SDSS-III BOSS spectrographs in a fundamentally new direction by marshaling the unique power of 2D spectroscopy
+
+Throughout this work, I have been using data collected by KMOS, which combines multi-object and integral field spectroscopy in the near-IR. 
+
+\section{KMOS}\label{sec:KMOS}
+As described above, there is an expanding selection of impressive instrumentation available both for multi-object and for integral field spectroscopy. It is worthwhile to focus on where KMOS fits in to the big picture. Section \ref{subsec:instrument} provides a description of the instrument design and the crucial science drivers behind its construction, highlighting where these are potentially in tension with other spectrographs.  
+
+\subsection{Specification, science drivers and context}\label{subsec:instrument}
+specific details about KMOS as an intrument. Specifications, construction, VLT unit telescope, first light date, key science drivers, how this fits into the big picture of other spectrographs operating in this wavelength region, MOONS 
+\citep{Sharples2005}, \citep{Sharples2013}, \citep{Davies2013}
+
+
+\subsection{Data reduction and analysis}\label{sec:reduction}
+By virtue of being a multi-object integral field spectrometer with 24 configurable IFUs, the raw data taken by KMOS is complex.
+
+\section{Work since September 2014}\label{sec:work}
+\subsection{Cosmology calculator}\label{subsec:cosmo_calc}
+
+\subsection{Analysing reduced SDSS spectra}\label{subsec:sdss_spec}
+
+\subsection{Additions to the KMOS reduction pipeline}\label{subsec:kmos_pipeline}
+
+As described above, following the recipes supplied in the ESO reduction pipeline allows the user to process raw object images into fully reduced data cubes. However, the `out of the box' pipeline skips several steps which can greatly increase the quality of the reduced 3D spectra. The importance of these steps is amplified during the reduction of high redshift galaxy images, where the signal to noise ratio is significantly lower. It is important to tease as much information out from the data as possible at these redshifts, especially when measuring the strengths of nebular emission lines. Ground based near-IR spectroscopy is plagued by telluric contamination, and so to extract reliable information from galaxy images, sky-subtraction must be performed as accurately as possible. The additions made to the ESO pipeline focus on improving the sky-subtraction process prior to science reconstruction, and correcting the infrared detectors for read noise effects. These additions are decsribed below.  \\ 
+The overarching goal at this stage is to produce an automated pipeline which reliably extracts as much information as possible from the KMOS high redshift galaxy images. 
+
+\subsubsection{Read noise}
+
+
+\subsubsection{Object and sky image misalignment}
+\citep{Davies2007}
+Very often, for instruments mounted at a Cassegrain or Nasmyth focus which need to rotate, there can be instrumental flexure resulting in shifts of the wavelength scale between exposures. This slight misalignment of the object and sky images can cause a `P-Cygni' type residual after sky subtraction, which will lead to eroneous results in the reconstructed datacubes.    
+
+
+\subsubsection{Removing OH airglow emission}
+Emission lines produced by the OH radical dominate near-IR spectra, appearing between 0.61 - 2.62 $\mu m$ and with fluxes several orders of magnitude larger than other sky emission. As a result, the removal of OH lines is an essential stage in the processing of near-IR data, with images of blank patches of sky being taken and then subtracted from the `object' images. Waves in the upper atmosphere cause a strong time dependence in both the absolute and relative intensities of these emission lines, complicating the removal process. For a clean subtraction, the flux of the OH lines in the sky and object images would have to vary by much less than 1 percent; yet the lines can vary significantly on time-scales of only a few minutes and statistical photon noise is an unavoidable source of error. On a positive note, these lines serve as useful reference points for wavelength calibration of astronomical spectra, and near-IR sky emission line maps have been created to aid in the identification of these lines \citep{Rousselot2000}. \\ 
+Discussing the rather complicated topic of IFS sky-subtraction \citep{AllingtonSmith1998a}, alternative method described by Davies \citep{Davies2007}.
+
+ 
+
+
+
+
+\section{Planned projects}\label{sec:projects}
+\subsection{The physical properties of galaxies at z = 3}
+\subsubsection{Directly observing emission lines required for direct metallicity measurement}
+
+
+
+
+\subsection{Searching for CIII Emission}
+
+
+
+
+\subsection{Spectroscopic Confirmation of LAEs at z=7-8}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\clearpage 
+\bibliographystyle{apj.bst}
+%\bibliography{/usr/local/texlive/texmf-local/bibtex/bib/ojt.bib}
+\bibliography{/Users/owenturner/Documents/PhD/KMOS/Latex/Bibtex/library.bib}
+
+\end{document}
