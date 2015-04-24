@@ -227,7 +227,7 @@ The difficulty and danger of comparing the MZR at different redshifts due to the
 \subsection{Fundamental metallicity relationship and evolution}
 
 \subsection{Current multi-object and integral field spectrographs}\label{subsec:current_int}
-
+	
 Emphasis is now being placed on the role Multi-Object Spectrographs (MOSs) play in revealing the properties of object populations. For years, single object spectrographs have revealed a huge amount about the properties of small numbers of these objects. However, detailed knowledge of the behaviours of object populations is difficult to grasp without the statistical power of larger collections of spectra, which sample different object environments and reveal a wider spread in galaxy physical properties. Particularly for ground based observations in parts of the spectrum strongly affected by atmospheric effects, some of the most exciting applications of spectroscopy involve very long integration times, even on 10m telescopes. By simultaneously collecting spectra for many objects, MOSs promise to collect much larger samples of spectra from which more robust conclusions can be drawn. \\
 
 Integral Field Spectrographs (IFSs), or spectrographs equipped with Integral Field Units (IFUs) combine the capacity for imaging and for spectroscopy. The result is resolved spectroscopy, in which a galaxy image is split into a grid, and each segment of the grid is dispersed using a grating to obtain a spectrum. This collection of spectra for a single galaxy image is called a datacube, which contains information about how the physical properties of the galaxy change across its radial extent. Studies involving resolved spectroscopy are crucial for understanding the gas, and by extension galaxy, evolution, through looking at abundance and SFR gradients and by directly examining the gas dynamics. The current observational benchmark is the combination of both integral field and multi-object spectroscopy with a single instrument, providing large samples of resolved spectra. This is the optimal research tool for developing an understanding of the physical processes driving galaxy formation and evolution. At increasingly high redshifts, the rest-frame optical emission lines used to measure abundance and trace gas velocity are shifted to longer wavelengths. As a result, to develop a coherent view of galaxy evolution throughout the cosmic epochs it is necessary to have instruments sensitive across the optical and near-IR regions of the spectrum.  \\ 
@@ -257,18 +257,34 @@ Gemini observatory
 \subsubsection{MaNGA}\label{subsubsec:MaNGA}
 Mapping Nearby GAlaxies is a new survey at Apache Point Observatory as part of the Sloan Digital Sky Survey IV (SDSS-IV), with the aim of obtaining integral-field spectroscopy for an unprecendented sample of 10000 nearby galaxies. MaNGA's key goals are to understand the `life cycle' of present day galaxies from imprinted clues of their birth and assembly, through their ongoing growth via star formation and merging, to their death from quenching at late times. To achieve these goals, MaNGA will channel the impressive capabilities of the SDSS-III BOSS spectrographs in a fundamentally new direction by marshaling the unique power of 2D spectroscopy
 
+\subsubsection{MOONS}\label{subsubsec:MOONS}
 Throughout this work, I have been using data collected by KMOS, which combines multi-object and integral field spectroscopy in the near-IR. 
 
 \section{KMOS}\label{sec:KMOS}
-As detailed in the above sections there is an expanding selection of impressive instrumentation available both for multi-object and for integral field spectroscopy. It is worthwhile to focus on where KMOS fits in to the big picture. Section \ref{subsec:instrument} provides a description of the instrument design and the crucial science drivers behind its construction and section \ref{sec:reduction} describes the key recipes of the reduction pipeline required to turn raw images into reconstructed data cubes. 
+As detailed in the above sections there is an expanding selection of impressive instrumentation available both for multi-object and for integral field spectroscopy. It is worthwhile to focus on where KMOS fits in to the big picture. Section \ref{subsec:instrument} provides a description of the instrument design and the crucial science drivers motivating its construction and section \ref{sec:reduction} describes the key recipes of the reduction pipeline required to turn raw images into reconstructed data cubes. 
 
 \subsection{Specification, science drivers and context}\label{subsec:instrument}
-specific details about KMOS as an intrument. Specifications, construction, VLT unit telescope, first light date, key science drivers, how this fits into the big picture of other spectrographs operating in this wavelength region, MOONS 
-\citep{Sharples2005}, \citep{Sharples2013}, \citep{Davies2013}
+The details of the physical processes driving galaxy formation and evolution in the first few billion years after the big bang remain elusive. The ideal set of operational capabilities for an instrument seeking to shed light on these topics are as follows. 
+\begin{itemize}
+	\item The ability to collect spectra for many objects simultaneously; a statistically robust sample will be difficult to assemble with single object IFUs alone 
+	\item The ability to obtain more than just integrated or one dimensional information, since forming galaxies are often observed to have complex morphologies 
+	\item Sufficient resolving power to detect the relatively small differences in velocity observed in galaxy rotation curves
+	\item The flexibility to target objects clustered together in small areas of the total field of view 
+	\item The ability to observe well studied optical features at high redshift in the near-IR Y, J, H and K-band atmospheric windows    
+\end{itemize}
+
+These are in essence the key features of KMOS, which is a near-IR multi-object integral field spectrograph operating with 24 configurable pickoff arms in the Nasmyth focal plane. These arms position mirrors at user specified locations, which feeds the light through to 24 image slicer IFUs that position each sub-field into 14 identical slices with 14 spatial pixels along each slice. Light from the IFUs is then dispered by three identical cryogenic grating spectrometers to generate 14x14 spectra for each sub-field, with the dispersed light reaching three identical 2kx2k Hawaii 2RG HgCdTe detectors. Each spatial pixel corresponds to 0.2$^{\prime \prime}$, giving each IFU a 2.8$^{\prime \prime}$x2.8$^{\prime \prime}$ sub-field. Each arm patrols the 7.2$^{\prime}$ diameter of the total field of view of the telescope. This system offers significant advantages over multi-slit spectrographs, because of the reduced slit contention in crowded fields, and the sensitivty of the pickoff arms to galaxy morphology and orientation. KMOS operates in 5 near-IR bands, these being the IZ, YJ, H, K and HK, with varying spectral resolution between these \citep{Sharples2005}. \\ 
+
+KMOS is perfectly equipped to map variations in star formation histories, merger rates and dynamical masses across a wide range of redshifts and environments, these being probes of the history of galaxy evolution in the universe.  
+ 
+
+\subsection{Data Reduction Pipeline}\label{sec:reduction}
+By virtue of being a multi-object integral field spectrometer with 24 configurable IFUs and over 4000 spectra per exposure, the raw data taken by KMOS, and hence the reduction pipeline, are complex. Fortunately, ESO has made available the Software Package for Astronomial Reductions with KMOS (SPARK) \citep{Davies2013}, for carrying out the bulk of this reduction. Included in this package are recipes for processing dark frames and flatfields, for wavelength calibration of the spectral pixels in the chosen waveband using a set of arc frames and static calibration files, flux calibration with standard star images and a set of science reduction recipes to reconstruct and combine data cubes using the above calibrations. At the end of each night, the relevant set of calibration images are taken at six different rotator angles, to allow for the closest match to the rotation angle of the data as possible. \\ 
+
+Thus far this pipeline has been incredibly useful, and each recipe contains a set of configurable options to give the user more control over how the reduction is carried out. There are however some steps missing from the reduction pipeline which can improve the quality of the resultant data and hence the accuracy of the spectra extracted from the data cubes. One of my tasks has been to make these additions to the pipeline, describe in section \ref{subsec:kmos_pipeline}.  
 
 
-\subsection{Data reduction and analysis}\label{sec:reduction}
-By virtue of being a multi-object integral field spectrometer with 24 configurable IFUs, the raw data taken by KMOS is complex.
+
 
 \section{Work since September 2014}\label{sec:work}
 This section gives overview of the work completed since the beginning of my PhD in September. To supplement the tasks described in the following subsections, background reading for the above literature review was carried out continuously throughout this period. The notes from this reading, as well as notes from each meeting with Michele, have been recorded in an electronic journal. 
@@ -287,7 +303,7 @@ As an introduction to coding with Python, and to provide an important tool for t
 To motivate the development of a bespoke KMOS pipeline, we decided first to analyse the pre-reduced spectra of a set of normal, local SDSS galaxies. This back-to-front approach demonstrates the type of analysis that will be applied to KMOS galaxy spectra, albeit with significantly higher signal-to-noise than will be possible with the $z\sim 3$ KMOS galaxy sample. 
 Broadly this section can be split into two categories, the first dealing with the extraction of emission line fluxes by fitting gaussians to the spectral locations of the emission lines. The second is the application of calibrated formulae to the parameters of the fitted gaussians to recover the physical properties of the galaxies. These categories are now discussed in turn.  
 
-\subsubsection{Extracting Emission Line Fluxes}   
+\subsubsection{Extracting Emission Line Fluxes}\label{subsub:ex_em}   
 The reduced spectra were extracted from the `specObj' table of SDSS DR10 via SQL search. The SDSS database is a particularly useful testbed, as the optical emission line parameters as well as global galaxy properties derived from these are listed here and can be used for comparison.  The first stage of the analysis is to fit and subtract the continuum emission of the galaxy, here carried out in two separate ways. Either a third order polynomial is fit to the data, with emission lines masked, or a moving average is applied to match the continuum with a higher level of detail. Typically the simple polynomial fit provided emission line fluxes which matched the SDSS values more closely, and this is what is used throughout this section. Following continuum subtraction, it is necessary to know the redshift of the galaxy in order to determine the spectral locations of the emission line peaks. Here, and as would be the case in many other situations, the redshift of the galaxies is known and the wavelengths of the emission lines can be determined using the simple relation: 
 
 \begin{equation}
@@ -309,7 +325,7 @@ In the more general case where redshift is unknown, synthetic galaxy spectra can
 
 \begin{figure}[!htp]
 \centering
-\includegraphics[width=0.7\textwidth]{Cross_corr.png}
+\includegraphics[width=0.8\textwidth]{Cross_corr.png}
 \caption{\footnotesize{\emph{The cross correlation `power' is plotted against the grid of redshift values passed to the function, showing a clear peak at $z\sim 0.138$. This is a relatively easy procedure for such high quality spectra with prominent emission lines, becoming increasingly difficult to gain enough signal as redshift increases. }}}
 \label{fig:cross_cor}
 \end{figure} 
