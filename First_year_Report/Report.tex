@@ -537,7 +537,7 @@ From the recovered FWHM of the 2D gaussian, the objects are divided into four bi
 
 \subsubsection{Optimal Integrated Spectrum Extraction}\label{subsubsec:optimal_spec_extract}
 
-To increase S/N, it is necessary to extract the spectrum from a galaxy with weightings corresponding to where most of the flux is being emitted. Galaxies have a given radial profile, and light from each part of this profile is spread out into a seeing disc when it hits our atmosphere. Stars on the other hand are point-like, and the seeing disc from a star eminates from the same point-source of light. By tracking a star in one of the IFUs, we get a measure of the theoretical minimum seeing and can recover the set of weights which can be applied to each spatial pixel during the spectrum extraction. To expand on this, consider Figure \ref{fig:fwhm_image}. A 2D gaussian is fitted to the image of the tracked star in a particular object stack, recovering the parameters of the gaussian function. By normalising the gaussian to unity, and truncating the function at a given number of standard deviations from the centre, one recovers a weighting mask for spectrum extraction which can be applied to all objects in that stack by shifting the mask centre. The resultant 1D spectrum is then found by summing across all weighted spatial pixels. This procedure is applied to all of the FWHM bins described in the above section, to recover a set of `Best', `Good' and `Okay' 1D spectra for each of the objects observed by KMOS. In theory, an analysis similar to that described in section \ref{subsub:ex_em} is applied to recover physical properties. 
+To increase S/N, it is necessary to extract the spectrum from a galaxy with weightings corresponding to where most of the flux is being emitted. Galaxies have a given radial profile, and light from each part of this profile is spread out into a seeing disc when it hits our atmosphere. Stars on the other hand are point-like, and the seeing disc from a star eminates from the same point-source of light. By tracking a star in one of the IFUs, we get a measure of the theoretical minimum seeing and can recover the set of weights which can be applied to each spatial pixel during the spectrum extraction. To expand on this, consider Figure \ref{fig:fwhm_image}. A 2D gaussian is fitted to the image of the tracked star in a particular object stack, recovering the parameters of the gaussian function. By normalising the gaussian to unity, and truncating the function at a given number of standard deviations from the centre, one recovers a weighting mask for spectrum extraction which can be applied to all objects in that stack by shifting the mask centre. The resultant 1D spectrum is then found by summing across all weighted spatial pixels. This procedure is applied to all of the FWHM bins described in the above section, to recover a set of `Best', `Good' and `Okay' 1D spectra for each of the objects observed by KMOS. In theory, an analysis similar to that described in section \ref{subsub:ex_em} is then applied to recover physical properties. 
 
 
 \begin{figure}[!htp]
@@ -549,6 +549,9 @@ To increase S/N, it is necessary to extract the spectrum from a galaxy with weig
 
 
 \subsubsection{Current Stage}
+Automating the reduction pipeline as much as possible and applying to K and H-band, looking at getting galaxy raw data and extracting spatially resolved spectra.
+
+
 
 
 \section{Planned projects}\label{sec:projects}
