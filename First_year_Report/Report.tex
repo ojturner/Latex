@@ -91,33 +91,39 @@ Typically, spectroscopic surveys will target well studied fields to make use of 
 \subsection{Measuring Star Formation Rates}
 Throughout their lifetimes, galaxies convert bound gas into stars, and do so at a varying rate. The star formation rate is an indicator of the efficiency with which stellar mass is being built up within a galaxy, and is dependent upon galaxy type, environment and cosmic epoch. Observations have revealed that most stars form within galaxies that follow a relatively tight SFR-M$_{*}$ `Main Sequence'. The existence of this sequence suggests that the evolution of the global Star Formation History (SFH) of the universe is determined by a balance between gas accretion and feedback to the IGM, such as stellar winds, supernovae shocks and AGN activity. Understanding these processes which regulate the gas volume and composition within a galaxy, and seemingly drive the changes in star formation rates over time is a fundamental aspect of galaxy evolution. \\ 
 Here an overview of the observational methods employed to measure the SFRs of galaxies is given. 
-Sections \ref{subsubsec:uv_continuum} - \ref{subsubsec:comp} describe the individual SFR tracers, the motivation behind their use and the benefits and downfalls of applying them independently. Underpinning all of these techniques are Stellar Population Synthesis (SPS) codes, which use the equations of stellar evolution to model the light emitted by a population of stars at different ages. The spectrum of a galaxy is determined by the ratio of early-type to late-type stars, and so the observed colour of a galaxy contains information about the star formation over the most recent stage of the galaxy's history. By modelling galaxy colours as a function of SFR, age, composition and IMF, SPS codes provide a calibration between the observed luminosity of a particular SFR tracer and the SFR of the galaxy. Section \ref{subsubsec:gsfh} will summarise the now consistent picture of the global SFH of the universe, highlighting the peak period of star formation at $z \sim 2$.  \\ 
+Sections \ref{subsubsec:uv_continuum} - \ref{subsubsec:comp} describe the individual SFR tracers, the motivation behind their use and the benefits and downfalls of applying each tracer independently. Underpinning all of these techniques are Stellar Population Synthesis (SPS) codes, which use the equations of stellar evolution to model the light emitted by a population of stars at different ages. The spectrum of a galaxy is determined by the ratio of early-type to late-type stars, and so the observed colour of a galaxy contains information about the star formation over the most recent stage of the galaxy's history. By modelling galaxy colours as a function of SFR, age, composition and IMF, SPS codes provide a calibration between the observed luminosity of a particular SFR tracer and the SFR of the galaxy. Section \ref{subsubsec:gsfh} will summarise the now consistent picture of the global SFH of the universe, highlighting the peak period of star formation at $z \sim 2$.  \\ 
 
 The advent of NIR integral-field spectrographs on 8-10m class telescopes has paved the way for studying spatially resolved SFRs within galaxies during the time when the universe was at its most active. Spatially resolved spectroscopy is crucial for uncovering the dependency of SFR upon environment, rather than making an assumption that the galaxy properties are similar across its spatial extent and deriving a holistic SFR. Section \ref{subsubsec:spat_res} will discuss this in more detail, focussing on the opportunities presented by these instruments and the observational challenges which must be overcome to reach these goals.     
 
 
 \subsubsection{The UV continuum}\label{subsubsec:uv_continuum}
-The wavelength range 1200-2500\AA is longward of the Lyman-continuum break and bluewards of the contaminating flux emitted by older stellar populations. The near-UV continuum emission of galaxies in the range traces the photospheric emission of young stars and is thus one of the most direct methods of measuring galaxy SFRs. Advantages, disadvantages, current calibrations\\ 
+The wavelength range 1200-2500\AA is longward of the Lyman-continuum break and bluewards of the contaminating flux emitted by older stellar populations. The near-UV continuum emission of galaxies in this range traces the photospheric emission of young stars and is thus one of the most direct methods of measuring galaxy SFRs. This wavelength range is shifted into the easily observed optical range up until $z\sim 3-4$, and so can be applied over a wide range of redshifts. As such, UV continuum measurements provide a powerful probe of the cosmic evolution of the SFR. There are two main causes for concern when applying this method. The first is that this wavelength region is particularly sensitive to dust extinction, and it is particularly hard to infer what fraction of the total light is being observed. The second is that the models used to calibrate the UV luminosity - SFR conversion are sensitive to the form of the IMF assumed. \\  
 
 For extragalactic studies, this method has been revolutionised by the launch of Galaxy Evolution Explorer mission (GALEX, \citep{Martin2005}). GALEX imaged two thirds of the sky in near-UV (230nm) and far-UV (155nm) channels, providing integrated measurements of distant galaxies and resolved mapping for our nearest external galaxies. The impact of this is the recovery of UV flux measurements for hundreds of thousands of galaxies, which can be used to calibrate the relationship between luminosity and SFR and also to provide fresh data to constrain the relationship between the UV spectral slope and dust attenuation.      
 
 \subsubsection{Infrared Emission}\label{subsubsec:ifrared}
+A significant fraction of the bolometric luminosity of a galaxy is absorbed by dust and re-radiated in the thermal IR, at wavelengths between 10-300$\mu m$. The dust absorption cross section is strongly peaked in the UV, and so in principle the FIR emission can be a sensitive tracer of the young stellar population and SFR. However, there is a varying contribution to the UV light from the young stellar population in different types of galaxy, affecting the efficacy of the FIR luminosity as a SFR tracer. For example, the FIR luminosity is the ultimate tracer of the SFR in starburst galaxies, where young stars completely dominate the UV continuum and the dust opacity is high everywhere. In this situation there can be no hope of applying individually an UV tracer of the SFR, as the light is mostly absorbed. Alternatively, consider a normal galaxy with both a warm and cold dust component. Here, heating of the dust from the old stellar population, even in the rest-frame UV, is a significant effect and confuses the relationship between IR-luminosity and SFR. \\ 
 
+The Spitzer Space Telescope \citep{Werner2004} and the Herschel Space Observatory \citep{Pilbratt2010} have been transformational in developing a better understanding of the connection between IR-continuum emission and SFR. The crucial point is that the conversion between IR-luminosity and SFR must change when observing at different IR wavelengths and when observing different galaxy classes.   
 
 \subsubsection{Emission Line Tracers}\label{subsubsec:em_lines}
+Particularly relevant to this work are SFR tracers derived from nebular emission lines. Clouds of hydrogen surrounding a star forming region are ionised by energetic photons emitted by young and massive stars. The recombination of an electron back into the hydrogen atom is coupled with the emission of a photon. In this sense, nebular emission lines are effectively re-emission of the integrated stellar luminosity shortwards of the Lyman limit, so they provide a direct sensitive probe of the young stellar population. Only stars with $M > 10M_{\odot}$ ($\tau _{MS} < 10Myr$) contribute significantly to the ionising photon flux and as a result emission line tracers are particularly sensitive to the instantaneous integrated SFR of a galaxy. The strongest and therefore easiest to observe recombination lines are in the rest-frame optical, and so application of this technique to high redshift requires near-IR surveys. Special importance is placed on the H$\alpha$ line as a tracer - it is almost always the strongest emission line feature in a galaxy, and so the conversion between $H\alpha$ luminosity and SFR is well studied. Again, dust extinction and the form of the IMF will affect SFRs recovered and implicit in this technique is the assumption that all massive star formation is traced by the ionised gas, which may not necessarily be the case. \\ 
+
+H$\alpha$ is redshifted out of the optical range beyond $z\sim 0.5$, and so there is significant motivation to calibrate weaker lines in the hydrogen series and metal emission lines bluewards of this transition. However, these lines are orders of magnitude weaker than H$\alpha$ and are difficult to observe at high redshift. This is an area which will see leaps forward with the advent of JWST, especially in the observation of weaker, but less extinguished, higher order hydrogen recombination lines. There is a case for using Lyman-$\alpha$ as a SFR tracer, in principle very appealing as this can be applied at high redshift and the line strength is roughly 9 times that of H$\alpha$. However, the line is subject to strong quenching from resonant trapping and eventual absorption by dust, usually quantified by a Lyman-$\alpha$ escape fraction ($f_{esc}$). Without detailed knowledge of $f_{esc}$, Lyman-$\alpha$ is an ineffective tracer, and \citep{Hayes2011} have shown that $f_{esc}$ appears to vary unpredictably.  
+
 
 \subsubsection{Radio and X-ray Tracers}\label{subsubsec:rad_x}
-
+There have also been attempts to calibrate relationships between X-ray and radio luminosities and SFRs. AGN emit strongly in both of these regimes, however if the stellar component can be isolated, in both cases it is found to correlate with the IR emission. This correlation can be used to bootstrap conversions between the radio and x-ray luminosities of a galaxy and SFR.
 
 \subsubsection{Composite Multiwavelength Tracers}\label{subsubsec:comp}
+Clearly there are some situations where one independent tracer of the SFR is better than another, or where different tracers are complimentary. Composite tracers are calibrated relations that combine information from more than one different wavelength band to arrive at a SFR estimate. This has recently become a much more feasible approach, with large multiwavelength surveys collecting the data required to calibrate these types of relations using SPS models. The most widely explored composite tracer uses a linear combination of the UV and IR continuum luminosity to arrive at a `corrected' UV luminosity, $L_{UV}(corr)$. This can then be used in conjunction with the usual calibration to arrive at a SFR. Typically, composite tracers dramatically reduce the errors that would be found using a single SFR tracer independently.   
 
-\begin{figure}[!htp]
-\centering
-\includegraphics[width=0.8\textwidth]{comp_tracers.png}
-\caption{\footnotesize{\emph{Calibrated SFR tracers using combined multi-wavelength tracers}}}
-\label{fig:comp_convert}
-\end{figure} 
 
+In sum, Kennicutt and Evans \citep{Kennicutt_2012} tabulate the conversion between luminosity and SFR for each of the tracers listed above. Figure \ref{fig:convert} lists the units of the observed luminosities, $L_{x}$, in the different wavebands, and the value of the constant, $C_{x}$, used to convert to SFR. This conversion is given by Equation ~\ref{eq:convert} below. The composite tracers are also listed in Figure \ref{fig:comp_convert}, providing a list of prescriptions to find the composite `corrected' luminosities. 
+
+\begin{equation} \label{eq:convert}	
+	log\dot{M_{*}}(M_{\odot}year^{-1}) = logL_{x} - logC_{x}
+\end{equation}
 
 
 \begin{figure}[!htp]
@@ -128,28 +134,32 @@ For extragalactic studies, this method has been revolutionised by the launch of 
 \end{figure} 
 
 
-In sum, Kennicutt and Evans \citep{Kennicutt_2012} tabulate the conversion between luminosity and SFR for each of the tracers listed above. Figure \ref{fig:convert} lists the units of the observed luminosities, $L_{x}$, in the different wavebands, and the value of the constant, $C_{x}$, used to convert to SFR. This conversion is given by Equation ~\ref{eq:convert} below. 
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=0.8\textwidth]{comp_tracers.png}
+\caption{\footnotesize{\emph{Calibrated SFR tracers using combined multi-wavelength tracers}}}
+\label{fig:comp_convert}
+\end{figure} 
 
-\begin{equation} \label{eq:convert}	
-	log\dot{M_{*}}(M_{\odot}year^{-1}) = logL_{x} - logC_{x}
-\end{equation}
-
-
-
-Gas flows both to and from the IGM in high redshift galaxies are crucial to allowing for, and limiting, the very high star formation rates and accompanying metal production during the peak epoch of galaxy formation. \\
 
 \subsubsection{The Global Star Formation History}\label{subsubsec:gsfh}
-Overall, having a handle on the global SFR of the universe at different epochs tells us about the activity of the universe at these times. We appear to live at a time which is much less active than in the past, with stars forming at a peak rate that is 9 times higher than is seen today.\citep{Madau_2014}
+Overall, having a handle on the global SFR of the universe at different epochs tells us about the activity of the universe at these times. We appear to live at a time which is much less active than in the past, with stars forming at rate 9 times lower than observed at the peak of the SFRd curve \citep{Madau_2014}. The obvious question that needs to be answered is why this is the case. Have galaxies rifled through their gas budgets and produced the vast majority of their stellar mass? Are we now just coasting along in a relatively dormant universe until the current generation of main sequence stars run out of fuel and die? \\ 
+
+These statements are drawn from a knowledge of the SFH of the universe, a current computation of which is given in Section 5 of Madau and Dickinson 2014 \citep{Madau_2014}. The authors use a sequence of determinations of the UV and IR luminosity functions at increasing redshift, integrating over these to find the comoving luminosity density at each redshift. These can then be converted into SFRDs at each redshift using the factors given in Figure \ref{fig:convert}. Figure \ref{fig:sfh} plots these measurements of the SFRD in the UV and IR respectively, plots a) and b) respectively, before plotting both on the same axes in plot c). All three plots are accompanied by a best fitting function. The key feature of this well known diagram is the rise to peak SFRD between $8 < z < 2$, and subsequent decline up until the present. Structure is forming during the initial rise to peak SFRD, and massive galaxies efficiently churn through their gas budgets in the `downsizing' scenario \citep{Brooks2007}. Beyond the peak, the gas is essentially used up and galaxy SFRs decline steadily until the current epoch. \\ 
 
 \begin{figure}[!htp]
 \centering
 \includegraphics[width=0.8\textwidth]{sfh.png}
-\caption{\footnotesize{\emph{The history of cosmic star formation from a) FUV b) IR and c) FUV + IR.}}}
+\caption{\footnotesize{\emph{The history of cosmic star formation from a) FUV b) IR and c) FUV + IR. The density of star formation rises until peak at $z\sim 2$, the time when the universe was most active, and has been dropping off since then.}}}
 \label{fig:sfh}
 \end{figure} 
 
+A remarkably consistent picture of the SFH of the universe has emerged, which has given an overall perspective of the activity of the universe as galaxies have evolved. There is still work to be done constraining the shape of this curve, particularly at the high redshift end where there are few data points. Adding in the integrated luminosity functions derived from the highest redshift galaxies will help cement the SFRD curve during the epoch of galaxy formation. 
 
 \subsubsection{Spatially Resolved SFRs}\label{subsubsec:spat_res}
+Nearly all the diagnostic methods described up to now have been designed for measuring integrated SFRs of galaxies, implicitly assuming that the local variations in stellar-age, mix, IMF population and gas/dust geometry largely average out when the integrated emission of a galaxy is measured. As mentioned above, with very high resolution imaging, or integral-field spectroscopy, one would like to create maps of spatially resolved star formation by considering individual patches of the whole galaxy. The problem is that at small linear scales almost all of the statistical approximations embedded into SPS models begin to break down. Firstly there is the problem of stochasticity, where incomplete sampling of the stellar IMF on scales between 0.1-1kpc lead to large variations in tracer luminosity. A good example of this is given in section 3.9 of Kennicutt $\&$ Evans \citep{Kennicutt_2012}, in the context of what a theoretical observer in M51 would infer from the outside when looking at different regions of the Milky Way. Secondly, if the spatial resolution of the SFR measurements encompass single young clusters, the assumption of continuous star formation embedded in the SFR recipes breaks down. The emission from these regions is completely dominated by a very young stellar population, with ages less than the averaging times assumed for all but the emission line tracers. Again, the consequence is that the luminosities of the emission line tracers are affected. Thirdly, if the resolution of measurements becomes fine enough to enter within the Stromgren diameter of HII regions, indirect tracers tend to map out cloud emission rather than the young stars. \\ 
+
+These three biases complicate spatially resolved star formation rate measurements, but do not rule these out. One of the goals of this project will be to construct spatially resolved maps of the star formation within galaxies, inspecting how this correlates with the metal content in the same regions.  
 
 
 \subsection{Measuring Cosmic Abundance}\label{subsec:abundance}
@@ -385,26 +395,52 @@ It is likely that the  spectrum fitting strategy will have to be significantly a
 
 \subsection{Additions to the KMOS reduction pipeline}\label{subsec:kmos_pipeline}
 
-As described in section \ref{subsec:kmos_pipeline}, following the recipes supplied in the ESO reduction pipeline allows the user to process raw object images into fully reduced data cubes. However, the `out of the box' pipeline skips several steps which can greatly increase the quality of the reconstructed data cubes. The importance of these steps is amplified during the reduction of high redshift galaxy images, where the signal to noise ratio is significantly lower. It is important to tease as much information out from the data as possible at these redshifts, especially when measuring the strengths of nebular emission lines. Ground based near-IR spectroscopy is plagued by telluric contamination, and so to extract reliable information from galaxy images, sky-subtraction must be performed as accurately as possible. The additions made to the ESO pipeline focus on improving the sky-subtraction process prior to science reconstruction, and correcting the infrared detectors for read noise effects. These additions are decsribed below.  \\ 
+As described in section \ref{subsec:kmos_pipeline}, following the recipes supplied in the ESO reduction pipeline allows the user to process raw object images into fully reduced data cubes. However, the `out of the box' pipeline skips several steps which can greatly increase the quality of the reconstructed data cubes. The importance of these steps increases during the reduction of high redshift galaxy images, where the signal to noise ratio is significantly lower. It is important to tease as much information out from the data as possible at these redshifts, especially when measuring the strengths of nebular emission lines. Ground based near-IR spectroscopy is plagued by emission from the OH molecule, and so to extract reliable information from galaxy images, sky-subtraction must be performed as accurately as possible. The additions made to the ESO pipeline focus on improving the sky-subtraction process prior to science reconstruction, and correcting the infrared detectors for read noise effects. These additions are decsribed below.  \\ 
 The overarching goal at this stage is to produce an automated pipeline which reliably extracts as much information as possible from the KMOS high redshift galaxy images. 
 
 \subsubsection{Read noise}
 
+The KMOS infrared detectors are read out in columns of 64 pixels, with a seperate amplifier for each column to boost the recorded signal. Each amplifier behaves differently to its neighbour, and the effect produced by one amplifier is not constant with time, leading to a banded flux bias effect across the sky subtracted object image, as shown in the top panel of Figure \ref{fig:column_sub}. This is carried through the data reduction pipeline, resulting in excess bands of flux across spatial pixels in the reconstructed object images. These problems reflect the current limitations of IR detectors and the difficulty of converting photon energies into electronic signals in this region of the spectrum. There are two different methods to compensate for this read bias, both involving a correction to the raw object image prior to sky subtraction. The image in Figure \ref{fig:column_sub} is ideal for testing this effect; the chosen detector is illuminated by the light from only 4 IFUs. This leaves a large `test-pixel section' not contaminated by sky/object flux in the centre of the detector for evaluating the quality of corrections made. The light blue curve in Figure \ref{fig:med_corr} shows the uniformity of spatial pixels prior to making any column-corretions, plotting the median of 100 spectral pixels for each spatial pixel in the test pixel section. Clearly the median jumps around, changing with each 64 or 128 pixel segment. \\ 
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=0.8\textwidth]{bad_column.png}
+\includegraphics[width=0.8\textwidth]{good_column.png}
+\caption{\footnotesize{\emph{The top panel shows a raw sky subtracted object image, whereas the bottom shows the same subtraction after the object image has been corrected for readout bias using the segments method. There is a significant improvement in the uniformity of the pixels after corretion. Both images show an 800x2048 section of one of the near-IR detectors, with 4 IFUs operational (these being the significantly brighter pixel columns).}}}
+\label{fig:column_sub}
+\end{figure}
+
+The first correction method uses the top four spectral pixels of a raw sky subtracted object frame, these being masked `reference' pixels which are never illuminated by light from the IFUs. The correction is made by taking the median of these top four pixels in columns of 64, and subtracting this from each 64 pixel column of the object image prior to sky image subtraction. This accounts for pixel uniformity across the image, but still leaves the median value of the test pixel section offset from zero. The red curve of Figure \ref{fig:med_corr} shows the performance of this method, clearly improving the spatial uniformity of the uncorrected test pixel section.  \\ 
+
+The second correction method uses the wavelength calibration `lcal' frame, output from the reduction pipeline. This frame has the same dimensions as the detector, contains `nan' values for pixels not illuminated by an IFU and the wavelength values of spectral pixels which are. There is a four pixel non-illuminated gap between each illuminated slitlet, and so by looking at pixels on the sky subtracted image corresponding to nan locations on the lcal frame, a column correction can be found.For each 64 pixel spatial column, the median value of the non-illuminated pixels of the subtracted image is found, and depending on whether this is negative or positive, it is either added or subtracted to the raw object image. A third correction method which uses a variation of this technique is also applied; instead of finding the correction in each 64x2048 column, the spectral axis is split into 128 pixel segments, and 16 64x128 corrections are found in each column. This caters for systematic variations in brightness across a detector not directly caused by readout bias. These two variations will be referred to as the lcal and lcal-segments correction methods. The dark blue and green curves of Figure \ref{fig:med_corr} respectively plot the performance of these two methods in the test pixel section. For the chosen frame the performance is equivalent, with the dark blue curve underneath the green, and the median pixel value shifted to zero. For further comparison between the raw and corrected sky subtracted frame, the counts per pixel in the test-pixel section were binned and a gaussian fit to the resultant histogram. The green and blue curves in Figure \ref{fig:pix_hist} show the pre and post-correction values respectively and demonstrate the shift of the median pixel value towards zero when the correction is applied.    \\       
+
+Due to the lcal-segments method automatically shifting the median value of the test pixel segment to zero, this was chosen as the bias correction method for the pipeline. Since the bias effect varies between the detectors and the frames, the correction is applied in a script which passes the lcal-segments method all of the object-sky pairs in sequence. The correction is applied to each object frame, saving these with a `$\_$Corrected' extension.  
+
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=0.8\textwidth]{medians3.png}
+\caption{\footnotesize{\emph{The performance of the three different column correction methods are compared against the median from the uncorrected sky subtracted object image. The light blue curve shows the uncorrected median, which jumps around in bands of 64 pixels, the red shows the top four method and both the dark blue and green curves lie on top of one another, demonstrating the lcal and lcal-segments methods respectively. The spatial uniformity of the pixels is greatly improved by all of the methods, and the two lcal methods also shift the median of the test pixel segment to zero.}}}
+\label{fig:med_corr}
+\end{figure}
+
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=0.6\textwidth]{pix_hist.png}
+\caption{\footnotesize{\emph{To quantify the improvement made to the corrected subtracted image, a slice of pixels in between illuminated IFUs in both the raw and corrected subtracted images of Figure \ref{fig:column_sub} was extracted. The pixel values were placed in bins and a gaussian fit to the resultant histogram, blue for post-correction and green for pre-correction. The correction has the effect of shifting the median subtracted pixel value to zero, which is what we want for a clean sky subtraction. }}}
+\label{fig:pix_hist}
+\end{figure}
 
 
 
-
-\subsubsection{Object and sky image misalignment} 
 
 
 \subsubsection{OH Emission and Sky Subtraction}
 
-Emission lines produced by the OH radical dominate near-IR spectra, appearing between 0.61 - 2.62 $\mu m$ and with fluxes several orders of magnitude larger than other sky emission. These are produced by Meinel rotation-vibration transitions of the OH molecule, and appear in distinct bandings across the near-IR spectral range, as shown in Figure \ref{fig:sky_spec}. As a result, the removal of OH lines is an essential stage in the processing of near-IR data, with images of blank patches of sky being taken and then subtracted from the `object' images. Waves in the upper atmosphere cause a strong time dependence in both the absolute and relative intensities of these emission lines, complicating the removal process. For a clean subtraction, the flux of the OH lines in the sky and object images would have to vary by much less than 1 percent; yet the lines can vary significantly on time-scales of only a few minutes and often exposures times longer than this are required to achieve adequate S/N. To further complicate the subtraction process, manufacturing variations between instrument elements, and even small amounts of spectral flexure in the instrument during rotation can leave significant `P-Cygni' shaped residuals in the spectrum when a sky frame is subtracted. \\ 
-So one cannot simply take the sky spectrum in one spatial pixel and subtract it from another, and for the reasons above, despite the rotation-vibration transitions of OH being very well understood \citep{Osterbrock1996}, attempts to generate and subtract synthetic OH spectra inevitably fail due to instrumental limitations and the time variation of OH emission.On a positive note, these lines serve as useful reference points for wavelength calibration of astronomical spectra, and near-IR sky emission line maps have been created to aid in the identification of these lines \citep{Rousselot2000}. \\ 
+Emission lines produced by the OH radical dominate near-IR spectra, appearing between 0.61 - 2.62 $\mu m$ and with fluxes several orders of magnitude larger than other sky emission. These are produced by Meinel rotation-vibration transitions of the OH molecule \citep{Meinel1950}, and appear in distinct bandings across the near-IR spectral range, as shown in Figure \ref{fig:sky_spec}. As a result, the removal of OH lines is an essential stage in the processing of near-IR data, with images of blank patches of sky being taken and then subtracted from the `object' images. Waves in the upper atmosphere cause a strong time dependence in both the absolute and relative intensities of these emission lines, complicating the removal process. For a clean subtraction, the flux of the OH lines in the sky and object images would have to vary by much less than 1 percent; yet the lines can vary significantly on time-scales of only a few minutes and often exposures times longer than this are required to achieve adequate S/N. To further complicate the subtraction process, manufacturing variations between instrument elements, and even small amounts of spectral flexure in the instrument during rotation can leave significant `P-Cygni' shaped residuals in the spectrum when a sky frame is subtracted. \\ 
+So one cannot simply take the sky spectrum in one spatial pixel and subtract it from another, and for the reasons above, despite the rotation-vibration transitions of OH being very well understood \citep{Osterbrock1996}, attempts to generate and subtract synthetic OH spectra inevitably fail due to instrumental limitations and the time variation of OH emission. On a positive note, these lines serve as useful reference points for wavelength calibration of astronomical spectra, and near-IR sky emission line maps have been created to aid in the identification of these lines \citep{Rousselot2000}. Generally the flux variations of OH lines are not a problem for long-slit spectra, since the slit tends to be much more extended than the source. The OH lines can then be completely removed from the rectified two-dimensional spectrum by fitting a function to the background at each spectral pixel. For near-IR IFUs this cannot be done, since the field of view is much smaller and astronomical targets will occupy almost all of this, forcing the observation of separate blank sky fields.\\ 
 
-Discussing the rather complicated topic of IFS sky-subtraction \citep{AllingtonSmith1998a}, alternative method described by Davies \citep{Davies2007}.
-
- 
 
 \begin{figure}[!htp]
 \centering
@@ -413,12 +449,83 @@ Discussing the rather complicated topic of IFS sky-subtraction \citep{AllingtonS
 \label{fig:sky_spec}
 \end{figure}
 
+Davies \citep{Davies2007} describes a powerful method for subtracting these OH emission lines from reconstructed object datacubes. To a large extent, transitions between any two vibrational bands of the OH molecule lie between well defined wavelength limits. By splitting extracted spectra into these wavelength ranges and looking at the spectral pixels that contain bright OH lines in both the object and sky cubes, a wavelength dependent optimal scaling between the object and sky flux can be found. This is applied to the object cube to enable the best possible match between the amplitudes of the OH lines in object-sky pairs. A step by step guide to this procedure is given in the paper by Davies \citep{Davies2007}, and the essence of the algorithm is included optionally in the KMOS science reduction pipeline. Applying the above scaling does not however account for the spectral shifts between object-sky pairs caused by the rotation of the instrument. There is an intermediate step in the Davies algorithm which shifts the object cube along the wavelength axis to best align OH lines. We question whether it is more appropriate to determine any spectral and spatial shifts from the raw images, prior to cube reconstruction. EXPLAIN WHY THIS WOULD BE BETTER. The following is a description of the algorithm I wrote to compute and apply these shifts to the raw images, before they are fed to the cube reconstruction recipes. \\ 
+
+Panel (a) of Figure \ref{fig:column_sub} shows an example of a distinct set of P-Cygni features in a raw sky subtracted object image. These are the bandings of white and black horizontal lines which are clearly separated from one another, indicative of a misalignment between the raw object and sky images used for the subtraction. The goal is to find the optimal spatial ($\Delta x$) and spectral ($\Delta y$) pixel shifts which can be applied to the object frame to minimise this effect. The effect is said to be minimised when the correlation between the object and sky images is a maximum. This correlation is quantified by evaluating the cross-correlation coefficient, $\rho _{frames}$, between the object and sky frames using all `reliable' pixels on the 2D detector, given in Equation \ref{rho_frames}. $O_{xy}$, $S_{xy}$ are the individual object and sky pixels respectively, and $\overline{O}$, $\overline{S}$ are the mean values of the chosen pixels in the object and sky frames. 
+
+\begin{figure}[!htp]
+\centering
+\subfloat[]{\includegraphics[width=0.32\textwidth]{pre_shift.png}}
+\subfloat[]{\includegraphics[width=0.32\textwidth]{post_shift.png}}
+\caption{\footnotesize{\emph{Panel (a) shows the distinct white/black pattern of the OH lines in the subtracted image before correcting the object. This effect would carry through to the extracted 1D spectrum, leaving a P-Cygni residual shape. Panel (b) shows the improvement made after applying the optimal shift. The subtraction leaves negative values in the place of the OH lines, which are then scaled up by the Davies skytweak algorithm.}}}
+\label{fig:column_sub}
+\end{figure}   
+
+\begin{equation}
+	\label{rho_frames}
+	\rho_{frames} = \sum\limits_{x,y} \frac{(O_{xy} - \overline{O})(S_{xy} - \overline{S})}{\sqrt{(O_{xy} - \overline{O})^{2}(S_{xy} - \overline{S})^{2}}}
+\end{equation}
+
+
+
+Reliable pixels are those above a certain flux level indicative of real signal, those below an upper flux limit which would swamp the correlation coefficient and those which remain after masking the bad pixels returned by the KMOS calibration recipes for the same reason. In practice, we found that far better results are found when the bad pixel mask is `grown'. Although the recipes reveal the worst pixels, often the areas surrounding these are hot and contribute heavily to $\rho_{frames}$. Growing the mask refers to masking off an additional cross of pixels, one above, below, to the left and to the right, for every bad pixel identified in the calibrations. In short, the `reliable' pixels which remain are dominated by flux from the OH lines, which are exactly the structures we wish to correlate. The shift must be applied to the object due to the KMOS O-S-O observing strategy; each sky frame can be paired with two object frames and the shifts will be different each time. We expect that the shifts will be of order 0.1 pixels in both directions. Initially a grid of ($\Delta x$, $\Delta y$) pairs were constructed, ranging from $\Delta x, \Delta y = -0.5,-0.475,...0.5$, with 0.025 pixel increments and every value of $\Delta y$ explored for each $\Delta x$. Each pair is fed into the Pyraf `imshift' routine, which fits a function to the pixel surface and interpolates each new pixel value at the shift locations. $\rho _{frames}$ is computed for every shift, and the maximum value is chosen as indicator for the ($\Delta x, \Delta y$) pair to apply to each detector. Figure \ref{fig:column_sub} (b) shows the same column of pixels as in (a), with the optimal shift applied to the object prior to subtraction. There is a marked improvement over the original bandings, suggesting that the procedure has increased the alignment between object and sky frames. Figure \ref{fig:rho_plot} shows contours of the surface of $\rho _{frames}$ values computed over the grid passed to imshift. There is a clear, global maximum value at roughly ($\Delta x = 0.025, \Delta y = 0.055$) suggesting that the interpolant is well behaved. \\
+
+
+       
 \begin{figure}[!htp]
 \centering
 \includegraphics[width=0.7\textwidth]{KMOS_SPEC_OBS258_0009_Corrected110_temp_spline3_CorrelationGraph.png}
 \caption{\footnotesize{\emph{A contour plot for $\rho$ computed for the grid of x, y shift values passed to Pyraf imshift. The contours are centred on the maximum value of $\rho$, this corresponding to the shift values which best align the object and sky images. The contours are drawn at $\rho _{max} - 0.25\sigma$, $\rho _{max} - 0.75\sigma$ and $\rho _{max} - 1.5\sigma$ and indicate the presence of a global maximum, suggesting unique `best' shift values $\Delta x$ and $\Delta y$.}}}
 \label{fig:rho_plot}
 \end{figure}
+
+To check whether the recovered spectral shifts change as a function of position on each detector, the routine allows for each detector to be split into an arbitrary number of vertical and horizontal sections. The above process is then applied to each section in turn before recombining the shifted sections into the full detector. Generally we found that spatial variation in the shift is small, and that this starts to become a case of diminishing returns when the time required to apply the routine to all sections is taken into account. There are three detectors in every object frame, each accommodating eight IFUs, and in an observing block many frames will be collected to stack together. It is time consuming to pass the full grid of $(\Delta x, \Delta y)$ pairs to imshift, especially when segmenting each detector, and so to speed up the routine a downhill simplex algorithm is used.
+
+
+
+
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=0.8\textwidth]{shift_plot.png}
+\caption{\footnotesize{\emph{}}}
+\label{fig:shift_plot}
+\end{figure}
+
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=0.8\textwidth]{spec_compare_cygni.png}
+\includegraphics[width=0.8\textwidth]{spec_compare.png}
+\includegraphics[width=0.8\textwidth]{spec_compare_tweak.png}
+\caption{\footnotesize{\emph{}}}
+\label{fig:p_cygni}
+\end{figure}
+
+\subsubsection{Frame Diagnostics}
+The quality of the sky subtraction can vary significantly on a frame by frame basis, and so when stacking many reconstructed datacubes to increase S/N for an object, one can carry through the results of poor sky subtractions to the whole stack. It is necessary to check the quality of sky subtraction on a frame by frame basis, by feeding a list of object/sky pairs through the science reconstruction recipe. The spectral locations of strong OH emission lines are found by examining a reconstructed skycube, and the quality of the sky subtraction is found for each IFU by taking a median of the stacked object flux at these wavelengths. Figure \ref{fig:sky_sub_perf} show a summary of this diagnostic for the red supergiant stars. The top panel shows the average sky subtraction performance across all IFUs for each science frame, the middle panel plots for each frame the sky subtraction performance as a function of IFU and the bottom panel drills down to subplots of the sky subtraction performance in each IFU as a fuction of IFU frame. Note that the IFUs are arrange in rows of 8 to reflect the three detectors, and some of the IFUs were not operational during the exposures. From these plots it is easy to determine where things are going wrong and which frames to omit from the stack. For example, in Figure \ref{fig:sky_sub_perf} frame 5 clearly has a far poorer sky subtraction than the rest, and it is an ongoing process for us to understand why this should be the case. Omitting frame 5 from the stack significantly improves the quality of the extracted spectra. 
+
+
+\begin{figure}[!htp]
+\centering
+\subfloat[]{\includegraphics[width=0.32\textwidth]{frame_performance.png}}
+\subfloat[]{\includegraphics[width=0.32\textwidth]{IFU_by_frame.png}}
+\subfloat[]{\includegraphics[width=0.32\textwidth]{IFU_subplots.png}}
+\caption{\footnotesize{\emph{The wavelengths of prominent OH emission lines are determined by looking at the spectrum of a skycube. A sky subtraction performance `statistic' is found by taking the median of the object cube flux at these wavelengths. The top panel shows the quality of the sky subtraction as a function of frame, taking an average of the statistic across all IFUs in the frame. The middle panel shows the statistic as a function of IFU, plotted for each of the frames taken. The bottom panel shows the highest level of detail, drilling down to the sky subtraction performance for each frame in each IFU. This plot has the potential to highlight an optimal combination of frames to stack for each object. }}}
+\label{fig:sky_sub_perf}
+\end{figure}
+
+In a similar vein we also check the PSF of a standard star for each of the frames. During an OB, KMOS dedicates one of the IFUs to observing a standard star, to monitor the variation in its PSF and hence variations in seeing as the night progresses. For the red supergiants, a single bright object is chosen for this analysis. A 2D gaussian is fit to the object image and the FWHM of this gaussian gives an indication of the instantaneous seeing at the time the frame was observed. Figure \ref{fig:fwhm_track} shows the evolution of the FWHM of the standard star on the same night as the data in Figure \ref{fig:sky_sub_perf} were taken.
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=0.7\textwidth]{frame_fwhm.png}
+\caption{\footnotesize{\emph{}}}
+\label{fig:fwhm_track}
+\end{figure}
+
+There does not appear to be any correlation between the seeing and the quality of the sky subtraction. As part of this analysis, objects are divided into four bins of seeing quality. It would be unwise to degrade the quality of an image with good seeing, by stacking an object with bad. The above analysis gives control over how stacking is carried out and which weights should be applied to the different seeing bins.  
+
 
 \section{Planned projects}\label{sec:projects}
 \subsection{The physical properties of galaxies at z = 3}
@@ -427,8 +534,8 @@ Discussing the rather complicated topic of IFS sky-subtraction \citep{AllingtonS
 
 
 
-\subsection{Searching for CIII Emission}
-
+\subsection{Searching for CIII $\&$ CIV Emission}
+\citep{Zitrin2015}, \citep{Stark2015}
 
 
 
