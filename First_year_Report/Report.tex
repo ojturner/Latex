@@ -271,7 +271,7 @@ Mapping Nearby GAlaxies is a new survey at Apache Point Observatory as part of t
 Throughout this work, I have been using data collected by KMOS, which combines multi-object and integral field spectroscopy in the near-IR. 
 
 \section{KMOS}\label{sec:KMOS}
-As detailed in the above sections there is an expanding selection of impressive instrumentation available both for multi-object and for integral field spectroscopy. It is worthwhile to focus on where KMOS fits in to the big picture. Section \ref{subsec:instrument} provides a description of the instrument design and the crucial science drivers motivating its construction and section \ref{sec:reduction} describes the key recipes of the reduction pipeline required to turn raw images into reconstructed data cubes. 
+As detailed in the above sections there is an expanding selection of impressive instrumentation available both for multi-object and for integral field spectroscopy. It is worthwhile to focus on where KMOS fits in to the big picture. Section \ref{subsec:instrument} provides a description of the instrument design and the crucial science drivers motivating its construction and section \ref{sec:reduction} describes the key recipes of the ESO reduction pipeline for processing KMOS raw images and reconstructing three dimensional data cubes. 
 
 \subsection{Specification, science drivers and context}\label{subsec:instrument}
 The details of the physical processes driving galaxy formation and evolution in the first few billion years after the big bang remain elusive. The ideal set of operational capabilities for an instrument seeking to shed light on these topics are as follows. 
@@ -283,15 +283,229 @@ The details of the physical processes driving galaxy formation and evolution in 
 	\item The ability to observe well studied optical features at high redshift in the near-IR Y, J, H and K-band atmospheric windows    
 \end{itemize}
 
-These are in essence the key features of KMOS, which is a near-IR multi-object integral field spectrograph operating with 24 configurable pickoff arms in the Nasmyth focal plane. These arms position mirrors at user specified locations, which feeds the light through to 24 image slicer IFUs that position each sub-field into 14 identical slices with 14 spatial pixels along each slice. Light from the IFUs is then dispered by three identical cryogenic grating spectrometers to generate 14x14 spectra for each sub-field, with the dispersed light reaching three identical 2kx2k Hawaii 2RG HgCdTe detectors. Each spatial pixel corresponds to 0.2$^{\prime \prime}$, giving each IFU a 2.8$^{\prime \prime}$x2.8$^{\prime \prime}$ sub-field. Each arm patrols the 7.2$^{\prime}$ diameter of the total field of view of the telescope. This system offers significant advantages over multi-slit spectrographs, because of the reduced slit contention in crowded fields, and the sensitivty of the pickoff arms to galaxy morphology and orientation. KMOS operates in 5 near-IR bands, these being the IZ, YJ, H, K and HK, with varying spectral resolution between these \citep{Sharples2005}. \\ 
+These are in essence the key features of KMOS, which is a near-IR multi-object integral field spectrograph operating with 24 configurable pickoff arms in the Nasmyth focal plane. These arms position mirrors at user specified locations, which feeds the light through to 24 image slicer IFUs that position each sub-field into 14 identical slices with 14 spatial pixels along each slice. Light from the IFUs is then dispered by three identical cryogenic grating spectrometers to generate 14x14 spectra for each sub-field, with the dispersed light reaching three identical 2kx2k Hawaii 2RG HgCdTe detectors. Each spatial pixel corresponds to 0.2$^{\prime \prime}$, giving each IFU a 2.8$^{\prime \prime}$x2.8$^{\prime \prime}$ sub-field. Each arm patrols the 7.2$^{\prime}$ diameter of the total field of view of the telescope. This system offers significant advantages over multi-slit spectrographs, because of the reduced slit contention in crowded fields, and the sensitivty of the pickoff arms to galaxy morphology and orientation. KMOS operates in 5 near-IR bands, these being the IZ, YJ, H, K and HK, with varying spectral resolution between these \citep{Sharples2005}. In short, this is an instrument perfectly equipped to map variations in star formation histories, merger rates and dynamical masses across a wide range of redshifts and environments, with these properties probing the history of galaxy evolution in the universe. \\ 
 
-KMOS is perfectly equipped to map variations in star formation histories, merger rates and dynamical masses across a wide range of redshifts and environments, these being probes of the history of galaxy evolution in the universe.  
- 
+Figure \ref{fig:raw_image} shows an example of a raw KMOS image from one of the three detectors. The detector is divided into 8 columns, these being the designated spaces for light from each of the 8 IFUs dedicated to this detector. In this exposure, one of the IFUs in the middle of the detector is not being illuminated, either as a result of not having a target assigned or because of a mechanical fault. The y-direction of the detector is the wavelength axis, spanning 2048 pixels in total. The x-direction pixels contain information about both the x and y-directions on the sky. Each column is divided into 14 slitlets, and each slitlet contains 14 pixels, together forming a 14x14 pixel grid for each target, at each of the 2048 spectral pixels. Clearly visible as vertical stripes in some of the IFUs are the target objects, and the horizontal arcs spanning all IFUs are bright emission features from the OH molecule within our atmosphere. These OH lines are a nuisance, and must be removed by subtracting a sky image from each object image. Due to target/IFU size, it is not possible to simultaneous collect a sky and object image within individual IFUs. The KMOS observing strategy follows an Object-Sky-Object (O-S-O) dithering pattern, where the IFU arm nods to a blank patch of sky between object exposures. The implication is that a single sky image is being used for two object images subtractions, increasing the efficiency of the OB. The sky subtraction process and the extent of the OH line problem is discussed in detailed through section \ref{subsubsec:Oh_lines}.
 
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=0.8\textwidth]{raw_image.png}
+\caption{\footnotesize{\emph{Example raw image from one of the KMOS detectors}}}
+\label{fig:raw_image}
+\end{figure}  	
+  
 \subsection{Data Reduction Pipeline}\label{sec:reduction}
-By virtue of being a multi-object integral field spectrometer with 24 configurable IFUs and over 4000 spectra per exposure, the raw data taken by KMOS, and hence the reduction pipeline, are complex. Fortunately, ESO has made available the Software Package for Astronomial Reductions with KMOS (SPARK) \citep{Davies2013}, for carrying out the bulk of this reduction. Included in this package are recipes for processing dark frames and flatfields, for wavelength calibration of the spectral pixels in the chosen waveband using a set of arc frames and static calibration files, flux calibration with standard star images and a set of science reduction recipes to reconstruct and combine data cubes using the above calibrations. At the end of each night, the relevant set of calibration images are taken at six different rotator angles, to allow for the closest match to the rotation angle of the data as possible. \\ 
+By virtue of being a multi-object integral field spectrometer with 24 configurable IFUs and over 4000 spectra per exposure, the raw data taken by KMOS, and hence the reduction pipeline, are complex. Fortunately, ESO has made available the Software Package for Astronomial Reductions with KMOS (SPARK) \citep{Davies2013}, for carrying out the bulk of this reduction. The pipeline scripts and documentation are available to download from the ESO pipeline installation pages \citep{ESO2015}. Included in this package are `recipes' for processing dark frames and flatfields, for wavelength calibration, illumination correction, flux calibration and for reconstructing and combining data cubes using these calibrations. These recipes are decsribed briefly throughout sections \ref{subsubsec:dark_frames} - \ref{subsubsec:sci_red}, although this is just a summary of the SPARK Instructional guide I relied upon heavily whilst learning the stages of the pipeline. This guide is part of the documentation available from the download page \citep{ESO2015}. The Common Pipeline Library (CPL) is a framework used by ESO for the creation of automated data reduction tasks. The philosophy behind the CPL is to standardise VLT instrument pipelines, shorten their development and ease their maintenance. One of the key features provided by the CPL is the ability to create data reduction algorithms that run as plugins, known as recipes. The ESO Recipe Execution Tool (EsoRex) is a central hub for listing, configuring and executing CPL based recipes from the command line. Whilst using the KMOS pipeline, recipes are executed via EsoRex from within Python scripts, allowing for easy automation of the different processing steps. The recipes described throughout the following sections require calibration data taken by KMOS. At the end of each night, the relevant set of calibration images are taken at six different rotator angles, to allow for the closest match to the rotation angle of the data as possible. These calibration files, as well as the object and sky data, are assigned their type within the fits header of the file, e.g. DARK, FLAT\_OFF, ARC\_ON. Each of the recipes requires a Set Of Files (SOF) as input, which are a combination of raw calibration data, static calibration files provided with the pipeline installation and calibration products from the execution of previous recipes. The recipes are executed from the command line by typing `esorex \* Recipe\_Name \* \* Recipe\_SOF \*', where the Recipe\_SOF is a text file containing the names of the input products for each recipe.   \\ 
 
-Thus far this pipeline has been incredibly useful, and each recipe contains a set of configurable options to give the user more control over how the reduction is carried out. There are however some steps missing from the reduction pipeline which can improve the quality of the resultant data and hence the accuracy of the spectra extracted from the data cubes. One of my tasks has been to make these additions to the pipeline, describe in section \ref{subsec:kmos_pipeline}.  
+\subsubsection{Dark Frames}\label{subsubsec:dark_frames}
+\textbf{\underline{Recipe Name}} \\		
+\noindent
+{\tt{kmos\_dark}} \\
+
+\noindent
+\textbf{\underline{Purpose}} \\	
+\noindent 
+To identify `hot' and `dead' pixels on the detector using a series of dark exposures. These are pixels which are inactive or which 
+read unphysically large electron counts due to thermal excitation within the instrument. \\
+
+\noindent
+\textbf{\underline{Input Files}} \\	
+\noindent 
+3 {\tt{DARK}} type raw images of the same exposure length. \\ 
+
+\noindent
+\textbf{\underline{Output Files}} \\	
+\noindent
+{\tt{badpixel\_dark.fits}} - map of bad pixel locations on the three detectors \\
+
+\subsubsection{Flatfields}\label{subsubsec:flatfields}
+\textbf{\underline{Recipe Name}} \\		
+\noindent
+{\tt{kmos\_flat}} \\
+
+
+\noindent
+\textbf{\underline{Purpose}} \\	
+\noindent 
+To account for pixel-to-pixel sensitivity across an image by exposing each of the detectors to a uniform source of light.\\
+
+\noindent
+\textbf{\underline{Input Files}} \\	
+\noindent 
+3 {\tt{FLAT\_OFF}} exposures with the shutter closed \\ 
+\noindent
+18 {\tt{FLAT\_ON}} exposures taken at six different rotation angles \\
+\noindent 
+{\tt{badpixel\_dark.fits}}
+
+\noindent
+\textbf{\underline{Output Files}} \\	
+\noindent
+{\tt{master\_flat\_\#\#\#.fits}} - map of bad pixel locations on the three detectors (\#\#\# represents the filter used for the calibrations)\\
+\noindent
+{\tt{xcal\_\#\#\#.fits}} - The x coordinates for every illuminated pixel within an IFU\\
+\noindent
+{\tt{ycal\_\#\#\#.fits}} - The y coordinates for every illuminated pixel within an IFU\\
+\noindent
+{\tt{badpixel\_flat\_\#\#\#.fits}} - map of bad pixel locations on the three detectors\\
+\noindent
+{\tt{flat\_edge\_\#\#\#.fits}} - coefficients of the fits to the left and right edges of the slitlets in the IFUs
+
+\subsubsection{Wavelength Calibration}\label{subsubsec:wavelength_calib}
+\textbf{\underline{Recipe Name}} \\		
+\noindent
+{\tt{kmos\_wave\_cal}} \\
+
+\noindent
+\textbf{\underline{Purpose}} \\	
+\noindent 
+To assign a wavelength value to each of the spectral pixels in the chosen waveband using a set of arc frames and static calibration files \\
+
+\noindent
+\textbf{\underline{Input Files}} \\	
+\noindent 
+1 {\tt{ARC\_OFF}} type raw file \\ 
+\noindent 
+6 {\tt{ARC\_ON}} type arc exposures of the required waveband for the 6 different rotator angles \\ 
+\noindent
+{\tt{master\_flat\_\#\#\#.fits}}\\
+\noindent
+{\tt{xcal\_\#\#\#.fits}}\\
+\noindent
+{\tt{ycal\_\#\#\#.fits}}\\
+\noindent
+{\tt{badpixel\_flat\_\#\#\#.fits}}\\
+\noindent
+{\tt{flat\_edge\_\#\#\#.fits}}\\
+\noindent 
+{\tt{kmos\_ar\_ne\_list\_\#.fits}} - static calibration file, list of neon emission line wavelengths in the required waveband\\
+\noindent
+{\tt{kmos\_wave\_band.fits}} - static calibration file, filter limits in each of the wavebands \\
+\noindent
+{\tt{kmos\_wave\_ref\_table.fits}} - static calibration file, reference wavelengths in each of the wavebands\\
+
+
+
+\noindent
+\textbf{\underline{Output Files}} \\	
+\noindent
+{\tt{lcal\_\#\#\#.fits}} - frame containing the wavelength in microns for every illuminated pixel on the detector\\
+\noindent
+{\tt{det\_img\_wave\_\#\#\#.fits}} - reconstructed arc-lamp frame \\
+
+\subsubsection{Illumination Correction}\label{subsubsec:illum_cor}
+\textbf{\underline{Recipe Name}} \\		
+\noindent
+{\tt{kmos\_illumination}} \\
+
+\noindent
+\textbf{\underline{Purpose}} \\	
+\noindent 
+To check the uniformity of the field of view illumination during the flatfield exposures. Note that this is not a mandatory step, and all following recipes will run if they are not supplied with the output product from this recipe.\\
+
+\noindent
+\textbf{\underline{Input Files}} \\	
+\noindent
+3 {\tt{FLAT\_SKY}} type exposures of the required waveband \\ 
+\noindent
+{\tt{master\_dark\_\#\#\#.fits}}\\
+\noindent
+{\tt{master\_flat\_\#\#\#.fits}}\\
+\noindent
+{\tt{xcal\_\#\#\#.fits}}\\
+\noindent
+{\tt{ycal\_\#\#\#.fits}}\\
+\noindent
+{\tt{lcal\_\#\#\#.fits}}\\
+\noindent
+{\tt{badpixel\_flat\_\#\#\#.fits}}\\
+\noindent
+{\tt{flat\_edge\_\#\#\#.fits}}\\
+\noindent
+{\tt{kmos\_wave\_band.fits}}\\ 
+
+\noindent
+\textbf{\underline{Output Files}} \\	
+\noindent
+{\tt{illum\_corr\_\#\#\#.fits}} - frame containing images of the internal flatfield uniformity for each IFU \\
+
+\subsubsection{Standard Stars (Telluric Correction)}\label{subsubsec:telluric_cor}
+\textbf{\underline{Recipe Name}} \\		
+\noindent
+{\tt{kmos\_std\_star}} \\
+
+\noindent
+\textbf{\underline{Purpose}} \\	
+\noindent 
+To empirically determine the atmospheric absorption as a function of wavelength and derive a conversion between electron counts and flux. On top of the input files suugested, there are several additional wavelength dependent input files described in the SPARK instructional guide which can improve the quality of the telluric correction.  \\
+
+\noindent
+\textbf{\underline{Input Files}} \\	
+\noindent 
+3 {\tt{STD}} type exposures of a standard star \\ 
+\noindent
+{\tt{illum\_corr\_\#\#\#.fits}}\\
+\noindent
+{\tt{master\_flat\_\#\#\#.fits}}\\
+\noindent
+{\tt{xcal\_\#\#\#.fits}}\\
+\noindent
+{\tt{ycal\_\#\#\#.fits}}\\
+\noindent
+{\tt{lcal\_\#\#\#.fits}}\\
+\noindent
+{\tt{kmos\_wave\_band.fits}}\\
+
+\noindent
+\textbf{\underline{Output Files}} \\	
+\noindent
+{\tt{telluric\_\#\#\#.fits}} - The derived telluric correction spectrum \\
+\noindent
+This recipe is basically a full science reduction, and several other reduction products are output. So far none of these have been used. 
+
+\subsubsection{Full Science Reduction}\label{subsubsec:sci_red}
+\textbf{\underline{Recipe Name}} \\		
+\noindent
+{\tt{kmos\_sci\_red}} \\
+
+\noindent
+\textbf{\underline{Purpose}} \\	
+\noindent 
+To use the above set of calibration files to reconstruct 3D object data cubes, with sky cubes subtracted. There are many options which can be supplied to this recipe, focussing on the way in which the sky subtraction is performed, and how the object cubes are combined if more than one object exposure is supplied. This is the monolithic science reduction recipe, which is comprised of several recipes which reconstruct and then combine data cubes. It is possible to use these recipes in sequence with increased configurability, but this is the simplest method to reconstruct the data cubes from each IFU. Note that the illumination correction and telluric correction files are not required for this recipe to run. \\
+
+\noindent
+\textbf{\underline{Input Files}} \\	
+\noindent 
+several {\tt{SCIENCE}} type object exposures, with adjacent sky exposures from the O-S-O pattern.  \\ 
+\noindent
+{\tt{illum\_corr\_\#\#\#.fits}}\\
+\noindent
+{\tt{telluric\_\#\#\#.fits}}\\
+\noindent
+{\tt{master\_flat\_\#\#\#.fits}}\\
+\noindent
+{\tt{xcal\_\#\#\#.fits}}\\
+\noindent
+{\tt{ycal\_\#\#\#.fits}}\\
+\noindent
+{\tt{lcal\_\#\#\#.fits}}\\
+\noindent
+{\tt{kmos\_wave\_band.fits}}\\ 
+\noindent
+{\tt{kmos\_oh\_spec\_\#.fits}} - reference wavelength values for the OH emission lines in the required waveband.\\ 
+
+
+
+\noindent
+\textbf{\underline{Output Files}} \\	
+\noindent
+{\tt{sci\_reconstructed.fits}} - set of processed and reconstructed cubes, containing 24 extensions for each IFU. One of these files is produced for every object input frame \\
+\noindent
+{\tt{sci\_combined\_\#\#\#.fits}} - set of combined cubes, corresponding to the data in every illuminated IFU. These files contain the grid of spectra for each object from which 1D spectra can be extracted, either as integrated object spectra or from each spatial pixel.  \\
+
+
+\noindent
+Note that the input files required for each recipe builds in sequence, with each recipe depending on the output of the last. Thus far this pipeline has been incredibly useful, and each recipe contains a set of configurable options to give the user more control over how the reduction is carried out. There are however some steps missing from the monolithic pipeline which can improve the quality of the resultant data and hence the accuracy of the spectra extracted from the {\tt{sci\_combined\_\#\#\#.fits}} cubes. One of my tasks has been to make these additions to the pipeline, described in section \ref{subsec:kmos_pipeline}. A further task has been to create a general and automated version of this pipeline, which combines these recipes with the additional methods described throughout section \ref{subsec:kmos_pipeline},the ultimate goal being the transformation of raw images into extracted 1D spectra at the push of a button. This automation is described in section \ref{subsec:pipeline_automation}. 
 
 
 
@@ -398,7 +612,7 @@ It is likely that the  spectrum fitting strategy will have to be significantly a
 As described in section \ref{subsec:kmos_pipeline}, following the recipes supplied in the ESO reduction pipeline allows the user to process raw object images into fully reduced data cubes. However, the `out of the box' pipeline skips several steps which can greatly increase the quality of the reconstructed data cubes. The importance of these steps increases during the reduction of high redshift galaxy images, where the signal to noise ratio is significantly lower. It is important to tease as much information out from the data as possible at these redshifts, especially when measuring the strengths of nebular emission lines. Ground based near-IR spectroscopy is plagued by emission from the OH molecule, and so to extract reliable information from galaxy images, sky-subtraction must be performed as accurately as possible. The additions made to the ESO pipeline focus on improving the sky-subtraction process prior to science reconstruction, and correcting the infrared detectors for read noise effects. These additions are decsribed below.  \\ 
 The overarching goal at this stage is to produce an automated pipeline which reliably extracts as much information as possible from the KMOS high redshift galaxy images. 
 
-\subsubsection{Read noise}
+\subsubsection{Read noise}\label{subsubsec:read_noise}
 
 The KMOS infrared detectors are read out in columns of 64 pixels, with a seperate amplifier for each column to boost the recorded signal. Each amplifier behaves differently to its neighbour, and the effect produced by one amplifier is not constant with time, leading to a banded flux bias effect across the sky subtracted object image, as shown in the top panel of Figure \ref{fig:column_sub}. This is carried through the data reduction pipeline, resulting in excess bands of flux across spatial pixels in the reconstructed object images. These problems reflect the current limitations of IR detectors and the difficulty of converting photon energies into electronic signals in this region of the spectrum. There are two different methods to compensate for this read bias, both involving a correction to the raw object image prior to sky subtraction. The image in Figure \ref{fig:column_sub} is ideal for testing this effect; the chosen detector is illuminated by the light from only 4 IFUs. This leaves a large `test-pixel section' not contaminated by sky/object flux in the centre of the detector for evaluating the quality of corrections made. The light blue curve in Figure \ref{fig:med_corr} shows the uniformity of spatial pixels prior to making any column-corretions, plotting the median of 100 spectral pixels for each spatial pixel in the test pixel section. Clearly the median jumps around, changing with each 64 or 128 pixel segment. \\ 
 
@@ -436,7 +650,7 @@ Due to the lcal-segments method automatically shifting the median value of the t
 
 
 
-\subsubsection{OH Emission and Sky Subtraction}
+\subsubsection{OH Emission and Sky Subtraction}\label{subsubsec:Oh_lines}
 
 Emission lines produced by the OH radical dominate near-IR spectra, appearing between 0.61 - 2.62 $\mu m$ and with fluxes several orders of magnitude larger than other sky emission. These are produced by Meinel rotation-vibration transitions of the OH molecule \citep{Meinel1950}, and appear in distinct bandings across the near-IR spectral range, as shown in Figure \ref{fig:sky_spec}. As a result, the removal of OH lines is an essential stage in the processing of near-IR data, with images of blank patches of sky being taken and then subtracted from the `object' images. Waves in the upper atmosphere cause a strong time dependence in both the absolute and relative intensities of these emission lines, complicating the removal process. For a clean subtraction, the flux of the OH lines in the sky and object images would have to vary by much less than 1 percent; yet the lines can vary significantly on time-scales of only a few minutes and often exposures times longer than this are required to achieve adequate S/N. To further complicate the subtraction process, manufacturing variations between instrument elements, and even small amounts of spectral flexure in the instrument during rotation can leave significant `P-Cygni' shaped residuals in the spectrum when a sky frame is subtracted. \\ 
 So one cannot simply take the sky spectrum in one spatial pixel and subtract it from another, and for the reasons above, despite the rotation-vibration transitions of OH being very well understood \citep{Osterbrock1996}, attempts to generate and subtract synthetic OH spectra inevitably fail due to instrumental limitations and the time variation of OH emission. On a positive note, these lines serve as useful reference points for wavelength calibration of astronomical spectra, and near-IR sky emission line maps have been created to aid in the identification of these lines \citep{Rousselot2000}. Generally the flux variations of OH lines are not a problem for long-slit spectra, since the slit tends to be much more extended than the source. The OH lines can then be completely removed from the rectified two-dimensional spectrum by fitting a function to the background at each spectral pixel. For near-IR IFUs this cannot be done, since the field of view is much smaller and astronomical targets will occupy almost all of this, forcing the observation of separate blank sky fields.\\ 
@@ -502,24 +716,24 @@ As an illustration of the improvement made by applying the shift, we examine the
 \end{figure}
 
 \subsubsection{Frame Diagnostics}\label{frame_diagnostics}
-The quality of the sky subtraction can vary significantly on a frame by frame basis, and so when stacking many reconstructed datacubes to increase S/N for an object, one can carry through the results of poor sky subtractions to the whole stack. It is necessary to check the quality of sky subtraction on a frame by frame basis, by feeding a list of object/sky pairs through the science reconstruction recipe. The spectral locations of strong OH emission lines are found by examining a reconstructed skycube, and the quality of the sky subtraction is found for each IFU by taking a median of the stacked object flux at these wavelengths. Figure \ref{fig:sky_sub_perf} shows a summary of this diagnostic for the red-supergiant stars. The left panel shows the average sky subtraction performance across all IFUs for each science frame and the right panel plots for each frame the sky subtraction performance as a function of IFU. The most detailed view of the sky subtraction process is given in Figure \ref{fig:ifu_subplots}, which drills down to subplots of the sky subtraction performance in each IFU as a fuction of IFU frame. Note that the IFUs are arranged in rows of 8 to reflect the three detectors, and some of the IFUs were not operational during the exposures. There are two curves in Figure \ref{fig:ifu_subplots}; the blue curve represents the quality of the sky subtraction when the spectral shift is computed from the raw images using my algorithm; the red curve shows the quality when the shift is computed from the datacubes with the Davies algorithm. Clearly the performance is comparable, and sometimes the quality is better using each of the two methods. Currently, based solely upon an evaluation using YJ-band data, due to the raw frame shift being much more time intensive, the Davies algorithm is favourable. However, a more thorough analysis using data from the H and K-bands as well is required to properly understand the differences between the two methods. \\ 
+The quality of the sky subtraction can vary significantly on a frame by frame basis, and so when stacking many reconstructed datacubes to increase S/N for an object, one can carry through the results of poor sky subtractions to the whole stack. It is necessary to check the quality of sky subtraction on a frame by frame basis, by feeding a list of object/sky pairs through the science reconstruction recipe. The spectral locations of strong OH emission lines are found by examining a reconstructed skycube, and selecting all spectral pixels where the flux exceeds 500 counts. The quality of the sky subtraction is found for each IFU by optimally extracting the object spectrum following the prescription described in section \ref{subsubsec:optimal_spec_extract}, taking the median of the object flux at the spectral locations identified from the skycube and normalising this number by the object continuum. The object continuum is defined as the median of the object flux at all spectral locations that are NOT flagged as OH lines from the skycube. This process provides a sky performance statistic; one would expect that if the sky subtraction is performed well, the statistic would be close to 1. Figure \ref{fig:sky_sub_perf} shows a summary of this statistic for the red-supergiant stars. The left panel shows the average sky subtraction performance across all IFUs for each science frame and the right panel plots for each frame the sky subtraction performance as a function of IFU. The most detailed view of the sky subtraction process is given in Figure \ref{fig:ifu_subplots}, which drills down to subplots of the sky subtraction performance in each IFU as a fuction of IFU frame. Note that the IFUs are arranged in rows of 8 to reflect the three detectors, and some of the IFUs were not operational during the exposures. There are two curves in Figure \ref{fig:ifu_subplots}; the blue curve represents the quality of the sky subtraction when the spectral shift is computed from the raw images using my algorithm; the red curve shows the quality when the shift is computed from the datacubes with the Davies algorithm. Clearly the performance is comparable, and sometimes the quality is better using each of the two methods. Currently due to the raw frame shift being much more time intensive, the Davies algorithm applied on its own is favourable. \\ 
 
 
-From a combination of the plots in Figures \ref{fig:sky_sub_perf} and \ref{fig:ifu_subplots} it is easy to determine where the sky subtraction isn't performed as well, and hence which frames to omit from the stack. For example, in Figure \ref{fig:sky_sub_perf} frame 5 clearly has a far poorer sky subtraction than the rest. Omitting frame 5 from the stack significantly improves the quality of the extracted spectra. The reason for these spurious frames still isn't clear, and it is an ongoing process for us to understand why the sky subtraction process should sometimes be performed much worse than others. 
+From a combination of the plots in Figures \ref{fig:sky_sub_perf} and \ref{fig:ifu_subplots} it is easy to determine where the sky subtraction isn't performed as well, and hence which frames to omit from the stack. This is done automatically, with all frames where the average sky subtraction statistic is less than 0.5 or greater than 1.5 being discarded. From both of these figures it is clear that the sky subtraction is significantly worse for some IFUs than others, and that some frames have much worse sky subtraction performance overall. The reason for these spurious frames and IFUs still isn't clear, and it is an ongoing process for us to understand why the sky subtraction process should sometimes be performed much worse than others. One explanation is that some of the sky IFUs in the observed data are contaminated by being placed on a patch of sky which is not blank. 
 
 
 \begin{figure}[!htp]
 \centering
-\subfloat[]{\includegraphics[width=0.48\textwidth]{frame_performance.png}}
+\subfloat[]{\includegraphics[width=0.48\textwidth]{frame_performance_double.png}}
 \subfloat[]{\includegraphics[width=0.48\textwidth]{IFU_by_frame.png}}
-\caption{\footnotesize{\emph{The wavelengths of prominent OH emission lines are determined by looking at the spectrum of a skycube. A sky subtraction performance `statistic' is found by taking the median of the object cube flux at these wavelengths. The left panel shows the quality of the sky subtraction as a function of frame, taking an average of the statistic across all IFUs in the frame. The right panel shows the statistic as a function of IFU, plotted for each of the frames taken.}}}
+\caption{\footnotesize{\emph{The wavelengths of prominent OH emission lines are determined by looking at the spectrum of a skycube. A sky subtraction performance `statistic' is found by taking the median of the object cube flux at these wavelengths,. The left panel shows the quality of the sky subtraction as a function of frame, taking an average of the statistic across all IFUs in the frame. The right panel shows the statistic as a function of IFU, plotted for each of the frames taken.}}}
 \label{fig:sky_sub_perf}
 \end{figure}
 
 \begin{figure}[!htp]
 \centering
 \includegraphics[width=0.7\textwidth]{IFU_subplots_double.png}
-\caption{\footnotesize{\emph{The sky subtraction performance is plotted in IFU as a function of frame. The blank plots are those IFUs which were not operational when the data were collected. This plot has the potential to highlight an optimal combination of frames to stack for each object. The blue curve represents the performance of the sky subtraction when the spectral shift is computed from the raw images and the red curve when the shift is computed from the datacubes with the Davies algorithm. It is difficult to distinguish in terms of performance a consistently `better' method, however the Davies algorithm is significantly faster to run.}}}
+\caption{\footnotesize{\emph{The sky subtraction performance is plotted in IFU as a function of frame. The blank plots are those IFUs which were not operational when the data were collected. This plot has the potential to highlight an optimal combination of frames to stack for each object. The blue curve represents the performance of the sky subtraction when the spectral shift is computed from the raw images and the red curve when the shift is computed from the datacubes with the Davies algorithm. It is difficult to distinguish in terms of performance a consistently `better' method, however the Davies algorithm is significantly faster to run. Some of the IFUs show a flat curve close to 1 across all frames; others jump around significantly and are much higher than 1 at all points.}}}
 \label{fig:ifu_subplots}
 \end{figure}
 
@@ -532,37 +746,52 @@ As a further frame-by-frame inspection, we check the PSF of a standard star for 
 \label{fig:fwhm_track}
 \end{figure}
 
-From the recovered FWHM of the 2D gaussian, the objects are divided into four bins of seeing quality. The `Best' bin has seeing better than 0.6$^{\prime\prime}$; the `Good' bin has seeing between 0.6$^{\prime\prime}$ and 1$^{\prime\prime}$. The `Okay' bin has seeing between 1$^{\prime\prime}$ and 1.5$^{\prime\prime}$; the `Bad' bin has anything worse than this, and typically any objects falling within this category are discarded. The objects in each of the four bins are then treated independently for optimal spectrum extraction as described in section \ref{subsubsec:optimal_spec_extract}. The motivation behind this procedure is that it would be unwise to degrade the quality of an image with good seeing, by stacking together in equal proportion with an object with bad seeing. The above analysis gives control over how stacking is carried out and which weights should be applied to the different seeing bins.  
+From the recovered FWHM of the 2D gaussian, the objects are divided into four bins of seeing quality. The `Best' bin has seeing better than 0.6$^{\prime\prime}$; the `Good' bin has seeing between 0.6$^{\prime\prime}$ and 1$^{\prime\prime}$. The `Okay' bin has seeing between 1$^{\prime\prime}$ and 1.5$^{\prime\prime}$; the `Bad' bin has anything worse than this, and typically any objects falling within this category are discarded. The objects in each of the four bins are then treated independently for optimal spectrum extraction as described in section \ref{subsubsec:optimal_spec_extract}. The motivation behind this procedure is that it would be unwise to degrade the quality of an image with good seeing, by stacking together in equal proportion with an object with bad seeing. The above analysis gives control over how stacking is carried out and which weights should be applied to the different seeing bins. In sum, objects are categorised into these four bins depending on sky performance statistic and seeing quality, both of which affect the resultant 1D object spectrum.  
 
 
 \subsubsection{Optimal Integrated Spectrum Extraction}\label{subsubsec:optimal_spec_extract}
 
-To increase S/N, it is necessary to extract the spectrum from a galaxy with weightings corresponding to where most of the flux is being emitted. Galaxies have a given radial profile, and light from each part of this profile is spread out into a seeing disc when it hits our atmosphere. Stars on the other hand are point-like, and the seeing disc from a star eminates from the same point-source of light. By tracking a star in one of the IFUs, we get a measure of the theoretical minimum seeing and can recover the set of weights which can be applied to each spatial pixel during the spectrum extraction. To expand on this, consider Figure \ref{fig:fwhm_image}. A 2D gaussian is fitted to the image of the tracked star in a particular object stack, recovering the parameters of the gaussian function. By normalising the gaussian to unity, and truncating the function at a given number of standard deviations from the centre, one recovers a weighting mask for spectrum extraction which can be applied to all objects in that stack by shifting the mask centre. The resultant 1D spectrum is then found by summing across all weighted spatial pixels. This procedure is applied to all of the FWHM bins described in the above section, to recover a set of `Best', `Good' and `Okay' 1D spectra for each of the objects observed by KMOS. In theory, an analysis similar to that described in section \ref{subsub:ex_em} is then applied to recover physical properties. 
+To increase S/N, it is necessary to extract the spectrum from a galaxy with weightings corresponding to where most of the flux is being emitted. Galaxies have a given radial profile, and light from each part of this profile is spread out into a seeing disc when it hits the atmosphere. On the other hand, stars are point-like, and the seeing disc from a star originates from a single point-source of light. By tracking a star in one of the IFUs, we get a measure of the theoretical minimum seeing and can recover the set of weights which can be applied to each spatial pixel during the spectrum extraction. To expand on this, consider Figure \ref{fig:fwhm_image}. A 2D gaussian is fitted to the image of the tracked star in a particular object stack, recovering the parameters of the gaussian function. By normalising the gaussian to unity, and truncating the function at a given number of standard deviations from the centre, one recovers a weighting mask for spectrum extraction which can be applied to all objects in that stack by shifting the mask centre. The resultant 1D spectrum is then recovered by summing across all weighted spatial pixels. This procedure is applied to all of the FWHM bins described in the above section, to recover a set of `Best', `Good' and `Okay' 1D spectra for each of the objects observed by KMOS. Following this, an analysis similar to that described in section \ref{subsub:ex_em} would be applied to recover physical properties from the emission features in the 1D spectrum. 
 
 
 \begin{figure}[!htp]
 \centering
-\includegraphics[width=0.7\textwidth]{gauss_img.png}
+\includegraphics[width=0.5\textwidth]{gauss_img.png}
 \caption{\footnotesize{\emph{An example of one of the 2D gaussian fits to the stacked `tracked' star in the `Best' FWHM bin. From this fit the profile for spectrum extraction is recovered.}}}
 \label{fig:fwhm_image}
 \end{figure}	
 
 
-\subsubsection{Current Stage}
-Automating the reduction pipeline as much as possible and applying to K and H-band, looking at getting galaxy raw data and extracting spatially resolved spectra.
+\subsection{Pipeline Automation}\label{subsec:pipeline_automation}
+As mentioned towards the end of section \ref{sec:KMOS}, the pipeline becomes far more usable if the amount of interaction required is minimised. To use the recipes described in section \ref{sec:reduction}, one would have to construct the appropriate SOF text file after executing each recipe, taking care to be consistent with the waveband used and the exposure times of the individual files. Constructing these takes time, interaction between each of the stages and errors can be made. I have coded an automated version of the full reduction pipeline, which sequentially executes each of the recipes described in section \ref{sec:reduction}, taking information from the fits headers of the raw and calibration files to hierarchically build the appropriate SOF text files for each recipe. The pipeline additions described throughout sections \ref{subsubsec:read_noise} - \ref{subsubsec:optimal_spec_extract} are included in this automated pipeline, with the end result being a Science directory populated with subfolders containing the optimally extracted 1D spectra for each of the seeing bins.
+\subsubsection{Automated Pipeline Usage}
+Currently the usage of this pipeline is as follows. The user must have the following environment variables specified: \\ 
 
+\noindent
+{\tt{\$KMOS\_CALIB}} - Pointing to the static calibration directory (doesn't change) \\
+\noindent
+{\tt{\$KMOS\_SCIENCE}} - Pointing to the current science output products directory \\
+\noindent
+{\tt{\$KMOS\_RAW}} - Pointing to the raw data directory \\
+\noindent
+{\tt{\$KMOS\_DYN\_CAL}} - Pointing to the calibration directory for the pipeline run \\
+
+\noindent
+Accompanying these environment variables the user must have created the corresponding SCIENCE, RAW and CALIBRATIONS folders. Currently there must be a separate directory structure for each waveband, with the RAW folder containing the calibration and object files for that waveband alone. Initially the calibration and science directories should be, but do not need to be, empty. The user executes the python pipeline script from the calibrations directory, the steps are executed sequentially and the SCIENCE directory is populated with the reduction products for that waveband. \\
+In the future, I plan to include the functionality to cope with multiple wavebands and multiple OBs in a single RAW folder, as currently there is still user input required to arrange the wavebands into different raw folders prior to clicking go.   
 
 
 
 \section{Planned projects}\label{sec:projects}
 \subsection{The physical properties of galaxies at z = 3}
+
 \subsubsection{Directly observing emission lines required for direct metallicity measurement}
 
 
 
 
 \subsection{Searching for CIII $\&$ CIV Emission}
-\citep{Zitrin2015}, \citep{Stark2015}
+Only 1 in every 100 galaxies at locally showing signs of CIII or CIV emission in their spectra, suggesting that it is a rare occurence for the radiation field to be strong enough to either doubly or triply ionise carbon. The promising detection of CIV emission at $z \sim 7$ described by Stark \citep{Stark2015} in a sample of only four galaxies suggests that CIII/IV emission could be more ubiquitous at high redshift, in turn suggesting a harder ionising radiation field. At these redshifts there is little prospect of detecting the resonant emission line Lyman$\alpha$, and indeed the detection of UV rest frame metal lines may be the only hope of progress for spectroscopic confirmation. Non-detection paper described in \citep{Zitrin2015}
 
 
 
