@@ -24,13 +24,15 @@
 
 
 \section{Introduction}\label{sec:Intro}
-The physical processes which govern the formation and evolution of high redshift galaxies are representative of a time when the universe was most active. It is the gas within these galaxies which is the driving force behind galaxy evolution, and there are various tools provided by the latest generation of telescope which allow astronomers to explore the properties of this gas. \\ 
+This report is intended to give an indication of the work I have completed, and the literature relevant to this, between September 2014 and the present date. This work has centred on data obtained using the K-band Multi-Object Spectrograph (KMOS), a near-IR multi-object spectrograph operating on UT4 of ESO's VLT array in Chile. Within this area I have considered two distinct topics. Firstly, I've examined the pipeline through which raw data collected by KMOS are reduced into 1-dimensional science spectra. Secondly, I've focussed on how information can be extracted from these spectra and how this information can be related to the physical properties of the imaged objects.   Section \ref{sec:KMOS} focusses specifically on the specifications of KMOS and the key science drivers motivating research with this instrument. When metallicity is discussed, it is always assumed to refer to gas-phase metallicity unless otherwise stated.
 
 
 
-Throughout this first year report, I will give a brief overview of how to go between telescope data and the physical properties of a galaxy, indicating the literature surrounding this in section \ref{sec:background}. Section \ref{subsec:current_int} gives an overview of the telescopes 
-routinely collecting the spectra of high redshift galaxies, highlighting the wavelength ranges in which their detectors operate and whether 
-they have the capacity for integral field spectroscopy. Section \ref{sec:KMOS} focusses specifically on the specifications of KMOS and the key science drivers motivating research with this instrument. 
+The physical processes which govern the formation and evolution of high redshift galaxies are representative of a time when the universe was most active. It is the gas within these galaxies which is the driving force behind galaxy evolution, and there are various tools provided by the latest generation of telescope which allow astronomers to explore the properties of this gas. When trying to understand galaxy evolution, really we're trying to track the gas activity within a galaxy, and the interplay between this gas and the IGM, as a function of cosmic epoch and stellar mass. \\ 
+
+
+
+
 
 
 
@@ -39,36 +41,6 @@ they have the capacity for integral field spectroscopy. Section \ref{sec:KMOS} f
 \section{Background}\label{sec:background}
 mini lit review introduction. Set the context 
 
-\citep{Troncoso_2014}, \citep{Maiolino2008}, \citep{Cullen2014}, \citep{Kewley2002}, \citep{Kennicutt_2012}, \citep{Tremonti2004} \citep{Brinchmann2004} \citep{Savaglio2005} \citep{Erb_2006} \citep{Kewley_2008} \citep{ForsterSchreiber2009} \citep{Steidel2014}
-Major themes are: 
-
-\begin{itemize}
-	\item The need for detailed measurements of high-z galaxies with integral field spectrometers 
-	\item a description of available IFS at different portions of the spectrum, kmos optimised for Halpha at z3
-	\item Dust
-	\item Measurement of abundance 
-	\item photoionization models and population synthesis
-	\item morphology 
-	\item gas dynamics, outflows and the connection between this and evolution 
-	\item flux data cubes 
-	\item the mass metallicity relation and the fmr 
-	\item use of abundance techniques described by cullen 
-\end{itemize}
-
-Plots will be: 
-
-\begin{itemize}
-	\item peak of SFRd curve 
-	\item m-z relation at different epochs 
-	\item Attempts to force the strong lines to be equal 
-	\item Gradients in physical properties from Troncoso
-	\item Some spectra -  
-	\item look at all the plots from your other document 
-\end{itemize}
-
-
-
-M-Z graphs at different redshifts and FMR graphs to illustrate the point. Wanting to confirm the shape of both at redshift 3, or actually looking at the M-Z relation at different points throughout the galaxy - i.e. does the centre of the galaxy follow a different M-Z relation to the outskirts of the galaxy. 
 
 \subsection{Measuring Flux}
 Dust extinction, calzetti curves etc. 
@@ -86,6 +58,94 @@ section 2.3.2 of Steidel and Calzetti 2000 and Draine 2003. Attenuation curves f
 \subsection{Measuring Stellar Masses}
 Stellar masses are routinely estimated using stellar population synthesis models, which construct the SEDs of populations of stars. The shape of these SEDs depend on the physical properties of the galaxy, i.e. age, metallicity, redshift and stellar mass. A grid of model SEDs is constructed by varying these physical properties in the population synthesis, and the values are constrained through comparison to an observed SED. The most widely used models are those of Bruzual and Charlot \citep{Bruzual2003} (BC03). \\      
 Typically, spectroscopic surveys will target well studied fields to make use of ancillary photometric data. These data preferably cover as wide a region of the spectrum as possible, to provide the information required to break degeneracies between physical properties, such as age and metallicity. As a concrete example, consider the procedure described in Steidel et al. (2014) \citep{Steidel2014}, where stellar masses are estimated for a sample of $z \sim 2$ galaxies. The galaxies have been observed in three optical filters (\textit{$U_{n}GR$}), the near-IR  $ J $ and $ K_{s}$ bands, the HST WFC3-IR F160W filter and the Spitzer/IRAC 3.6$\mu m$ and 4.5$\mu m$ beams. These data cover both the region of the spectrum where rest-frame starlight is emitted directly, and where starlight absorbed by dust is re-radiated. The BC03 models are used to fit the observed SED and stellar masses are inferred by assuming a Chabrier IMF \citep{Chabrier2003}, with estimated uncertainties in log($M_{*} /M_{\odot}$) of $\pm 0.1-0.2 $ dex.    
+
+\subsection{Measuring Cosmic Abundance}\label{subsec:abundance}
+The central question when measuring cosmic abundance is always `What is the relationship between nebular line strength and metallicity'
+Giant HII regions were the first indicators of the gas phase abundance of galaxies, and of abundance gradients across the face of these galaxies \citep{Searle1971}, \citep{Shields1974}. Many other abundance indicators have been used since then, including supernova remnants, stellar clusters and AGB stars. HII regions are relatively easy to observe, and the interpretation of their spectra is straightforward, and so these remain the favoured tool for abundance determination.  \\
+
+
+Description of the physical process which excites atoms and causes them to emit the `forbidden' lines - gas rarefied enough \\
+
+
+Chemical abundances derived in low metallicity regions are generally considered reliable, given that the spectroscopy is deep enough to allow for an accurate measurement of forbidden line ratios such as [OIII] $\lambda 4363/5007$, and hence the electron temperature $T_{e}$. DESCRIPTION OF THE DIRECT METHOD. This is the so-called `direct $T_{e}$' method, and requires high quality data which are sensitive to weak, fordibben transitions. The method becomes rapidly more challenging at higher redshifts, where the HII regions are fainter and the required forbidden lines are redshifted into regions of the spectrum plagued by much higher terrestial background. \\   
+
+
+ 
+
+
+
+At these redshifts, astronomers rely upon the suite of statistical strong-line methods to measure HII region abundances. \\
+
+Description of the main methods (Either from Hughes thesis or from Kewley and Ellison) \\ 
+
+However, the metallicities derived using separate strong line indicators are often not in agreement, with discrepancies of up to a factor of 3 for different strong-line indicators applied to the same set of data. This is mainly due to some of the techniques being calibrated using theoretical models and some empirically with observations of electron temperature sensitive emisison lines \citep{Stasinska2005}. There have been attempts to force the strong-line methods to yield the same metallicites when applied to large samples of high redshift galaxies, by converting measurements to the same metallicity `baseline' \citep{Kewley_2008}, \citep{Kewley2002}, \citep{Maiolino2008}
+
+`It is a separate issue as to whether the re-normalisation of strong-line techniques can (or should) be applied to samples of high redshift galaxies - clearly this is a desirable property but has not yet been clearly demonstrated. The root of the problem is that for this to be allowed, the physics of high redshift HII regions would have to resemble the physics of local star-forming galaxies. If there are any significant physical differences, blind application of local calibrations will introduce systematics in inferred metallicity'. Perhaps the most challenging situation is the comparison of metallicities derived with one set of strong-line indicators in a particular redshift range with those based on a different set of lines at a second redshift. 
+
+
+
+
+\subsection{Measuring Gas Dynamics}\label{subsec:Gas-Dynamics}
+
+These are some of the 
+
+\subsection{BPT Diagram}\label{subsec:BPT-diagram}
+The `Baldwin, Phillips, Terlevich' (BPT) diagram is a plane defined by the strong emission line ratios [OIII]/H $\beta$ and [NII] / $H\alpha$. Perhaps the most remarkable aspect of the BPT diagram is the tight locus along which most local star-forming galaxies are found, sometimes referred to as the `HII region abundance sequence'. Tremonti et al. constructed the BPT diagram for a sample of $> 50,000$ local SDSS star-forming galaxies, shown as the grey points in Figure \ref{fig:steidel_bpt}, revealing two branches, the first of which is the locus of star-forming galaxies and the second is the subset of galaxies with AGN activity. Galaxies hosting AGN have much harder UV spectra, the effect of which is to boost the ratio OIII/H $\beta$ relative to NII/H $\alpha$. The BPT diagram is therefore a useful diagnostic test for the presence of these galaxies, which are excluded from abundance analyses as their strong line ratios are unlikely to be related to stellar processes. \\ 
+
+
+A crucial goal of high redshift galaxy abudance measurement is to understand the physical origins of the difference in position between the $z \sim 0$ and $z > 1$ locus of star forming galaxies in the BPT diagram. Figure \ref{fig:steidel_bpt} shows the BPT diagram for a sample of local SDSS galaxies \citep{Tremonti2004} and for a sample of galaxies from KBSS-MOSFIRE with $z \sim 2.3$. Clearly there is a vertical offset between the two populations  
+relating to the appropriateness of using locally calibrated strong-line abundance diagnostics at high redshift. 
+
+Reasons for the difference (all from the steidel paper end of section 4)
+\begin{itemize}
+	\item Harder radiation field 
+	\item higher ionisation parameter 
+	\item weaker dependence of N/O on O/H
+\end{itemize}
+combine to give a weaker dependence of the observed strong lines on the abundance - i.e. tie in the BPT shifts to the abundance measurement consequences. 
+must also mention \citep{Kewley2013} once you've read.1/4
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=0.6\textwidth]{steidel_bpt.png}
+\caption{\footnotesize{\emph{The `BPT' diagram shows the position of star-forming galaxies in the [OIII]/H $\beta$ vs. [NII] / $H\alpha$ plane. This particular figure, taken from Steidel et al. 2014 \citep{Steidel2014}, shows the locus of $z \sim 2.3$ KBSS MOSFIRE star forming galaxies (green) relative to the SDSS $z \sim 0$ galaxies (grey) \citep{Tremonti2004}. The BPT diagram is also used as an AGN diagnostic, with galaxies hosting active AGN being identified as having unusually large [OIII]/H $\beta$ relative to [NII] / $H\alpha$.}}}
+\label{fig:steidel_bpt}
+\end{figure} 
+
+\subsection{Mass-Metallicity relationship and evolution}\label{subsec:MZ-relation}
+In the 1970s a relationship between magnitude and metallicity was discovered \citep{Lequeux1979}, in which brighter galaxies are observed to be more metal rich. In the early 2000s this relationship was undestood to be a manifestation of a more fundamental connection between stellar mass, $M_{*}$, and metallicty, in which galaxies with larger stellar mass have higher metallicities \citep{Garnett2002}, \citep{Tremonti2004}. The origin of this mass-metallicity, (M-Z), relationship is debated, and was investigated locally by Tremonti et al. with a sample of over 50,000 SDSS star-forming galaxies galaxies. The main conclusion of this paper is that the most natural explanation for the positive correlation betwen $M_{*}$ and metallicity is the outflow of enriched material from the galaxy to the ISM. Galaxies with larger mass trap this metal-laden gas in a deeper potential well, and so there is a higher loss fraction in galaxies with lower $M_{*}$. On top of this is the `downsizing' theory, in which there is a systematic dependence of the efficiency of star formation with galaxy mass \citep{Brooks2007}. The combination of these two effects manifest in the local M-Z curve, which is plotted in Figure \ref{fig:steidel_mzr} (a) as taken from the Tremonti paper, which plots the $M_{*}$-metallicity plane for the subset of the SDSS sample showing no indication of AGN activity. The main feature of the best fitting curve to the data is an initially steep rise in oxygen abundance, followed by a flattening above a characteristic $M_{*}$, above which the fraction of enriched gas flowing outwards from the galaxy adopts a shallower dependence upon $M_{*}$. Tremonti et al. continue their analysis to find the gas fraction in bins of $M_{*}$ from their sample. The gas fraction is defined as: 
+
+\begin{equation}\label{eq:gas_fraction}
+	\mu = \frac{M_{gas}}{(M_{gas} + M_{*})}
+\end{equation}
+
+which requires knowledge of both the stellar and gas mass to compute. As mentioned previously, $M_{*}$ is determined through SED modelling. The gas mass is determined by inverting the Kennicutt-Schmidt law \citep{Kennicutt1998}, which is an empirical relation between then gas density and the SFR in a given region. The result of computing $\mu$ across the different mass bins is the finding that lower mass galaxies tend to have higher gas fractions, a finding which provides a further explanation for the origin of the M-Z relation; it could be a result of low-mass, higher gas fraction galaxies appearing less enriched.  
+ \\ 
+\begin{figure}[!htp]
+\centering
+\subfloat[]{\includegraphics[width=0.48\textwidth]{tremonti_mzr.png}}
+\subfloat[]{\includegraphics[width=0.48\textwidth]{Maiolino_mzr.png}}
+\caption{\footnotesize{\emph{The left hand panel shows the local M-Z relationship, plotted using a sample of over 50,000 local SDSS galaxies, with probably AGN hosts removed using the BPT diagram \citep{Tremonti2004}. The right hand panel shows constructions of the M-Z curve at successively higher redshifts, demonstrating constant shape and a drop in metallicity at fixed $M_{*}$ for higher redshift objects \citep{Maiolino2008}.}}}
+\label{fig:steidel_mzr}
+\end{figure}
+
+
+The natural question is to ask whether the M-Z relation evolves with redshift, and hence whether there is any evolution in the way galaxies are processing their enriched gas throughout cosmic time. There are many studies, \citep{Savaglio2005}, \citep{Erb_2006}, \citep{Maiolino2008}, \citep{Henry2013}, \citep{Wuyts_2014}, \citep{Steidel2014} which scrutinise the redshift evolution of the M-Z relation out to $z > 3$, where abundance determinations become much more challenging and less reliable, due to the relationship between emission lines ratios and oxygen abundance being unclear in these differing physical environments. Large uncertainties remain when comparing the M-Z relation recovered by these surveys at different redshifts, due to the use of different metallicity indicators and due to the studied galaxy samples not necessarily forming an evolutionary sequence. Nonetheless, all of the authors recover the trend to observe higher metallicity at higher $M_{*}$, with the curve being systematically offset to lower metallicity values at redshift increases. This is demonstrated in Figure \ref{fig:steidel_mzr} (b), which shows that the shape of the M-Z relation remains constant with redshift, but at a fixed $M_{*}$ the observed metallicity is shifted to lower values. There is debate as to whether this evolution is real, and there is good reason to believe this is the case, with the higher gas fractions of higher redshift galaxies suggesting that there has simply been less time for star formation to produce heavier elements. The counter-argument suggests that the evolution is largely apparent, and a result of a more fundamental 3-dimensional relationship between $M_{*}$, metallicity and SFR. This is the topic of the following section.
+
+
+
+\subsection{Fundamental metallicity relationship and evolution}
+Mannucci et al. \citep{Mannucci2010} have shown that the M-Z relationship is due to a more general relationship between stellar mass, metallicity and SFR, dubbed the Fundamental Metallicity Relationship (FMR). Galaxies within the redshift range $0 < z < 2.5$ define a tight surface within the 3D space defined by these quantities, with a small residual dispersion in metallicity. The existence of this relationship can be explained by the interplay of infall of pristine gas and outflow of enriched material. The former effect is responsible for the dependence of metallicity with SFR and the latter for the mass dependence. Troncoso et al. \citep{Troncoso_2014} argue that since the metallicity of galaxies also depends on their SFR, evolution of the M-Z relation is largely apparent and mostly due to the higher SFRs of galaxies observed at high redshift. This is due both to the preferential selection of brighter, active galaxies at high redshift and to the real intrinsic evolution of the cosmic SFR with redshift. As a result it is more meaningful to discuss the metallicity evolution of galaxies relative to the 3D relation that involves stellar mass as well as SFR. Figure \ref{fig:FMR} shows a projection of this relationship, clearly defining a plane upon which all of the sample galaxies spanning $0 < z < 2.5$ can be placed. The introduction of the FMR results in a significant reduction of residual metallicity scatter with respect to the simple M-Z relation. \\ 
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=0.6\textwidth]{fmr.png}
+\caption{\footnotesize{\emph{A projection of the FMR space spanned by SFR, metallicity and $M_{*}$. The points without error bars are the median values of metallicity of local galaxies in bins of $M_{*}$ and SFR, and colour coded with SFR according to the colour bar. The squares show high redshift galaxies, demonstrating lower metallicities, higher SFRs and location within the same fundamental plane defined by the low redshift SDSS galaxies.}}}
+\label{fig:steidel_bpt}
+\end{figure} 
+
+When taking into account the uncertainties, data up to $z \sim 2.5$ are consistent both in shape and normalisation with the same FMR defined by the local SDSS galaxies, with no evidence for evolution. This lack of evolution spanning 80\% of the lifetime of the universe suggests the FMR is more fundamental than either the M-Z or M-SFR relations, and that it is directly related to the physical mechanisms governing galaxy formation. Above $z \sim 2.5$ galaxies appear to evolve away from the FMR to lower metallicity values. A plethora of potential observational biases are listed in Mannucci section 5.1 \citep{Mannucci2010}, but barring these being completely responsible for the metallicity shift, the divergence from the FMR suggests a transition to a period were different physical processes dominate galaxy evolution, i.e. smooth accretion of cold gas is no longer the main regulatory mechanism. \\ 
+It will be possible to measure SFRs, metallicities and $M_{*}$s using KMOS data at $z \sim 3$ and one of our goals is to look at how deviations from the FMR correlate with the dynamical state and morphology in this redshift range.   
 
 
 \subsection{Measuring Star Formation Rates}
@@ -157,84 +217,19 @@ These statements are drawn from a knowledge of the SFH of the universe, a curren
 A remarkably consistent picture of the SFH of the universe has emerged, which has given an overall perspective of the activity of the universe as galaxies have evolved. There is still work to be done constraining the shape of this curve, particularly at the high redshift end where there are few data points. Adding in the integrated luminosity functions derived from the highest redshift galaxies will help cement the SFRD curve during the epoch of galaxy formation. 
 
 \subsubsection{Spatially Resolved SFRs}\label{subsubsec:spat_res}
-Nearly all the diagnostic methods described up to now have been designed for measuring integrated SFRs of galaxies, implicitly assuming that the local variations in stellar-age, mix, IMF population and gas/dust geometry largely average out when the integrated emission of a galaxy is measured. As mentioned above, with very high resolution imaging, or integral-field spectroscopy, one would like to create maps of spatially resolved star formation by considering individual patches of the whole galaxy. The problem is that at small linear scales almost all of the statistical approximations embedded into SPS models begin to break down. Firstly there is the problem of stochasticity, where incomplete sampling of the stellar IMF on scales between 0.1-1kpc lead to large variations in tracer luminosity. A good example of this is given in section 3.9 of Kennicutt $\&$ Evans \citep{Kennicutt_2012}, in the context of what a theoretical observer in M51 would infer from the outside when looking at different regions of the Milky Way. Secondly, if the spatial resolution of the SFR measurements encompass single young clusters, the assumption of continuous star formation embedded in the SFR recipes breaks down. The emission from these regions is completely dominated by a very young stellar population, with ages less than the averaging times assumed for all but the emission line tracers. Again, the consequence is that the luminosities of the emission line tracers are affected. Thirdly, if the resolution of measurements becomes fine enough to enter within the Stromgren diameter of HII regions, indirect tracers tend to map out cloud emission rather than the young stars. \\ 
-
-These three biases complicate spatially resolved star formation rate measurements, but do not rule these out. One of the goals of this project will be to construct spatially resolved maps of the star formation within galaxies, inspecting how this correlates with the metal content in the same regions.  
-
-
-\subsection{Measuring Cosmic Abundance}\label{subsec:abundance}
-Giant HII regions were the first indicators of the gas phase abundance of galaxies, and of abundance gradients across the face of these galaxies \citep{Searle1971}, \citep{Shields1974}. Many other abundance indicators have been used since then, including supernova remnants, stellar clusters and AGB stars. HII regions are relatively easy to observe, and the interpretation of their spectra is straightforward, and so these remain the favoured tool for abundance determination.  \\
-
-
-Description of the physical process which excites atoms and causes them to emit the `forbidden' lines - gas rarefied enough \\
-
-
-Chemical abundances derived in low metallicity regions are generally considered reliable, given that the spectroscopy is deep enough to allow for an accurate measurement of forbidden line ratios such as [OIII] $\lambda 4363/5007$, and hence the electron temperature $T_{e}$. DESCRIPTION OF THE DIRECT METHOD. This is the so-called `direct $T_{e}$' method, and requires high quality data which are sensitive to weak, fordibben transitions. The method becomes rapidly more challenging at higher redshifts, where the HII regions are fainter and the required forbidden lines are redshifted into regions of the spectrum plagued by much higher terrestial background. \\   
-
-
-
-
-
-
-At these redshifts, astronomers rely upon the suite of statistical strong-line methods to measure HII region abundances. \\
-
-Description of the main methods (Either from Hughes thesis or from Kewley and Ellison) \\ 
-
-However, the metallicities derived using separate strong line indicators are often not in agreement, with discrepancies of up to a factor of 3 for different strong-line indicators applied to the same set of data. This is mainly due to some of the techniques being calibrated using theoretical models and some empirically with observations of electron temperature sensitive emisison lines \citep{Stasinska2005}. There have been attempts to force the strong-line methods to yield the same metallicites when applied to large samples of high redshift galaxies, by converting measurements to the same metallicity `baseline' \citep{Kewley_2008}, \citep{Kewley2002}, \citep{Maiolino2008}
-
-`It is a separate issue as to whether the re-normalisation of strong-line techniques can (or should) be applied to samples of high redshift galaxies - clearly this is a desirable property but has not yet been clearly demonstrated. The root of the problem is that for this to be allowed, the physics of high redshift HII regions would have to resemble the physics of local star-forming galaxies. If there are any significant physical differences, blind application of local calibrations will introduce systematics in inferred metallicity'. Perhaps the most challenging situation is the comparison of metallicities derived with one set of strong-line indicators in a particular redshift range with those based on a different set of lines at a second redshift. 
-
-
-
-
-\subsection{Measuring Gas Dynamics}\label{subsec:Gas-Dynamics}
-
-These are some of the 
-
-\subsection{BPT Diagram}\label{subsec:BPT-diagram}
-The `Baldwin, Phillips, Terlevich' (BPT) diagram is a plane defined by the strong emission line ratios [OIII]/H $\beta$ and [NII] / $H\alpha$. Perhaps the most remarkable aspect of the BPT diagram is the tight locus along which most local star-forming galaxies are found, sometimes referred to as the `HII region abundance sequence'. Tremonti et al. constructed the BPT diagram for a sample of $> 50,000$ local SDSS star-forming galaxies, shown as the grey points in Figure \ref{fig:steidel_bpt}, revealing two branches, the first of which is the locus of star-forming galaxies and the second is the subset of galaxies with AGN activity. Galaxies hosting AGN have much harder UV spectra, the effect of which is to boost the ratio OIII/H $\beta$ relative to NII/H $\alpha$. The BPT diagram is therefore a useful diagnostic test for the presence of these galaxies, which are excluded from abundance analyses as their strong line ratios are unlikely to be related to stellar processes. \\ 
-
-
-A crucial goal of high redshift galaxy abudance measurement is to understand the physical origins of the difference in position between the $z \sim 0$ and $z > 1$ locus of star forming galaxies in the BPT diagram. Figure \ref{fig:steidel_bpt} shows the BPT diagram for a sample of local SDSS galaxies \citep{Tremonti2004} and for a sample of galaxies from KBSS-MOSFIRE with $z \sim 2.3$. Clearly there is a vertical offset between the two populations  
-relating to the appropriateness of using locally calibrated strong-line abundance diagnostics at high redshift. 
-
-Reasons for the difference (all from the steidel paper end of section 4)
-\begin{itemize}
-	\item Harder radiation field 
-	\item higher ionisation parameter 
-	\item weaker dependence of N/O on O/H
-\end{itemize}
-combine to give a weaker dependence of the observed strong lines on the abundance - i.e. tie in the BPT shifts to the abundance measurement consequences. 
-must also mention \citep{Kewley2013} once you've read.1/4
+Nearly all the diagnostic methods described up to now have been designed for measuring integrated SFRs of galaxies, implicitly assuming that the local variations in stellar-age, mix, IMF population and gas/dust geometry largely average out when the integrated emission of a galaxy is measured. As mentioned above, with very high resolution imaging, or integral-field spectroscopy, (see section \ref{subsec:current_int}), one would like to create maps of spatially resolved star formation by considering individual patches of the whole galaxy. The problem is that at small linear scales almost all of the statistical approximations embedded into SPS models begin to break down. Firstly there is the problem of stochasticity, where incomplete sampling of the stellar IMF on scales between 0.1-1kpc lead to large variations in tracer luminosity. A good example of this is given in section 3.9 of Kennicutt $\&$ Evans \citep{Kennicutt_2012}, in the context of what a theoretical observer in M51 would infer from the outside when looking at different regions of the Milky Way. Secondly, if the spatial resolution of the SFR measurements encompass single young clusters, the assumption of continuous star formation embedded in the SFR recipes breaks down. The emission from these regions is completely dominated by a very young stellar population, with ages less than the averaging times assumed for all but the emission line tracers. Again, the consequence is that the luminosities of the emission line tracers are affected. Thirdly, if the resolution of measurements becomes fine enough to enter within the Stromgren diameter of HII regions, indirect tracers tend to map out cloud emission rather than the young stars. \\ 
 
 \begin{figure}[!htp]
 \centering
-\includegraphics[width=0.8\textwidth]{steidel_bpt.png}
-\caption{\footnotesize{\emph{The `BPT' diagram shows the position of star-forming galaxies in the [OIII]/H $\beta$ vs. [NII] / $H\alpha$ plane. This particular figure, taken from Steidel et al. 2014 \citep{Steidel2014}, shows the locus of $z \sim 2.3$ KBSS MOSFIRE star forming galaxies (green) relative to the SDSS $z \sim 0$ galaxies (grey) \citep{Tremonti2004}. The BPT diagram is also used as an AGN diagnostic, with galaxies hosting active AGN being identified as having unusually large [OIII]/H $\beta$ relative to [NII] / $H\alpha$.}}}
-\label{fig:steidel_bpt}
+\includegraphics[width=0.6\textwidth]{tron_gradients.png}
+\caption{\footnotesize{\emph{[OIII]5007, [OII]3727, H$\beta$ flux maps and the [OIII]5007/[OIII]3727 ratio as well as metallicity maps for four galaxies from the AMAZE sample \citep{Troncoso_2014}. In each case the peak abundance is anti-correlated with the peak of star formation, suggesting that infall of pristine gas towards the centre of the galaxy is both diluting the gas and fueling star formation.}}}
+\label{fig:met_gradients}
 \end{figure} 
 
-\subsection{Mass-Metallicity relationship and evolution}\label{subsec:MZ-relation}
-
-Main points are the flattening of the MZR above a characteristic $M_{*}$ in the low redshift universe, any functional fits to the data take this into account, analogous to the $L_{*}$ in a luminosity function. \\ 
-The drop in metallicity for a given stellar mass when moving to higher redshift and the physical explanation for this \\ 
-The difficulty and danger of comparing the MZR at different redshifts due to the points above about strong-line indicators perhaps not being sensitive to the actual oxygen abundance at high redshift. Evolution of the gas content within galaxies. 
-\citep{Savaglio2005}, \citep{Maiolino2008}, \citep{Erb_2006}, \citep{Tremonti2004}, \citep{Kewley2013}
-
-\begin{figure}[!htp]
-\centering
-\subfloat[]{\includegraphics[width=0.32\textwidth]{tremonti_mzr.png}}
-\subfloat[]{\includegraphics[width=0.32\textwidth]{steidel_mzr.png}}
-\subfloat[]{\includegraphics[width=0.32\textwidth]{Maiolino_mzr.png}}
-\caption{\footnotesize{\emph{}}}
-\label{fig:steidel_mzr}
-\end{figure}
+These three biases complicate spatially resolved star formation rate measurements, but do not rule these out. One of the goals of this project will be to construct spatially resolved maps of the star formation within galaxies, inspecting how this correlates with the metal content in the same regions. Previous studies have used integral-field spectrographs to construct 2D maps of various emission line features, hence allowing for an estimation of the SFR and oxygen abundance in the same regions. Notably, Cresci et al. \citep{Cresci2010} published maps of the spatially resolved [OIII]5007 intensity, velocity profile and oxygen abundance within a subset of 3 galaxies from the AMAZE sample \citep{Maiolino2008} of $z \sim 3.4$ galaxies. Expanding upon this, Troncoso et al. \citep{Troncoso_2014} plotted similar maps for a larger collection of AMAZE galaxies, and also included the spatial distribution of SFR in their analysis. Figure \ref{fig:met_gradients} shows these maps for four galaxies in the Troncoso paper. Interestingly both Cresci and Troncoso report an anti-correlation between oxygen abundance and SFR, with SFR typically declining outwards from centre and oxygen abundance showing the opposite. This is suggestive of massive inflows of pristine gas into the core of the galaxy, which both fuels star formation and dilutes the metal content in these regions. A larger sample is required to reveal whether this phenomenon is ubiquitous at high redshift, and whether the dynamical state of the galaxies or mergers have any role to play in observed abundance gradients. Creating an analogous set of maps for a larger sample of $z \sim 3$ galaxies using KMOS data will be one of key projects of my second year, and this topic is discussed in section \ref{subsec:redshift_three_sample}.
 
 
 
-
-
-\subsection{Fundamental metallicity relationship and evolution}
 
 \subsection{Current multi-object and integral field spectrographs}\label{subsec:current_int}
 	
@@ -598,7 +593,7 @@ As a final test of the accuracy of the emission line fluxes extracted from the S
 
 \begin{figure}[!htp]
 \centering
-\includegraphics[width=0.7\textwidth]{bpt_owen.png}
+\includegraphics[width=0.5\textwidth]{bpt_owen.png}
 \caption{\footnotesize{\emph{The BPT AGN diagnostic diagram recovered from applying the gaussian fitting procedure described above for a sample of 50,000 galaxies extracted from the specPhoto table of SDSS DR10. There is clear bimodality in the diagram, reflecting the ionisation state of galaxies with and without AGN.}}}
 \label{fig:owen_bpt}
 \end{figure}    
@@ -641,7 +636,7 @@ Due to the lcal-segments method automatically shifting the median value of the t
 
 \begin{figure}[!htp]
 \centering
-\includegraphics[width=0.6\textwidth]{pix_hist.png}
+\includegraphics[width=0.5\textwidth]{pix_hist.png}
 \caption{\footnotesize{\emph{To quantify the improvement made to the corrected subtracted image, a slice of pixels in between illuminated IFUs in both the raw and corrected subtracted images of Figure \ref{fig:column_sub} was extracted. The pixel values were placed in bins and a gaussian fit to the resultant histogram, blue for post-correction and green for pre-correction. The correction has the effect of shifting the median subtracted pixel value to zero, which is what we want for a clean sky subtraction. }}}
 \label{fig:pix_hist}
 \end{figure}
@@ -783,7 +778,7 @@ In the future, I plan to include the functionality to cope with multiple waveban
 
 
 \section{Planned projects}\label{sec:projects}
-\subsection{The physical properties of galaxies at z = 3}
+\subsection{The physical properties of galaxies at z = 3}\label{subsec:redshift_three_sample}
 
 \subsubsection{Directly observing emission lines required for direct metallicity measurement}
 
@@ -791,7 +786,7 @@ In the future, I plan to include the functionality to cope with multiple waveban
 
 
 \subsection{Searching for CIII $\&$ CIV Emission}
-Only 1 in every 100 galaxies at locally showing signs of CIII or CIV emission in their spectra, suggesting that it is a rare occurence for the radiation field to be strong enough to either doubly or triply ionise carbon. The promising detection of CIV emission at $z \sim 7$ described by Stark \citep{Stark2015} in a sample of only four galaxies suggests that CIII/IV emission could be more ubiquitous at high redshift, in turn suggesting a harder ionising radiation field. At these redshifts there is little prospect of detecting the resonant emission line Lyman$\alpha$, and indeed the detection of UV rest frame metal lines may be the only hope of progress for spectroscopic confirmation. Non-detection paper described in \citep{Zitrin2015}
+Only 1 in every 100 galaxies at locally showing signs of CIII or CIV emission in their spectra, suggesting that it is a rare occurence for the radiation field to be strong enough to either doubly or triply ionise carbon. The promising detection of CIV emission at $z \sim 7$ described by Stark \citep{Stark2015} in a sample of only four galaxies suggests that CIII/IV emission could be more ubiquitous at high redshift, in turn suggesting a harder ionising radiation field. At these redshifts there is little prospect of detecting the resonant emission line Lyman$\alpha$, and indeed the detection of UV rest frame metal lines may be the only hope of progress for spectroscopic confirmation. Non-detection paper described in \citep{Zitrin2015}. What are the implications for the excitation conditions in high redshift galaxies? 
 
 
 
